@@ -19,6 +19,15 @@ yarn-error.log*
 .env*.local
 .env
 
+# SQLite Database
+*.db
+*.db-journal
+prisma/dev.db
+
+# User Uploaded Assets
+public/uploads/*
+!public/uploads/.gitkeep
+
 # system / OS files
 .DS_Store
 Thumbs.db

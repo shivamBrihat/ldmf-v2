@@ -1,76 +1,96 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Quote, ChevronLeft, ChevronRight, Star, MapPin } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
+interface StoryItem {
+  id?: string;
+  personName: string;
+  location: string;
+  story: string;
+  photoUrl?: string | null;
+  program?: string;
+  outcome?: string;
+}
+
 export default function SuccessStories() {
   const { t, language } = useLanguage();
-
-  const stories = [
-    {
-      name: 'Priya Yadav',
-      location: 'Azamgarh, UP',
-      program: language === 'hi' ? 'कंप्यूटर साक्षरता स्नातक' : 'Basic Computer Skills Graduate',
-      outcome: language === 'hi' ? 'लखनऊ में नौकरी प्राप्त की' : 'Secured Data Executive Job in Lucknow',
-      story: `“${t('stories.priya')}”`,
-      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop',
-    },
-    {
-      name: 'Rahul Kumar',
-      location: 'Mau District, UP',
-      program: language === 'hi' ? 'कक्षा 10वीं बोर्ड छात्र' : 'Class 10th Coaching Camp Student',
-      outcome: language === 'hi' ? 'विशेष योग्यता के साथ उत्तीर्ण' : 'Passed UP Board with 88% Distinction',
-      story: `“${t('stories.rahul')}”`,
-      image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=600&auto=format&fit=crop',
-    },
-    {
-      name: 'Sunita Devi',
-      location: 'Ballia, UP',
-      program: language === 'hi' ? 'सिलाई एवं कढ़ाई स्नातक' : 'Women’s Vocational Tailoring',
-      outcome: language === 'hi' ? 'स्वयं की सिलाई दुकान' : 'Owner of Self-Started Village Boutique',
-      story: `“${t('stories.sunita')}”`,
-      image: 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?q=80&w=600&auto=format&fit=crop',
-    },
-    {
-      name: 'Mohammed Arif’s Father',
-      location: 'Azamgarh Rural',
-      program: language === 'hi' ? 'स्वास्थ्य शिविर लाभार्थी' : 'Free Health & Cardiac Camp Beneficiary',
-      outcome: language === 'hi' ? 'समय पर हृदय उपचार' : 'Received Timely Cardiac Care & Surgery Referral',
-      story: `“${t('stories.arif')}”`,
-      image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=600&auto=format&fit=crop',
-    },
-    {
-      name: 'Kavita Singh’s Daughter',
-      location: 'Gorakhpur, UP',
-      program: language === 'hi' ? 'स्पोकन इंग्लिश छात्रा' : 'Spoken English & Grooming Alumna',
-      outcome: language === 'hi' ? 'अस्पताल में फ्रंट-डेस्क पद' : 'Front-Desk Executive at Regional Hospital',
-      story: `“${t('stories.kavita')}”`,
-      image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=600&auto=format&fit=crop',
-    },
-    {
-      name: 'Dinesh Patel',
-      location: 'Jaunpur, UP',
-      program: language === 'hi' ? 'सूखा राहत लाभार्थी' : 'Drought Relief & Ration Recipient',
-      outcome: language === 'hi' ? 'गाँव को खाद्यान्न सहायता' : 'Village Received Essential Food & Water Support',
-      story: `“${t('stories.dinesh')}”`,
-      image: 'https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?q=80&w=600&auto=format&fit=crop',
-    },
-  ];
-
+  const [stories, setStories] = useState<StoryItem[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
 
+  useEffect(() => {
+    async function fetchStories() {
+      try {
+        const res = await fetch('/api/stories');
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            setStories(
+              data.map((s: any) => ({
+                id: s.id,
+                personName: s.personName,
+                location: s.location,
+                story: s.story.startsWith('“') ? s.story : `“${s.story}”`,
+                photoUrl: s.photoUrl || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop',
+                program: language === 'hi' ? 'फाउंडेशन लाभार्थी' : 'LDMF Program Beneficiary',
+                outcome: language === 'hi' ? 'सफलता की कहानी' : 'IMPACT STORY',
+              }))
+            );
+            return;
+          }
+        }
+      } catch (error) {
+        console.error('Failed to fetch dynamic stories:', error);
+      }
+
+      // Default fallback
+      setStories([
+        {
+          personName: 'Priya Yadav',
+          location: 'Azamgarh, UP',
+          program: language === 'hi' ? 'कंप्यूटर साक्षरता स्नातक' : 'Basic Computer Skills Graduate',
+          outcome: language === 'hi' ? 'लखनऊ में नौकरी प्राप्त की' : 'Secured Data Executive Job in Lucknow',
+          story: `“${t('stories.priya')}”`,
+          photoUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop',
+        },
+        {
+          personName: 'Rahul Kumar',
+          location: 'Mau District, UP',
+          program: language === 'hi' ? 'कक्षा 10वीं बोर्ड छात्र' : 'Class 10th Coaching Camp Student',
+          outcome: language === 'hi' ? 'विशेष योग्यता के साथ उत्तीर्ण' : 'Passed UP Board with 88% Distinction',
+          story: `“${t('stories.rahul')}”`,
+          photoUrl: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=600&auto=format&fit=crop',
+        },
+        {
+          personName: 'Sunita Devi',
+          location: 'Ballia, UP',
+          program: language === 'hi' ? 'सिलाई एवं कढ़ाई स्नातक' : 'Women’s Vocational Tailoring',
+          outcome: language === 'hi' ? 'स्वयं की सिलाई दुकान' : 'Owner of Self-Started Village Boutique',
+          story: `“${t('stories.sunita')}”`,
+          photoUrl: 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?q=80&w=600&auto=format&fit=crop',
+        },
+      ]);
+    }
+
+    fetchStories();
+  }, [language, t]);
+
   const handleNext = () => {
+    if (stories.length === 0) return;
     setActiveIndex((prev) => (prev + 1) % stories.length);
   };
 
   const handlePrev = () => {
+    if (stories.length === 0) return;
     setActiveIndex((prev) => (prev - 1 + stories.length) % stories.length);
   };
 
-  const current = stories[activeIndex];
+  const current = stories[activeIndex] || stories[0];
+
+  if (!current) return null;
 
   return (
     <section id="stories" className="py-20 md:py-28 bg-cream-200/60 relative overflow-hidden">
@@ -102,8 +122,8 @@ export default function SuccessStories() {
               <div className="md:col-span-4 relative flex justify-center">
                 <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-3xl overflow-hidden shadow-xl border-4 border-cream-200">
                   <Image
-                    src={current.image}
-                    alt={current.name}
+                    src={current.photoUrl || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop'}
+                    alt={current.personName}
                     fill
                     sizes="200px"
                     className="object-cover"
@@ -118,7 +138,7 @@ export default function SuccessStories() {
                     <Star key={i} className="w-4 h-4 fill-current" />
                   ))}
                   <span className="text-xs font-bold text-maroon-700 ml-2 uppercase tracking-wider">
-                    {current.outcome}
+                    {current.outcome || 'IMPACT STORY'}
                   </span>
                 </div>
 
@@ -129,13 +149,17 @@ export default function SuccessStories() {
                 <div className="pt-4 border-t border-gold-500/15 flex items-center justify-between">
                   <div>
                     <h3 className="font-serif font-bold text-xl text-maroon-700">
-                      {current.name}
+                      {current.personName}
                     </h3>
                     <div className="flex items-center gap-1.5 text-xs text-muted font-medium mt-0.5">
                       <MapPin className="w-3.5 h-3.5 text-gold-600" />
                       <span>{current.location}</span>
-                      <span>•</span>
-                      <span className="text-gold-700 font-semibold">{current.program}</span>
+                      {current.program && (
+                        <>
+                          <span>•</span>
+                          <span className="text-gold-700 font-semibold">{current.program}</span>
+                        </>
+                      )}
                     </div>
                   </div>
 
@@ -175,10 +199,10 @@ export default function SuccessStories() {
               }`}
             >
               <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0 border border-white/40">
-                <Image src={item.image} alt={item.name} fill sizes="40px" className="object-cover" />
+                <Image src={item.photoUrl || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop'} alt={item.personName} fill sizes="40px" className="object-cover" />
               </div>
               <div className="overflow-hidden">
-                <span className="text-xs font-bold block truncate">{item.name}</span>
+                <span className="text-xs font-bold block truncate">{item.personName}</span>
                 <span className={`text-[10px] block truncate ${idx === activeIndex ? 'text-gold-300' : 'text-muted'}`}>
                   {item.location}
                 </span>

@@ -1,55 +1,84 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Newspaper, ExternalLink } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
+interface MediaItem {
+  id?: string;
+  outlet: string;
+  headline: string;
+  articleUrl?: string | null;
+  excerpt?: string;
+  badge?: string;
+  date?: string;
+}
+
 export default function MediaCoverage() {
   const { t, language } = useLanguage();
+  const [mediaMentions, setMediaMentions] = useState<MediaItem[]>([]);
 
-  const mediaMentions = [
-    {
-      publication: 'Dainik Jagran',
-      edition: language === 'hi' ? 'आजमगढ़ संस्करण' : 'Azamgarh Edition',
-      headline: language === 'hi' ? 'निःशुल्क शिक्षा शिविर से 200+ छात्र लाभान्वित' : 'Free Education Camp Empowers 200+ Rural Students',
-      excerpt: t('media.dainikJagran'),
-      badge: language === 'hi' ? 'प्रमुख समाचार' : 'TOP STORY',
-      date: 'March 2024',
-    },
-    {
-      publication: 'Amar Ujala',
-      edition: language === 'hi' ? 'पूर्वी यूपी विशेष' : 'Eastern UP Special',
-      headline: language === 'hi' ? '10 जिलों में निःशुल्क कार्यक्रमों का विस्तार' : 'Foundation Expands Free Programs to 10 Districts',
-      excerpt: t('media.amarUjala'),
-      badge: language === 'hi' ? 'क्षेत्रीय कवरेज' : 'REGIONAL COVERAGE',
-      date: 'January 2024',
-    },
-    {
-      publication: 'Hindustan',
-      edition: language === 'hi' ? 'वाराणसी एवं आजमगढ़' : 'Varanasi & Azamgarh',
-      headline: language === 'hi' ? '300+ ग्रामीण महिलाओं ने हासिल की आर्थिक स्वतंत्रता' : '300+ Rural Women Achieve Financial Independence',
-      excerpt: t('media.hindustan'),
-      badge: language === 'hi' ? 'विशेष रिपोर्ट' : 'FEATURE STORY',
-      date: 'November 2023',
-    },
-    {
-      publication: 'The Hindu',
-      edition: language === 'hi' ? 'राष्ट्रीय मीडिया' : 'National & Social Impact',
-      headline: language === 'hi' ? 'पूर्वी यूपी में शैक्षणिक विभाजन को पाटना' : 'Bridging the Educational & Digital Divide in Eastern UP',
-      excerpt: t('media.theHindu'),
-      badge: language === 'hi' ? 'राष्ट्रीय कवरेज' : 'NATIONAL MEDIA',
-      date: 'August 2023',
-    },
-    {
-      publication: 'Navbharat Times',
-      edition: language === 'hi' ? 'राज्य डेस्क' : 'State Desk',
-      headline: language === 'hi' ? '500+ ग्रामीणों का मुफ्त इलाज' : 'Free Health Camps Treat Over 500 Villagers in Azamgarh',
-      excerpt: t('media.navbharatTimes'),
-      badge: language === 'hi' ? 'स्वास्थ्य समाचार' : 'HEALTH SPOTLIGHT',
-      date: 'May 2023',
-    },
-  ];
+  useEffect(() => {
+    async function fetchMedia() {
+      try {
+        const res = await fetch('/api/media');
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            setMediaMentions(
+              data.map((m: any) => ({
+                id: m.id,
+                outlet: m.outlet,
+                headline: m.headline,
+                articleUrl: m.articleUrl || '#',
+                excerpt: m.excerpt || (language === 'hi' ? 'पूर्वी उत्तर प्रदेश में हमारे सामाजिक प्रभाव की प्रमुख समाचार रिपोर्ट।' : 'Prominent news coverage highlighting our grass-roots social impact in UP.'),
+                badge: language === 'hi' ? 'समाचार कवरेज' : 'NEWS COVERAGE',
+                date: '2024 Coverage',
+              }))
+            );
+            return;
+          }
+        }
+      } catch (error) {
+        console.error('Failed to fetch dynamic media:', error);
+      }
+
+      // Default fallback
+      setMediaMentions([
+        {
+          outlet: 'Dainik Jagran',
+          headline: language === 'hi' ? 'निःशुल्क शिक्षा शिविर से 200+ छात्र लाभान्वित' : 'Free Education Camp Empowers 200+ Rural Students',
+          excerpt: t('media.dainikJagran'),
+          badge: language === 'hi' ? 'प्रमुख समाचार' : 'TOP STORY',
+          date: 'March 2024',
+        },
+        {
+          outlet: 'Amar Ujala',
+          headline: language === 'hi' ? '10 जिलों में निःशुल्क कार्यक्रमों का विस्तार' : 'Foundation Expands Free Programs to 10 Districts',
+          excerpt: t('media.amarUjala'),
+          badge: language === 'hi' ? 'क्षेत्रीय कवरेज' : 'REGIONAL COVERAGE',
+          date: 'January 2024',
+        },
+        {
+          outlet: 'Hindustan',
+          headline: language === 'hi' ? '300+ ग्रामीण महिलाओं ने हासिल की आर्थिक स्वतंत्रता' : '300+ Rural Women Achieve Financial Independence',
+          excerpt: t('media.hindustan'),
+          badge: language === 'hi' ? 'विशेष रिपोर्ट' : 'FEATURE STORY',
+          date: 'November 2023',
+        },
+        {
+          outlet: 'The Hindu',
+          headline: language === 'hi' ? 'पूर्वी यूपी में शैक्षणिक विभाजन को पाटना' : 'Bridging the Educational & Digital Divide in Eastern UP',
+          excerpt: t('media.theHindu'),
+          badge: language === 'hi' ? 'राष्ट्रीय कवरेज' : 'NATIONAL MEDIA',
+          date: 'August 2023',
+        },
+      ]);
+    }
+
+    fetchMedia();
+  }, [language, t]);
 
   return (
     <section id="media" className="py-20 md:py-28 bg-white relative">
@@ -89,15 +118,12 @@ export default function MediaCoverage() {
                     <Newspaper className="w-5 h-5 text-maroon-700" />
                     <div>
                       <h4 className="font-serif font-bold text-lg text-maroon-700 leading-none">
-                        {item.publication}
+                        {item.outlet}
                       </h4>
-                      <span className="text-[10px] text-muted font-medium">
-                        {item.edition}
-                      </span>
                     </div>
                   </div>
                   <span className="text-[10px] font-bold uppercase tracking-wider text-gold-600 bg-gold-500/10 px-2.5 py-1 rounded-full border border-gold-500/20">
-                    {item.badge}
+                    {item.badge || 'MEDIA COVERAGE'}
                   </span>
                 </div>
 
@@ -112,11 +138,16 @@ export default function MediaCoverage() {
 
               {/* Footer Date & Link */}
               <div className="pt-4 border-t border-gold-500/15 flex items-center justify-between text-xs text-muted font-medium">
-                <span>{item.date}</span>
-                <span className="inline-flex items-center gap-1 text-gold-600 font-bold group-hover:text-maroon-700 transition-colors">
-                  <span>{language === 'hi' ? 'प्रेस विज्ञप्ति पढ़ें' : 'Read Press Release'}</span>
+                <span>{item.date || 'Coverage'}</span>
+                <a
+                  href={item.articleUrl || '#'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-gold-600 font-bold group-hover:text-maroon-700 transition-colors"
+                >
+                  <span>{language === 'hi' ? 'प्रेस विज्ञप्ति पढ़ें' : 'Read Article'}</span>
                   <ExternalLink className="w-3.5 h-3.5" />
-                </span>
+                </a>
               </div>
             </motion.div>
           ))}

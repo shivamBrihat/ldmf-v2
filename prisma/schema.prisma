@@ -1,0 +1,113 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model TeamMember {
+  id        String   @id @default(cuid())
+  name      String
+  role      String
+  photoUrl  String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model GalleryImage {
+  id        String   @id @default(cuid())
+  imageUrl  String
+  caption   String?
+  category  String?
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model Program {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  imageUrl    String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model TimelineEvent {
+  id          String   @id @default(cuid())
+  year        String
+  description String
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+}
+
+model SuccessStory {
+  id          String   @id @default(cuid())
+  personName  String
+  location    String
+  story       String
+  photoUrl    String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model MediaCoverage {
+  id         String   @id @default(cuid())
+  outlet     String
+  headline   String
+  articleUrl String?
+  createdAt  DateTime @default(now())
+}
+
+model Update {
+  id          String   @id @default(cuid())
+  title       String
+  content     String
+  imageUrl    String?
+  publishedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Activity {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  imageUrl    String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  eventDate   DateTime
+  location    String?
+  imageUrl    String?
+  isUpcoming  Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SiteContent {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  title     String
+  content   String
+  updatedAt DateTime @updatedAt
+}
+
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}

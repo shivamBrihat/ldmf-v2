@@ -1,0 +1,129 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import PageHero from '@/components/PageHero';
+import Modals from '@/components/Modals';
+import { BookOpen, Clock, Users, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+
+interface CourseItem {
+  id: string;
+  title: string;
+  description: string;
+  imageUrl?: string;
+}
+
+export default function CoursesPage() {
+  const { language } = useLanguage();
+  const [courses, setCourses] = useState<CourseItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [applyOpen, setApplyOpen] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState('Basic Computer Skills');
+
+  useEffect(() => {
+    async function fetchCourses() {
+      try {
+        const res = await fetch('/api/programs');
+        if (res.ok) {
+          const data = await res.json();
+          setCourses(data);
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchCourses();
+  }, []);
+
+  const handleApplyClick = (title: string) => {
+    setSelectedCourse(title);
+    setApplyOpen(true);
+  };
+
+  return (
+    <main className="min-h-screen bg-cream-100 font-sans">
+      <Navbar />
+
+      <PageHero
+        eyebrow={language === 'hi' ? 'निःशुल्क शिक्षा एवं कौशल' : 'FREE COURSES & SKILLS'}
+        title={language === 'hi' ? 'व्यावहारिक कौशल जो नए अवसर खोलते हैं' : 'Practical skills that open doors'}
+        subtitle={language === 'hi' ? 'कंप्यूटर प्रशिक्षण, अंग्रेजी बोलना, महिला सिलाई एवं बोर्ड परीक्षा कोचिंग शिविर।' : 'Free educational courses designed to empower youth, women, and students across rural UP.'}
+        imageUrl="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1000&auto=format&fit=crop"
+      />
+
+      <section className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {loading ? (
+          <div className="text-center py-12 text-muted">Loading courses...</div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {courses.map((course) => (
+              <div
+                key={course.id}
+                className="bg-white rounded-3xl overflow-hidden shadow-card border border-gold-500/20 hover:border-gold-500 transition-all flex flex-col group p-6 sm:p-8"
+              >
+                {course.imageUrl && (
+                  <div className="relative h-56 w-full rounded-2xl overflow-hidden mb-6">
+                    <Image
+                      src={course.imageUrl}
+                      alt={course.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                )}
+
+                <div className="flex-grow flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-serif font-bold text-2xl text-dark group-hover:text-maroon-700 transition-colors mb-3">
+                      {course.title}
+                    </h3>
+                    <p className="text-sm text-muted leading-relaxed mb-6">
+                      {course.description}
+                    </p>
+
+                    <div className="space-y-2 mb-8 text-xs text-dark/80 font-medium">
+                      <div className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-gold-600 shrink-0" />
+                        <span>{language === 'hi' ? '100% नि:शुल्क अध्ययन सामग्री एवं लैब' : '100% Free learning materials & hands-on lab access'}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-gold-600 shrink-0" />
+                        <span>{language === 'hi' ? 'सफलतापूर्वक पूरा करने पर प्रमाण पत्र' : 'Recognized completion certificate issued'}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => handleApplyClick(course.title)}
+                    className="w-full bg-maroon-700 hover:bg-maroon-800 text-white font-semibold text-sm py-3 px-6 rounded-full flex items-center justify-center gap-2 transition-all shadow-md"
+                  >
+                    <span>{language === 'hi' ? 'रजिस्टर / रुचि दर्ज करें' : 'Register Interest'}</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
+      <Footer />
+
+      <Modals
+        donateOpen={false}
+        onDonateClose={() => {}}
+        volunteerOpen={false}
+        volunteerRole="Volunteer"
+        onVolunteerClose={() => {}}
+        applyOpen={applyOpen}
+        selectedCourse={selectedCourse}
+        onApplyClose={() => setApplyOpen(false)}
+      />
+    </main>
+  );
+}

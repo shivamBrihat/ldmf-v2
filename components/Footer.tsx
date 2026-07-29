@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { MapPin, Phone, Mail, Clock, Facebook, Twitter, Instagram, Youtube, Linkedin, ArrowUp } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -89,11 +90,11 @@ export default function Footer() {
               {t('footer.quickLinks')}
             </h4>
             <ul className="space-y-2 text-xs text-cream-200/80">
-              <li><a href="#about" className="hover:text-gold-400 transition-colors">{t('nav.about')}</a></li>
-              <li><a href="#programs" className="hover:text-gold-400 transition-colors">{t('nav.ourWork')}</a></li>
-              <li><a href="#stories" className="hover:text-gold-400 transition-colors">{t('nav.stories')}</a></li>
-              <li><a href="#media" className="hover:text-gold-400 transition-colors">{language === 'hi' ? 'समाचार' : 'Media Coverage'}</a></li>
-              <li><a href="#get-involved" className="hover:text-gold-400 transition-colors">{t('nav.getInvolved')}</a></li>
+              <li><Link href="/about" className="hover:text-gold-400 transition-colors">{language === 'hi' ? 'हमारे बारे में' : 'About Us'}</Link></li>
+              <li><Link href="/updates" className="hover:text-gold-400 transition-colors">{language === 'hi' ? 'अपडेट्स' : 'Updates & Journal'}</Link></li>
+              <li><Link href="/activities" className="hover:text-gold-400 transition-colors">{language === 'hi' ? 'गतिविधियाँ' : 'Community Activities'}</Link></li>
+              <li><Link href="/gallery" className="hover:text-gold-400 transition-colors">{language === 'hi' ? 'गैलरी' : 'Photo Gallery'}</Link></li>
+              <li><Link href="/events" className="hover:text-gold-400 transition-colors">{language === 'hi' ? 'कार्यक्रम' : 'Events'}</Link></li>
             </ul>
           </div>
 
@@ -103,11 +104,11 @@ export default function Footer() {
               {t('footer.programs')}
             </h4>
             <ul className="space-y-2 text-xs text-cream-200/80">
-              <li><a href="#programs" className="hover:text-gold-400 transition-colors">{t('programs.computer.title')}</a></li>
-              <li><a href="#programs" className="hover:text-gold-400 transition-colors">{t('programs.english.title')}</a></li>
-              <li><a href="#programs" className="hover:text-gold-400 transition-colors">{t('programs.women.title')}</a></li>
-              <li><a href="#programs" className="hover:text-gold-400 transition-colors">{t('programs.coaching.title')}</a></li>
-              <li><a href="#get-involved" className="hover:text-gold-400 transition-colors">{t('community.eyebrow')}</a></li>
+              <li><Link href="/courses" className="hover:text-gold-400 transition-colors">{t('programs.computer.title')}</Link></li>
+              <li><Link href="/courses" className="hover:text-gold-400 transition-colors">{t('programs.english.title')}</Link></li>
+              <li><Link href="/courses" className="hover:text-gold-400 transition-colors">{t('programs.women.title')}</Link></li>
+              <li><Link href="/courses" className="hover:text-gold-400 transition-colors">{t('programs.coaching.title')}</Link></li>
+              <li><Link href="/donate" className="hover:text-gold-400 transition-colors">{language === 'hi' ? 'सहयोग एवं दान' : 'Support & Donate'}</Link></li>
             </ul>
           </div>
 
@@ -139,9 +140,13 @@ export default function Footer() {
             {t('footer.rights')}
           </p>
           <div className="flex items-center gap-4">
-            <a href="#" className="hover:text-gold-400 transition-colors">80G Certificate</a>
+            <Link href="/terms" className="hover:text-gold-400 transition-colors">
+              {language === 'hi' ? 'नियम और शर्तें' : 'Terms & Conditions'}
+            </Link>
             <span>•</span>
-            <a href="#" className="hover:text-gold-400 transition-colors">Privacy Policy</a>
+            <Link href="/privacy" className="hover:text-gold-400 transition-colors">
+              {language === 'hi' ? 'गोपनीयता नीति' : 'Privacy Policy'}
+            </Link>
             <span>•</span>
             <button
               onClick={scrollToTop}

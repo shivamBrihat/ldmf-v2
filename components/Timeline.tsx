@@ -1,50 +1,53 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Award, Sparkles, Heart, BookOpen, CheckCircle2 } from 'lucide-react';
+import { Calendar, CheckCircle2 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+
+interface TimelineItem {
+  id?: string;
+  year: string;
+  description: string;
+}
 
 export default function Timeline() {
   const { t, language } = useLanguage();
+  const [milestones, setMilestones] = useState<TimelineItem[]>([]);
 
-  const milestones = [
-    {
-      year: '2020',
-      title: language === 'hi' ? 'फाउंडेशन का पंजीकरण' : 'Foundation Registered',
-      description: t('timeline.2020'),
-      icon: Heart,
-      stats: '2020',
-    },
-    {
-      year: '2021',
-      title: language === 'hi' ? 'पहला निःशुल्क शिक्षा शिविर' : 'First Free Education Camp',
-      description: t('timeline.2021'),
-      icon: BookOpen,
-      stats: '50 Students',
-    },
-    {
-      year: '2022',
-      title: language === 'hi' ? '5 जिलों में विस्तार एवं स्वास्थ्य शिविर' : 'Expansion & First Village Health Camp',
-      description: t('timeline.2022'),
-      icon: Sparkles,
-      stats: '5 Districts',
-    },
-    {
-      year: '2023',
-      title: language === 'hi' ? 'महिला कौशल विकास की शुरुआत' : 'Women’s Skill Development Launch',
-      description: t('timeline.2023'),
-      icon: Award,
-      stats: 'Skills Center',
-    },
-    {
-      year: '2024',
-      title: language === 'hi' ? '500+ छात्र एवं 10 जिले' : '500+ Students & 10 Districts',
-      description: t('timeline.2024'),
-      icon: CheckCircle2,
-      stats: '500+ Impacted',
-    },
-  ];
+  useEffect(() => {
+    async function fetchTimeline() {
+      try {
+        const res = await fetch('/api/timeline');
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            setMilestones(
+              data.map((m: any) => ({
+                id: m.id,
+                year: m.year,
+                description: m.description,
+              }))
+            );
+            return;
+          }
+        }
+      } catch (error) {
+        console.error('Failed to fetch dynamic timeline:', error);
+      }
+
+      // Fallback default
+      setMilestones([
+        { year: '2020', description: t('timeline.2020') },
+        { year: '2021', description: t('timeline.2021') },
+        { year: '2022', description: t('timeline.2022') },
+        { year: '2023', description: t('timeline.2023') },
+        { year: '2024', description: t('timeline.2024') },
+      ]);
+    }
+
+    fetchTimeline();
+  }, [language, t]);
 
   return (
     <section className="py-20 md:py-28 bg-cream-200/50 relative overflow-hidden">
@@ -57,67 +60,48 @@ export default function Timeline() {
             </span>
           </div>
           <h2 className="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-dark leading-tight mb-4">
-            {language === 'hi' ? 'हमारी प्रभाव और विकास की यात्रा' : 'Our Journey of Impact & Growth'}
+            {language === 'hi' ? 'निरंतर सेवा के मील के पत्थर' : 'Milestones of Dedicated Service'}
           </h2>
           <p className="text-base sm:text-lg text-muted">
             {language === 'hi'
-              ? 'एक छोटे से बरामदे से 10 जिलों तक पहुँचने का हमारा सफर।'
-              : 'From an informal verandah classroom to a registered foundation reaching 10 districts—here is how we grew step by step.'}
+              ? 'एक साधारण स्मरण प्रयास से बढ़कर 10 से अधिक जिलों में विस्तृत सामुदायिक अभियान तक का सफर।'
+              : 'From a simple memorial tribute in Azamgarh to a multi-district outreach across Eastern UP.'}
           </p>
         </div>
 
-        {/* Vertical Timeline Container */}
-        <div className="relative max-w-4xl mx-auto">
-          {/* Vertical Center Line */}
-          <div className="absolute left-4 sm:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-gold-400 via-maroon-700 to-gold-500 transform sm:-translate-x-1/2" />
+        {/* Timeline Desktop & Mobile Grid */}
+        <div className="relative border-l-2 border-gold-500/30 ml-4 sm:ml-32 space-y-12 pl-6 sm:pl-10">
+          {milestones.map((item, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              className="relative group"
+            >
+              {/* Year Badge floating left on desktop */}
+              <div className="sm:absolute sm:-left-44 sm:top-1 font-serif font-bold text-2xl text-maroon-700 sm:text-right w-28 mb-2 sm:mb-0">
+                {item.year}
+              </div>
 
-          <div className="space-y-12 relative">
-            {milestones.map((item, idx) => {
-              const Icon = item.icon;
-              const isEven = idx % 2 === 0;
+              {/* Node Icon on Timeline Line */}
+              <div className="absolute -left-[31px] sm:-left-[47px] top-1.5 w-6 h-6 rounded-full bg-white border-4 border-gold-500 group-hover:bg-maroon-700 group-hover:scale-125 transition-all shadow-md" />
 
-              return (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className={`flex flex-col sm:flex-row items-start ${
-                    isEven ? 'sm:flex-row-reverse' : ''
-                  } gap-6 sm:gap-0 relative`}
-                >
-                  {/* Timeline Dot Indicator */}
-                  <div className="absolute left-4 sm:left-1/2 top-0 w-8 h-8 rounded-full bg-maroon-700 text-gold-400 border-4 border-white shadow-lg flex items-center justify-center transform -translate-x-1/2 z-10">
-                    <Icon className="w-3.5 h-3.5" />
-                  </div>
-
-                  {/* Content Card Side */}
-                  <div className="w-full sm:w-1/2 pl-12 sm:pl-0 sm:px-8">
-                    <div className="bg-white p-6 sm:p-8 rounded-3xl shadow-card border border-gold-500/20 hover:border-gold-500 transition-all duration-300 group">
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="font-serif text-3xl font-extrabold text-maroon-700">
-                          {item.year}
-                        </span>
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-gold-600 bg-gold-500/10 px-3 py-1 rounded-full border border-gold-500/20">
-                          {item.stats}
-                        </span>
-                      </div>
-                      <h3 className="font-serif font-bold text-xl text-dark group-hover:text-maroon-700 transition-colors mb-2">
-                        {item.title}
-                      </h3>
-                      <p className="text-sm text-muted leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Empty side for layout balance */}
-                  <div className="hidden sm:block sm:w-1/2" />
-                </motion.div>
-              );
-            })}
-          </div>
+              {/* Content Box */}
+              <div className="bg-white rounded-2xl p-6 shadow-soft-xl border border-gold-500/20 hover:border-gold-500 transition-all duration-300">
+                <div className="flex items-center gap-2 mb-2">
+                  <CheckCircle2 className="w-4 h-4 text-gold-600 shrink-0" />
+                  <h3 className="font-serif font-bold text-lg text-dark">
+                    {language === 'hi' ? `${item.year} की उपलब्धि` : `${item.year} Milestone`}
+                  </h3>
+                </div>
+                <p className="text-sm text-muted leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
