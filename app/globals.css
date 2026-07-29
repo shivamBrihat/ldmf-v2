@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-maroon: #7A1F2B;
+  --color-dark: #1A1A1A;
+  --color-gold: #C9A227;
+  --color-cream: #FDFBF7;
+  --color-muted: #6B6B6B;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-dark);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.lang-hi {
+  font-family: var(--font-devanagari), var(--font-sans), sans-serif;
+}
+
+/* Custom Typography Utility Classes */
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F4ECE0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C9A227;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7A1F2B;
+}
+
+/* Custom Gold Accent Lines */
+.eyebrow-line {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.eyebrow-line::before {
+  content: '';
+  display: inline-block;
+  width: 2.5rem;
+  height: 1.5px;
+  background-color: #C9A227;
+}
+
+/* Glassmorphism card utilities */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(234, 223, 207, 0.6);
+}
+
+.glass-card-dark {
+  background: rgba(122, 31, 43, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(201, 162, 39, 0.25);
+}
+
+/* Custom Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Pill Button Hover Glow */
+.btn-maroon-glow {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px -2px rgba(122, 31, 43, 0.35);
+}
+
+.btn-maroon-glow:hover {
+  box-shadow: 0 10px 25px -2px rgba(122, 31, 43, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-gold-glow {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px -2px rgba(201, 162, 39, 0.4);
+}
+
+.btn-gold-glow:hover {
+  box-shadow: 0 10px 25px -2px rgba(201, 162, 39, 0.6);
+  transform: translateY(-2px);
+}

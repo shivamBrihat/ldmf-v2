@@ -1,0 +1,137 @@
+{
+  "nav": {
+    "about": "About",
+    "ourWork": "Our Work",
+    "stories": "Stories",
+    "gallery": "Gallery",
+    "getInvolved": "Get Involved",
+    "donate": "Donate",
+    "announcement": "Free Computer Skills course — admissions open now. Apply now →"
+  },
+  "hero": {
+    "eyebrow": "LAGNI DEVI MEMORIAL FOUNDATION · EST. 2020",
+    "headline": "In Her Memory. For Her People.",
+    "subtext": "Lagni Devi Memorial Foundation — Empowering communities through education, service, and remembrance.",
+    "donateNow": "Donate Now ↗",
+    "learnMore": "Learn More",
+    "stat1Number": "500+",
+    "stat1Label": "Students Supported",
+    "stat2Number": "10",
+    "stat2Label": "Districts Reached",
+    "stat3Number": "15",
+    "stat3Label": "Free Programmes",
+    "stat4Number": "5",
+    "stat4Label": "Years of Service"
+  },
+  "about": {
+    "eyebrow": "OUR LEGACY",
+    "headline": "Beyond remembrance, towards real change.",
+    "body": "Lagni Devi Memorial Foundation is a grassroots non-profit organisation established in 2020 to honour the life and legacy of Smt. Lagni Devi, who lived from 1945 to 2019. Born in a small village in Uttar Pradesh, Smt. Lagni Devi dedicated her life to community welfare, teaching children at home and empowering rural women towards self-employment despite having very limited resources. Following her passing, her family and community members founded the organisation to keep her legacy of compassion and service alive under the guiding principles of \"Remembering, Honouring, and Serving.\""
+  },
+  "vision": {
+    "eyebrow": "OUR VISION",
+    "point1": "Quality education for children from all backgrounds",
+    "point2": "Vocational skills & financial independence for women",
+    "point3": "Healthy and prosperous rural families"
+  },
+  "team": {
+    "eyebrow": "LEADERSHIP",
+    "headline": "The people behind the mission",
+    "role": {
+      "founder": "Founder & Chairperson",
+      "secretary": "Secretary",
+      "treasurer": "Treasurer",
+      "eduDirector": "Education Director",
+      "liaison": "Community Liaison",
+      "health": "Health Programs Head"
+    }
+  },
+  "timeline": {
+    "eyebrow": "OUR JOURNEY",
+    "2020": "Foundation registered",
+    "2021": "First free education camp; 50 students from 3 villages coached for board exams",
+    "2022": "Expanded to 5 districts; first village health camp",
+    "2023": "Launched Women's Skill Development Program; introduced online skill courses",
+    "2024": "Celebrated supporting 500+ students across 10 districts"
+  },
+  "programs": {
+    "eyebrow": "LEARNING OPPORTUNITIES",
+    "headline": "Learn, grow, share.",
+    "viewAll": "View all courses →",
+    "computer": {
+      "title": "Basic Computer Skills",
+      "desc": "Typing, email, internet browsing, and MS Office basics"
+    },
+    "english": {
+      "title": "Spoken English",
+      "desc": "Tailored for rural youth entering the job market"
+    },
+    "women": {
+      "title": "Women's Skill Development",
+      "desc": "Tailoring, embroidery, and entrepreneurship"
+    },
+    "coaching": {
+      "title": "Board Exam Coaching Camps",
+      "desc": "Three-month intensive coaching for Class 10 & 12 students from economically weaker sections"
+    }
+  },
+  "community": {
+    "eyebrow": "COMMUNITY CARE",
+    "headline1": "Education",
+    "desc1": "Free learning and skills that open doors.",
+    "headline2": "Community care",
+    "desc2": "Initiatives built on dignity, care and solidarity.",
+    "headline3": "Legacy",
+    "desc3": "Turning remembrance into living inspiration.",
+    "cleanliness": "Village cleanliness drives across 8 villages, in partnership with local panchayats",
+    "medical": "Free medical camps — health checkups, medicines, and specialist consultations",
+    "crisis": "Crisis relief support during droughts, such as in Jaunpur — providing urgent food and medical aid"
+  },
+  "media": {
+    "eyebrow": "IN THE NEWS",
+    "headline": "Covered by the press",
+    "dainikJagran": "Dainik Jagran highlighted the success of a free education camp that supported over 200 students in Azamgarh",
+    "amarUjala": "Amar Ujala reported on the foundation's expansion to ten districts with free programs",
+    "hindustan": "Hindustan featured the women's skill development initiatives that empowered over 300 women",
+    "theHindu": "The Hindu detailed how the grassroots foundation is successfully bridging the educational divide in eastern Uttar Pradesh",
+    "navbharatTimes": "Navbharat Times covered the free health camps that provided medical treatment to more than 500 villagers"
+  },
+  "stories": {
+    "eyebrow": "STORIES & IMPACT",
+    "headline": "Stories of change, close to the ground.",
+    "allUpdates": "All updates →",
+    "priya": "Priya Yadav from Azamgarh secured a job in Lucknow and began supporting her family after completing the free computer course.",
+    "rahul": "Rahul Kumar from Mau was able to pass his Class 10 board exams with distinction instead of dropping out, allowing him to pursue college.",
+    "sunita": "Sunita Devi from Ballia established her own tailoring shop, achieving financial independence.",
+    "arif": "Mohammed Arif's father received timely medical treatment after doctors identified a heart condition during a free village health camp.",
+    "kavita": "In Gorakhpur, Kavita Singh's daughter secured a stable job following the Spoken English course.",
+    "dinesh": "Dinesh Patel's village in Jaunpur received crucial aid during a drought.",
+    "newSoon": "A new story soon",
+    "journal": "FOUNDATION JOURNAL",
+    "comingSoon": "New stories coming soon."
+  },
+  "donate": {
+    "headline": "Join Us in Her Mission",
+    "volunteer": "Volunteer",
+    "mentor": "Mentor",
+    "donate": "Donate",
+    "bankTitle": "Bank Transfer",
+    "accountName": "Account Name: Lagni Devi Memorial Foundation",
+    "upi": "UPI ID: ldmf@sbi",
+    "taxNote": "Donations to the foundation are eligible for tax deductions under Section 80G of the Income Tax Act."
+  },
+  "contact": {
+    "eyebrow": "GET IN TOUCH",
+    "address": "Village & Post Rampur, District Azamgarh, Uttar Pradesh, 276001",
+    "phone": "+91 98765 43210",
+    "email": "contact@ldmf.org",
+    "hours": "Office Hours: Monday to Saturday, 9 AM to 5 PM"
+  },
+  "footer": {
+    "about": "About",
+    "quickLinks": "Quick Links",
+    "programs": "Programs",
+    "contact": "Contact",
+    "rights": "© 2026 Lagni Devi Memorial Foundation. All rights reserved."
+  }
+}
