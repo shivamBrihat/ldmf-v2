@@ -1,9 +1,21 @@
 import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
 async function main() {
   console.log('Seeding database with full multi-page content...');
+
+  // 0. Admin User
+  await prisma.user.deleteMany();
+  const hashedPassword = bcrypt.hashSync('Admin@123', 10);
+  await prisma.user.create({
+    data: {
+      email: 'admin@brihatinfotech.com',
+      password: hashedPassword,
+      name: 'Admin User',
+    },
+  });
 
   // 1. Team Members
   await prisma.teamMember.deleteMany();
@@ -12,25 +24,41 @@ async function main() {
       {
         name: 'Vipul Chauhan',
         role: 'Founder & Managing Trustee',
+        designation: 'Founder & Managing Trustee',
         photoUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop',
+        bio: 'Retired educationist & social advocate with 35+ years of community leadership in UP.',
+        linkedinUrl: 'https://linkedin.com/in/vipul-chauhan',
+        email: 'vipul@ldmf.org',
         order: 1,
       },
       {
         name: 'Anjali Chauhan',
         role: 'Co-Trustee & Director of Education',
+        designation: 'Co-Trustee & Director of Education',
         photoUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop',
+        bio: 'Dedicated rural development strategist specializing in women economic empowerment.',
+        linkedinUrl: 'https://linkedin.com/in/anjali-chauhan',
+        email: 'anjali@ldmf.org',
         order: 2,
       },
       {
         name: 'Dr. Ramesh Chandra',
         role: 'Chief Medical Coordinator',
+        designation: 'Chief Medical Coordinator',
         photoUrl: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=600&auto=format&fit=crop',
+        bio: 'Financial consultant overseeing transparent 80G governance and donor accountability.',
+        linkedinUrl: 'https://linkedin.com/in/ramesh-chandra',
+        email: 'ramesh@ldmf.org',
         order: 3,
       },
       {
         name: 'Sunita Sharma',
         role: 'Women Empowerment Lead',
+        designation: 'Women Empowerment Lead',
         photoUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600&auto=format&fit=crop',
+        bio: 'Former university lecturer driving free computer literacy & coaching programs.',
+        linkedinUrl: 'https://linkedin.com/in/sunita-sharma',
+        email: 'sunita@ldmf.org',
         order: 4,
       },
     ],
@@ -73,26 +101,36 @@ async function main() {
     data: [
       {
         year: '2020',
+        title: 'Foundation Registered',
+        badge: '2020',
         description: 'Foundation established in memory of Smt. Lagni Devi to honor her lifelong dedication to rural welfare.',
         order: 1,
       },
       {
         year: '2021',
+        title: 'First Free Education Camp',
+        badge: '50 STUDENTS',
         description: 'Launched first Free Computer Training Center in Village Rampur, Azamgarh, benefiting 120 initial students.',
         order: 2,
       },
       {
         year: '2022',
+        title: 'Rural Healthcare Camps',
+        badge: '15 CAMPS',
         description: 'Expanded to healthcare camps, conducting 15 rural medical drives across Azamgarh and Mau districts.',
         order: 3,
       },
       {
         year: '2023',
+        title: 'Women’s Vocational Skills Center',
+        badge: '50+ MACHINES',
         description: 'Initiated Women’s Vocational Skill Center, distributing 50+ sewing machines and enabling self-employment.',
         order: 4,
       },
       {
         year: '2024',
+        title: '1,500+ Lives Impacted',
+        badge: 'MILESTONE',
         description: 'Reached milestone of 1,500+ lives impacted across education, healthcare, and community relief in Eastern UP.',
         order: 5,
       },
@@ -159,11 +197,17 @@ async function main() {
         outlet: 'Dainik Jagran',
         headline: 'Lagni Devi Memorial Foundation Distributes Free Computer Kits to Rural Youth',
         articleUrl: '#',
+        excerpt: 'Dainik Jagran highlighted the success of a free education camp that supported over 200 students in Azamgarh.',
+        badge: 'NEWS COVERAGE',
+        date: '2024 Coverage',
       },
       {
         outlet: 'Amar Ujala',
         headline: '150 Patients Benefited from Specialist Medical Camp in Azamgarh',
         articleUrl: '#',
+        excerpt: 'Amar Ujala reported on the foundation\'s expansion to ten districts with free programs.',
+        badge: 'NEWS COVERAGE',
+        date: '2024 Coverage',
       },
     ],
   });

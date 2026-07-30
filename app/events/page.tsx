@@ -135,7 +135,7 @@ export default function EventsPage() {
                   href="/contact"
                   className="w-full bg-maroon-700/10 hover:bg-maroon-700 text-maroon-700 hover:text-white font-semibold text-xs py-3 px-6 rounded-full flex items-center justify-center gap-2 transition-all border border-maroon-700/20"
                 >
-                  <span>{tab === 'upcoming' ? (language === 'hi' ? 'भाग लें / संपर्क करें' : 'RSVP & Attend Event') : (language === 'hi' ? 'विवरण देखें' : 'View Event Summary')}</span>
+                  <span>{tab === 'upcoming' ? (language === 'hi' ? 'भाग लें / संपर्क करें' : 'RSVP & Attend Event') : (language === 'hi' ? 'पूछताछ / संपर्क करें' : 'Inquire / Contact Us')}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>

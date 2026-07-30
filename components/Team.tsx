@@ -11,7 +11,10 @@ interface TeamMemberItem {
   name: string;
   role: string;
   photoUrl: string;
+  designation?: string;
   bio?: string;
+  linkedinUrl?: string;
+  email?: string;
 }
 
 export default function Team() {
@@ -31,7 +34,10 @@ export default function Team() {
                 name: m.name,
                 role: m.role,
                 photoUrl: m.photoUrl,
+                designation: m.designation,
                 bio: m.bio || (language === 'hi' ? 'सामुदायिक सेवा एवं ग्रामीण कल्याण में समर्पित कार्यकर्ता।' : 'Dedicated community leader & advocate for rural empowerment.'),
+                linkedinUrl: m.linkedinUrl,
+                email: m.email,
               }))
             );
             return;
@@ -120,29 +126,12 @@ export default function Team() {
                 {member.name}
               </h3>
               <span className="text-xs font-semibold text-gold-600 uppercase tracking-wider mt-1 mb-3">
-                {member.role}
+                {member.designation || member.role}
               </span>
               <p className="text-xs text-muted leading-relaxed mb-4">
                 {member.bio}
               </p>
 
-              {/* Action Icons */}
-              <div className="mt-auto flex items-center gap-3 pt-3 border-t border-gold-500/15 w-full justify-center">
-                <a
-                  href={`mailto:contact@ldmf.org?subject=Query%20for%20${encodeURIComponent(member.name)}`}
-                  className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-muted hover:text-maroon-700 hover:bg-gold-500/20 transition-colors border border-gold-500/20"
-                  title={`Contact ${member.name}`}
-                >
-                  <Mail className="w-4 h-4" />
-                </a>
-                <a
-                  href="#"
-                  className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-muted hover:text-maroon-700 hover:bg-gold-500/20 transition-colors border border-gold-500/20"
-                  title="LinkedIn Profile"
-                >
-                  <Linkedin className="w-4 h-4" />
-                </a>
-              </div>
             </motion.div>
           ))}
         </div>

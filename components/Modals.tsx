@@ -39,24 +39,53 @@ export default function Modals({
   const [volunteerSubmitted, setVolunteerSubmitted] = useState(false);
   const [vName, setVName] = useState('');
   const [vPhone, setVPhone] = useState('');
+  const [vEmail, setVEmail] = useState('');
 
   // Apply state
   const [applySubmitted, setApplySubmitted] = useState(false);
   const [appStudentName, setAppStudentName] = useState('');
   const [appVillage, setAppVillage] = useState('');
+  const [appPhone, setAppPhone] = useState('');
+  const [appEmail, setAppEmail] = useState('');
 
   const handleDonateSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setDonateSubmitted(true);
   };
 
-  const handleVolunteerSubmit = (e: React.FormEvent) => {
+  const handleVolunteerSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: vName,
+          email: vEmail || null,
+          message: `[Volunteer/Mentor Enrollment]\nRole: ${volunteerRole}\nPhone: ${vPhone}${vEmail ? `\nEmail: ${vEmail}` : ''}`,
+        }),
+      });
+    } catch (err) {
+      console.error('Failed to submit volunteer details:', err);
+    }
     setVolunteerSubmitted(true);
   };
 
-  const handleApplySubmit = (e: React.FormEvent) => {
+  const handleApplySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: appStudentName,
+          email: appEmail || null,
+          message: `[Free Course Admission Enrollment]\nCourse: ${selectedCourse || 'Free Course'}\nVillage & District: ${appVillage}\nPhone: ${appPhone}${appEmail ? `\nEmail: ${appEmail}` : ''}`,
+        }),
+      });
+    } catch (err) {
+      console.error('Failed to submit enrollment details:', err);
+    }
     setApplySubmitted(true);
   };
 
@@ -246,6 +275,16 @@ export default function Modals({
                     />
                   </div>
                   <div>
+                    <label className="block text-xs font-bold text-dark uppercase mb-1">{language === 'hi' ? 'ईमेल पता (वैकल्पिक)' : 'Email Address (Optional)'}</label>
+                    <input
+                      type="email"
+                      placeholder="e.g. anjali@example.com"
+                      value={vEmail}
+                      onChange={(e) => setVEmail(e.target.value)}
+                      className="w-full bg-white border border-gold-500/30 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-maroon-700"
+                    />
+                  </div>
+                  <div>
                     <label className="block text-xs font-bold text-dark uppercase mb-1">{language === 'hi' ? 'शहर / जिला' : 'City / District'}</label>
                     <input
                       type="text"
@@ -349,6 +388,18 @@ export default function Modals({
                       type="tel"
                       required
                       placeholder="+91 98765 43210"
+                      value={appPhone}
+                      onChange={(e) => setAppPhone(e.target.value)}
+                      className="w-full bg-white border border-gold-500/30 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-maroon-700"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-dark uppercase mb-1">{language === 'hi' ? 'ईमेल पता (वैकल्पिक)' : 'Email Address (Optional)'}</label>
+                    <input
+                      type="email"
+                      placeholder="e.g. pooja@example.com"
+                      value={appEmail}
+                      onChange={(e) => setAppEmail(e.target.value)}
                       className="w-full bg-white border border-gold-500/30 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-maroon-700"
                     />
                   </div>

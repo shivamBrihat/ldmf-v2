@@ -42,8 +42,8 @@ export default function LoginPage() {
         return;
       }
 
-      if (data.success && data.redirectUrl) {
-        router.push(data.redirectUrl);
+      if (data.success) {
+        router.push('/admin/dashboard');
         router.refresh();
       }
     } catch (err) {

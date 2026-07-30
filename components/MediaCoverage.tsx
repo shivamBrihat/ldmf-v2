@@ -22,7 +22,7 @@ export default function MediaCoverage() {
   useEffect(() => {
     async function fetchMedia() {
       try {
-        const res = await fetch('/api/media');
+        const res = await fetch('/api/media', { cache: 'no-store' });
         if (res.ok) {
           const data = await res.json();
           if (Array.isArray(data) && data.length > 0) {
@@ -33,8 +33,8 @@ export default function MediaCoverage() {
                 headline: m.headline,
                 articleUrl: m.articleUrl || '#',
                 excerpt: m.excerpt || (language === 'hi' ? 'पूर्वी उत्तर प्रदेश में हमारे सामाजिक प्रभाव की प्रमुख समाचार रिपोर्ट।' : 'Prominent news coverage highlighting our grass-roots social impact in UP.'),
-                badge: language === 'hi' ? 'समाचार कवरेज' : 'NEWS COVERAGE',
-                date: '2024 Coverage',
+                badge: m.badge || (language === 'hi' ? 'समाचार कवरेज' : 'NEWS COVERAGE'),
+                date: m.date || '2024 Coverage',
               }))
             );
             return;

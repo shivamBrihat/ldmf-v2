@@ -2,12 +2,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, CheckCircle2 } from 'lucide-react';
+import { Heart, BookOpen, Award, Sparkles, Milestone } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
 interface TimelineItem {
   id?: string;
   year: string;
+  title?: string;
+  badge?: string;
   description: string;
 }
 
@@ -26,6 +28,8 @@ export default function Timeline() {
               data.map((m: any) => ({
                 id: m.id,
                 year: m.year,
+                title: m.title,
+                badge: m.badge,
                 description: m.description,
               }))
             );
@@ -36,72 +40,148 @@ export default function Timeline() {
         console.error('Failed to fetch dynamic timeline:', error);
       }
 
-      // Fallback default
+      // Fallback defaults matching screenshot details
       setMilestones([
-        { year: '2020', description: t('timeline.2020') },
-        { year: '2021', description: t('timeline.2021') },
-        { year: '2022', description: t('timeline.2022') },
-        { year: '2023', description: t('timeline.2023') },
-        { year: '2024', description: t('timeline.2024') },
+        {
+          year: '2020',
+          title: 'Foundation Registered',
+          badge: '2020',
+          description: 'Foundation registered in memory of Smt. Lagni Devi.',
+        },
+        {
+          year: '2021',
+          title: 'First Free Education Camp',
+          badge: '50 STUDENTS',
+          description: 'First free education camp; 50 students from 3 villages coached for board exams.',
+        },
+        {
+          year: '2022',
+          title: 'Healthcare Expansion',
+          badge: '15 CAMPS',
+          description: 'Expanded to healthcare camps, conducting 15 rural medical drives.',
+        },
+        {
+          year: '2023',
+          title: 'Women’s Vocational Skills Center',
+          badge: '50+ MACHINES',
+          description: 'Initiated Vocational Skill Center, distributing 50+ sewing machines.',
+        },
+        {
+          year: '2024',
+          title: '1,500+ Lives Impacted',
+          badge: 'MILESTONE',
+          description: 'Reached milestone of 1,500+ lives impacted across Eastern UP.',
+        },
       ]);
     }
 
     fetchTimeline();
   }, [language, t]);
 
+  // Icons array to alternate or use based on index
+  const icons = [Heart, BookOpen, Award, Sparkles, Milestone];
+
   return (
-    <section className="py-20 md:py-28 bg-cream-200/50 relative overflow-hidden">
+    <section className="py-20 md:py-28 bg-[#FDFBF7] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-20">
           <div className="eyebrow-line justify-center mb-3">
-            <span className="text-xs md:text-sm font-semibold uppercase tracking-widest text-gold-600">
-              {t('timeline.eyebrow')}
+            <span className="text-xs md:text-sm font-semibold uppercase tracking-widest text-[#C9A227]">
+              {language === 'hi' ? 'हमारी यात्रा' : 'OUR JOURNEY'}
             </span>
           </div>
-          <h2 className="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-dark leading-tight mb-4">
-            {language === 'hi' ? 'निरंतर सेवा के मील के पत्थर' : 'Milestones of Dedicated Service'}
+          <h2 className="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-[#1A1A1A] leading-tight mb-4">
+            {language === 'hi' ? 'प्रभाव और विकास की हमारी यात्रा' : 'Our Journey of Impact & Growth'}
           </h2>
-          <p className="text-base sm:text-lg text-muted">
+          <p className="text-base sm:text-lg text-stone-600">
             {language === 'hi'
-              ? 'एक साधारण स्मरण प्रयास से बढ़कर 10 से अधिक जिलों में विस्तृत सामुदायिक अभियान तक का सफर।'
-              : 'From a simple memorial tribute in Azamgarh to a multi-district outreach across Eastern UP.'}
+              ? 'एक अनौपचारिक बरामदा कक्षा से लेकर 10 जिलों तक पहुँचने वाले एक पंजीकृत फाउंडेशन तक - यहाँ बताया गया है कि हम कैसे कदम दर कदम बढ़े।'
+              : 'From an informal verandah classroom to a registered foundation reaching 10 districts—here is how we grew step by step.'}
           </p>
         </div>
 
-        {/* Timeline Desktop & Mobile Grid */}
-        <div className="relative border-l-2 border-gold-500/30 ml-4 sm:ml-32 space-y-12 pl-6 sm:pl-10">
-          {milestones.map((item, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="relative group"
-            >
-              {/* Year Badge floating left on desktop */}
-              <div className="sm:absolute sm:-left-44 sm:top-1 font-serif font-bold text-2xl text-maroon-700 sm:text-right w-28 mb-2 sm:mb-0">
-                {item.year}
-              </div>
+        {/* Timeline Container */}
+        <div className="relative">
+          {/* Central Vertical Line */}
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[2px] bg-[#C9A227]/40 -translate-x-[1px] md:translate-x-0" />
 
-              {/* Node Icon on Timeline Line */}
-              <div className="absolute -left-[31px] sm:-left-[47px] top-1.5 w-6 h-6 rounded-full bg-white border-4 border-gold-500 group-hover:bg-maroon-700 group-hover:scale-125 transition-all shadow-md" />
+          {/* Timeline Items */}
+          <div className="space-y-12 md:space-y-16">
+            {milestones.map((item, idx) => {
+              const IconComponent = icons[idx % icons.length];
+              const isEven = idx % 2 === 0;
 
-              {/* Content Box */}
-              <div className="bg-white rounded-2xl p-6 shadow-soft-xl border border-gold-500/20 hover:border-gold-500 transition-all duration-300">
-                <div className="flex items-center gap-2 mb-2">
-                  <CheckCircle2 className="w-4 h-4 text-gold-600 shrink-0" />
-                  <h3 className="font-serif font-bold text-lg text-dark">
-                    {language === 'hi' ? `${item.year} की उपलब्धि` : `${item.year} Milestone`}
-                  </h3>
+              return (
+                <div key={idx} className="relative flex flex-col md:flex-row items-stretch w-full">
+                  {/* Left spacing/content on desktop */}
+                  <div className={`hidden md:block w-1/2 pr-12 text-right ${isEven ? 'opacity-0 pointer-events-none' : ''}`}>
+                    {!isEven && (
+                      <motion.div
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                        className="bg-white rounded-3xl p-6 sm:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-stone-200/60 hover:border-[#C9A227]/40 transition-all duration-300 relative inline-block text-left w-full"
+                      >
+                        <div className="flex items-center justify-between gap-4 mb-4">
+                          <span className="font-serif font-bold text-3xl sm:text-4xl text-[#7A1F2B]">
+                            {item.year}
+                          </span>
+                          {item.badge && (
+                            <span className="px-3 py-1 bg-[#C9A227]/10 text-[#9E7A28] border border-[#C9A227]/30 rounded-full font-sans font-bold text-[10px] tracking-wider uppercase">
+                              {item.badge}
+                            </span>
+                          )}
+                        </div>
+                        <h3 className="font-serif font-bold text-lg sm:text-xl text-[#1A1A1A] mb-2">
+                          {item.title || (language === 'hi' ? 'मील का पत्थर' : 'Milestone')}
+                        </h3>
+                        <p className="text-sm text-stone-600 leading-relaxed">
+                          {item.description}
+                        </p>
+                      </motion.div>
+                    )}
+                  </div>
+
+                  {/* Node Badge on Timeline Axis */}
+                  <div className="absolute left-4 md:left-1/2 top-4 md:top-8 -translate-x-1/2 z-10 flex items-center justify-center w-8 h-8 rounded-full bg-[#7A1F2B] text-white border-4 border-white shadow-md">
+                    <IconComponent className="w-3.5 h-3.5" />
+                  </div>
+
+                  {/* Right content on desktop (always visible on mobile) */}
+                  <div className={`w-full md:w-1/2 pl-12 md:pl-12 ${!isEven ? 'md:opacity-0 md:pointer-events-none' : ''}`}>
+                    {(isEven || typeof window === 'undefined') && (
+                      <motion.div
+                        initial={{ opacity: 0, x: 30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                        className="bg-white rounded-3xl p-6 sm:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-stone-200/60 hover:border-[#C9A227]/40 transition-all duration-300 relative text-left w-full"
+                      >
+                        <div className="flex items-center justify-between gap-4 mb-4">
+                          <span className="font-serif font-bold text-3xl sm:text-4xl text-[#7A1F2B]">
+                            {item.year}
+                          </span>
+                          {item.badge && (
+                            <span className="px-3 py-1 bg-[#C9A227]/10 text-[#9E7A28] border border-[#C9A227]/30 rounded-full font-sans font-bold text-[10px] tracking-wider uppercase">
+                              {item.badge}
+                            </span>
+                          )}
+                        </div>
+                        <h3 className="font-serif font-bold text-lg sm:text-xl text-[#1A1A1A] mb-2">
+                          {item.title || (language === 'hi' ? 'मील का पत्थर' : 'Milestone')}
+                        </h3>
+                        <p className="text-sm text-stone-600 leading-relaxed">
+                          {item.description}
+                        </p>
+                      </motion.div>
+                    )}
+                  </div>
                 </div>
-                <p className="text-sm text-muted leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

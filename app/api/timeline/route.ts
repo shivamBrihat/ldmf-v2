@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json();
-    const { year, description, order } = body;
+    const { year, description, order, title, badge } = body;
 
     if (!year || !description) {
       return NextResponse.json({ error: 'Year and description are required' }, { status: 400 });
@@ -38,6 +38,8 @@ export async function POST(request: NextRequest) {
       data: {
         year,
         description,
+        title,
+        badge,
         order: Number(order) || 0,
       },
     });

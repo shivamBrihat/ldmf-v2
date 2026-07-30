@@ -20,13 +20,15 @@ export async function PATCH(
 
   try {
     const body = await request.json();
-    const { year, description, order } = body;
+    const { year, description, order, title, badge } = body;
 
     const updated = await prisma.timelineEvent.update({
       where: { id: params.id },
       data: {
         ...(year !== undefined && { year }),
         ...(description !== undefined && { description }),
+        ...(title !== undefined && { title }),
+        ...(badge !== undefined && { badge }),
         ...(order !== undefined && { order: Number(order) }),
       },
     });

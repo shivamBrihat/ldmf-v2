@@ -8,13 +8,17 @@ datasource db {
 }
 
 model TeamMember {
-  id        String   @id @default(cuid())
-  name      String
-  role      String
-  photoUrl  String
-  order     Int      @default(0)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String   @id @default(cuid())
+  name        String
+  role        String
+  photoUrl    String
+  designation String?
+  bio         String?
+  linkedinUrl String?
+  email       String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model GalleryImage {
@@ -39,6 +43,8 @@ model Program {
 model TimelineEvent {
   id          String   @id @default(cuid())
   year        String
+  title       String?
+  badge       String?
   description String
   order       Int      @default(0)
   createdAt   DateTime @default(now())
@@ -60,6 +66,9 @@ model MediaCoverage {
   outlet     String
   headline   String
   articleUrl String?
+  excerpt    String?
+  badge      String?
+  date       String?
   createdAt  DateTime @default(now())
 }
 
@@ -106,8 +115,18 @@ model SiteContent {
 model ContactSubmission {
   id        String   @id @default(cuid())
   name      String
-  email     String
+  email     String?
   message   String
   isRead    Boolean  @default(false)
   createdAt DateTime @default(now())
 }
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String   // bcrypt hashed password
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+

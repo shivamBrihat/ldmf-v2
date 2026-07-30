@@ -3,6 +3,8 @@ import type { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { verifyToken, ADMIN_COOKIE_NAME } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+
 async function isAuthenticated(request: NextRequest) {
   const token = request.cookies.get(ADMIN_COOKIE_NAME)?.value;
   if (!token) return false;
@@ -28,7 +30,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json();
-    const { outlet, headline, articleUrl } = body;
+    const { outlet, headline, articleUrl, excerpt, badge, date } = body;
 
     if (!outlet || !headline) {
       return NextResponse.json({ error: 'Outlet and headline are required' }, { status: 400 });
@@ -39,6 +41,9 @@ export async function POST(request: NextRequest) {
         outlet,
         headline,
         articleUrl: articleUrl || null,
+        excerpt: excerpt || null,
+        badge: badge || null,
+        date: date || null,
       },
     });
 

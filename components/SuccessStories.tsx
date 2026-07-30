@@ -117,22 +117,9 @@ export default function SuccessStories() {
           <div className="bg-white rounded-3xl p-8 sm:p-12 shadow-soft-xl border border-gold-500/20 relative overflow-hidden">
             <Quote className="absolute top-6 right-8 w-24 h-24 text-gold-500/10 pointer-events-none" />
 
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-              {/* Photo */}
-              <div className="md:col-span-4 relative flex justify-center">
-                <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-3xl overflow-hidden shadow-xl border-4 border-cream-200">
-                  <Image
-                    src={current.photoUrl || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop'}
-                    alt={current.personName}
-                    fill
-                    sizes="200px"
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-
+            <div className="w-full">
               {/* Story Content */}
-              <div className="md:col-span-8">
+              <div className="w-full">
                 <div className="flex items-center gap-1 text-gold-500 mb-3">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-4 h-4 fill-current" />
@@ -192,18 +179,15 @@ export default function SuccessStories() {
             <button
               key={idx}
               onClick={() => setActiveIndex(idx)}
-              className={`p-3 rounded-2xl border text-left transition-all duration-300 flex items-center gap-3 ${
+              className={`p-3.5 rounded-2xl border text-center transition-all duration-300 ${
                 idx === activeIndex
                   ? 'bg-maroon-700 text-white border-gold-500 shadow-md scale-105'
                   : 'bg-white text-dark border-gold-500/20 hover:border-gold-500'
               }`}
             >
-              <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0 border border-white/40">
-                <Image src={item.photoUrl || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop'} alt={item.personName} fill sizes="40px" className="object-cover" />
-              </div>
               <div className="overflow-hidden">
                 <span className="text-xs font-bold block truncate">{item.personName}</span>
-                <span className={`text-[10px] block truncate ${idx === activeIndex ? 'text-gold-300' : 'text-muted'}`}>
+                <span className={`text-[10px] block truncate mt-0.5 ${idx === activeIndex ? 'text-gold-300' : 'text-muted'}`}>
                   {item.location}
                 </span>
               </div>

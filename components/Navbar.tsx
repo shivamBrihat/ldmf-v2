@@ -29,27 +29,18 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const isHome = pathname === '/';
-
-  // Homepage Navbar links vs Subpages Navbar links
-  const navLinks = isHome
-    ? [
-        { name: language === 'hi' ? 'हमारे बारे में' : 'About', href: '/about' },
-        { name: language === 'hi' ? 'हमारा कार्य' : 'Our work', href: '#programs' },
-        { name: language === 'hi' ? 'कहानियाँ' : 'Stories', href: '#stories' },
-        { name: language === 'hi' ? 'गैलरी' : 'Gallery', href: '/gallery' },
-        { name: language === 'hi' ? 'शामिल हों' : 'Get involved', href: '/donate' },
-      ]
-    : [
-        { name: language === 'hi' ? 'हमारे बारे में' : 'About', href: '/about' },
-        { name: language === 'hi' ? 'अपडेट्स' : 'Updates', href: '/updates' },
-        { name: language === 'hi' ? 'निःशुल्क कोर्स' : 'Free Courses', href: '/courses' },
-        { name: language === 'hi' ? 'गतिविधियाँ' : 'Activities', href: '/activities' },
-        { name: language === 'hi' ? 'गैलरी' : 'Gallery', href: '/gallery' },
-        { name: language === 'hi' ? 'कार्यक्रम' : 'Events', href: '/events' },
-        { name: language === 'hi' ? 'दान करें' : 'Donate', href: '/donate' },
-        { name: language === 'hi' ? 'संपर्क करें' : 'Contact', href: '/contact' },
-      ];
+  // Unified Navbar links for all pages
+  const navLinks = [
+    { name: language === 'hi' ? 'होम' : 'Home', href: '/' },
+    { name: language === 'hi' ? 'हमारे बारे में' : 'About', href: '/about' },
+    { name: language === 'hi' ? 'अपडेट्स' : 'Updates', href: '/updates' },
+    { name: language === 'hi' ? 'निःशुल्क कोर्स' : 'Free Courses', href: '/courses' },
+    { name: language === 'hi' ? 'गतिविधियाँ' : 'Activities', href: '/activities' },
+    { name: language === 'hi' ? 'गैलरी' : 'Gallery', href: '/gallery' },
+    { name: language === 'hi' ? 'कार्यक्रम' : 'Events', href: '/events' },
+    { name: language === 'hi' ? 'दान करें' : 'Donate', href: '/donate' },
+    { name: language === 'hi' ? 'संपर्क करें' : 'Contact', href: '/contact' },
+  ];
 
   return (
     <header
@@ -74,16 +65,23 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-dark/85 hover:text-maroon-700 font-medium text-xs xl:text-sm transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-gold-500 hover:after:w-full after:transition-all whitespace-nowrap"
-              >
-                {link.name}
-              </Link>
-            ))}
+          <nav className="hidden lg:flex items-center gap-3.5 xl:gap-5">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={`font-semibold text-[11px] xl:text-[13px] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-gold-500 after:transition-all whitespace-nowrap ${
+                    isActive
+                      ? 'text-maroon-700 font-bold after:w-full'
+                      : 'text-dark/85 hover:text-maroon-700 after:w-0 hover:after:w-full'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Right Action Buttons: Language toggle → Login → Donate */}
@@ -98,16 +96,6 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
               <Globe className="w-3.5 h-3.5 text-gold-600" />
               <span>{language === 'en' ? 'हिंदी' : 'EN'}</span>
             </button>
-
-            {/* 2. Login Button (Outlined) */}
-            <Link
-              href="/login"
-              aria-label="Login"
-              className="border border-maroon-700 text-maroon-700 hover:bg-maroon-700/5 font-medium text-xs sm:text-sm px-3.5 sm:px-4 py-2 rounded-full flex items-center gap-1.5 transition-all focus:ring-2 focus:ring-maroon-700/30 focus:outline-none"
-            >
-              <LogIn className="w-3.5 h-3.5 text-maroon-700" />
-              <span>{language === 'hi' ? 'लॉगिन' : 'Login'}</span>
-            </Link>
 
             {/* 3. Donate CTA Link (Filled Maroon) */}
             {onDonateClick ? (
@@ -137,13 +125,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
             >
               {language === 'en' ? 'हिं' : 'EN'}
             </button>
-            <Link
-              href="/login"
-              aria-label="Login"
-              className="p-2 text-maroon-700 border border-maroon-700 rounded-full hover:bg-maroon-700/5"
-            >
-              <LogIn className="w-4 h-4" />
-            </Link>
+
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 text-maroon-700 rounded-lg hover:bg-gold-500/10 focus:outline-none"
@@ -164,29 +146,26 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                 {language === 'hi' ? 'नेविगेशन' : 'Navigation'}
               </span>
             </div>
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-base font-serif font-semibold text-dark hover:text-maroon-700 py-1.5 flex items-center justify-between border-b border-dark/5"
-              >
-                <span>{link.name}</span>
-                <ArrowUpRight className="w-4 h-4 text-gold-600" />
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`text-base font-serif font-semibold py-1.5 flex items-center justify-between border-b border-dark/5 transition-colors ${
+                    isActive ? 'text-maroon-700 font-bold' : 'text-dark hover:text-maroon-700'
+                  }`}
+                >
+                  <span>{link.name}</span>
+                  <ArrowUpRight className={`w-4 h-4 transition-colors ${isActive ? 'text-maroon-700' : 'text-gold-600'}`} />
+                </Link>
+              );
+            })}
           </div>
 
           <div className="mt-8 pt-6 border-t border-gold-500/20 flex flex-col gap-3">
-            <Link
-              href="/login"
-              onClick={() => setMobileMenuOpen(false)}
-              aria-label="Login"
-              className="w-full border border-maroon-700 text-maroon-700 hover:bg-maroon-700/5 font-medium text-base py-3 rounded-full flex items-center justify-center gap-2 transition-all"
-            >
-              <LogIn className="w-4.5 h-4.5 text-maroon-700" />
-              <span>{language === 'hi' ? 'लॉगिन' : 'Login'}</span>
-            </Link>
+
 
             <Link
               href="/donate"

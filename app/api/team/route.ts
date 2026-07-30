@@ -3,6 +3,8 @@ import type { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { verifyToken, ADMIN_COOKIE_NAME } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+
 async function isAuthenticated(request: NextRequest) {
   const token = request.cookies.get(ADMIN_COOKIE_NAME)?.value;
   if (!token) return false;
@@ -30,7 +32,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json();
-    const { name, role, photoUrl, order } = body;
+    const { name, role, photoUrl, order, designation, bio, linkedinUrl, email } = body;
 
     if (!name || !role || !photoUrl) {
       return NextResponse.json({ error: 'Name, role, and photoUrl are required' }, { status: 400 });
@@ -41,6 +43,10 @@ export async function POST(request: NextRequest) {
         name,
         role,
         photoUrl,
+        designation,
+        bio,
+        linkedinUrl,
+        email,
         order: Number(order) || 0,
       },
     });

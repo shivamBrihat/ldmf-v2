@@ -20,7 +20,7 @@ export async function PATCH(
 
   try {
     const body = await request.json();
-    const { outlet, headline, articleUrl } = body;
+    const { outlet, headline, articleUrl, excerpt, badge, date } = body;
 
     const updated = await prisma.mediaCoverage.update({
       where: { id: params.id },
@@ -28,6 +28,9 @@ export async function PATCH(
         ...(outlet !== undefined && { outlet }),
         ...(headline !== undefined && { headline }),
         ...(articleUrl !== undefined && { articleUrl }),
+        ...(excerpt !== undefined && { excerpt }),
+        ...(badge !== undefined && { badge }),
+        ...(date !== undefined && { date }),
       },
     });
 

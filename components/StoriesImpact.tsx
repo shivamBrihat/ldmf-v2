@@ -1,15 +1,44 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, Calendar, Tag } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+
+interface UpdateItem {
+  id: string;
+  title: string;
+  content: string;
+  imageUrl?: string | null;
+  publishedAt: string;
+}
 
 export default function StoriesImpact() {
   const { language } = useLanguage();
+  const [updates, setUpdates] = useState<UpdateItem[]>([]);
 
-  const featuredStory = {
+  useEffect(() => {
+    async function fetchUpdates() {
+      try {
+        const res = await fetch('/api/updates', { cache: 'no-store' });
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            setUpdates(data.slice(0, 3)); // Only need up to 3 for the homepage grid
+          }
+        }
+      } catch (err) {
+        console.error('Error fetching updates:', err);
+      }
+    }
+    fetchUpdates();
+  }, []);
+
+  // Default fallback items matching static designs
+  const defaultFeatured = {
+    id: 'featured',
     category: 'FOUNDATION JOURNAL',
     title: language === 'hi'
       ? 'ग्रामीण शिक्षा और डिजिटल साक्षरता से बदलती जिंदगियाँ'
@@ -20,11 +49,12 @@ export default function StoriesImpact() {
     date: 'March 2024',
     location: 'Azamgarh & Eastern UP',
     image: 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=1200&auto=format&fit=crop',
-    href: '#stories',
+    href: '/updates',
   };
 
-  const sideStories = [
+  const defaultSideStories = [
     {
+      id: 'side-1',
       category: 'FOUNDATION JOURNAL',
       title: language === 'hi'
         ? 'सिलाई व कौशल विकास से आत्म-निर्भर बनतीं ग्रामीण महिलाएँ'
@@ -32,9 +62,10 @@ export default function StoriesImpact() {
       date: 'February 2024',
       location: 'Ballia District Drive',
       image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800&auto=format&fit=crop',
-      href: '#stories',
+      href: '/updates',
     },
     {
+      id: 'side-2',
       category: 'FOUNDATION JOURNAL',
       title: language === 'hi'
         ? 'दूरस्थ गाँवों तक निःशुल्क स्वास्थ्य देखभाल और नेत्र जाँच शिविर'
@@ -42,33 +73,58 @@ export default function StoriesImpact() {
       date: 'January 2024',
       location: 'Mau & Ballia Camps',
       image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop',
-      href: '#stories',
+      href: '/updates',
     },
   ];
 
+  // Process dynamic data or fall back
+  const hasDynamic = updates.length > 0;
+  const featured = hasDynamic ? {
+    id: updates[0].id,
+    category: 'FOUNDATION JOURNAL',
+    title: updates[0].title,
+    excerpt: updates[0].content,
+    date: new Date(updates[0].publishedAt).toLocaleDateString('en-IN', { year: 'numeric', month: 'long' }),
+    location: 'Eastern UP',
+    image: updates[0].imageUrl || 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=1200&auto=format&fit=crop',
+    href: `/updates/${updates[0].id}`,
+  } : defaultFeatured;
+
+  const sideStories = hasDynamic
+    ? updates.slice(1).map((u) => ({
+        id: u.id,
+        category: 'FOUNDATION JOURNAL',
+        title: u.title,
+        date: new Date(u.publishedAt).toLocaleDateString('en-IN', { year: 'numeric', month: 'long' }),
+        location: 'Eastern UP',
+        image: u.imageUrl || 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800&auto=format&fit=crop',
+        href: `/updates/${u.id}`,
+      }))
+    : defaultSideStories;
+
   return (
-    <section className="py-20 md:py-28 bg-cream-100/50 relative">
+    <section className="py-20 md:py-28 bg-[#FDFBF7] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
           <div>
             <div className="eyebrow-line mb-3">
-              <span className="text-xs md:text-sm font-semibold uppercase tracking-widest text-gold-600">
+              <span className="text-xs md:text-sm font-semibold uppercase tracking-widest text-[#C9A227]">
                 {language === 'hi' ? 'कहानी एवं प्रभाव' : 'STORIES & IMPACT'}
               </span>
             </div>
-            <h2 className="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-dark leading-tight">
+            <h2 className="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-[#1A1A1A] leading-tight">
               {language === 'hi' ? 'ज़मीन से जुड़े परिवर्तन की कहानियाँ' : 'Stories of change, close to the ground.'}
             </h2>
           </div>
 
-          <a
-            href="#stories"
-            className="inline-flex items-center gap-1.5 font-semibold text-xs sm:text-sm text-maroon-700 hover:text-maroon-800 border-b-2 border-gold-500 pb-0.5 transition-all group shrink-0"
+          <Link
+            href="/updates"
+            className="inline-flex items-center gap-1.5 font-semibold text-xs sm:text-sm text-[#7A1F2B] hover:text-[#7A1F2B]/85 border-b-2 border-[#C9A227] pb-0.5 transition-all group shrink-0"
           >
             <span>{language === 'hi' ? 'सभी अपडेट देखें' : 'All updates'}</span>
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-          </a>
+          </Link>
         </div>
 
         {/* Asymmetrical Journal Grid */}
@@ -81,49 +137,49 @@ export default function StoriesImpact() {
             transition={{ duration: 0.5 }}
             className="lg:col-span-7 flex flex-col group cursor-pointer"
           >
-            <a href={featuredStory.href} className="block overflow-hidden rounded-3xl mb-5 shadow-card border border-gold-500/20 relative h-[320px] sm:h-[400px] w-full">
+            <Link href={featured.href} className="block overflow-hidden rounded-3xl mb-5 shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-stone-200/60 relative h-[320px] sm:h-[400px] w-full">
               <Image
-                src={featuredStory.image}
-                alt={featuredStory.title}
+                src={featured.image}
+                alt={featured.title}
                 fill
                 sizes="(max-width: 1024px) 100vw, 60vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark/70 via-dark/10 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
               <div className="absolute bottom-4 left-4 right-4 text-white flex items-center justify-between text-xs">
-                <span className="bg-maroon-700 text-gold-300 font-bold px-3 py-1 rounded-full border border-gold-500/30 uppercase tracking-widest text-[10px]">
-                  {featuredStory.location}
+                <span className="bg-[#7A1F2B] text-[#FDFBF7] font-bold px-3 py-1 rounded-full border border-white/20 uppercase tracking-widest text-[10px]">
+                  {featured.location}
                 </span>
-                <span className="text-cream-200/90 font-medium">{featuredStory.date}</span>
+                <span className="text-[#FDFBF7]/90 font-medium">{featured.date}</span>
               </div>
-            </a>
+            </Link>
 
             <div>
-              <span className="text-[11px] font-bold uppercase tracking-widest text-gold-600 block mb-1">
-                {featuredStory.category}
+              <span className="text-[11px] font-bold uppercase tracking-widest text-[#C9A227] block mb-1">
+                {featured.category}
               </span>
-              <h3 className="font-serif font-bold text-2xl sm:text-3xl text-dark group-hover:text-maroon-700 transition-colors mb-3 leading-snug">
-                {featuredStory.title}
+              <h3 className="font-serif font-bold text-2xl sm:text-3xl text-[#1A1A1A] group-hover:text-[#7A1F2B] transition-colors mb-3 leading-snug">
+                {featured.title}
               </h3>
-              <p className="text-sm text-muted leading-relaxed">
-                {featuredStory.excerpt}
+              <p className="text-sm text-stone-600 leading-relaxed line-clamp-3">
+                {featured.excerpt}
               </p>
             </div>
           </motion.div>
 
-          {/* Right Side 2 Stacked Cards */}
+          {/* Right Side Stacked Cards */}
           <div className="lg:col-span-5 space-y-8">
             {sideStories.map((story, idx) => (
               <motion.div
-                key={idx}
+                key={story.id}
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.15 * (idx + 1) }}
                 className="flex flex-col group cursor-pointer"
               >
-                <a href={story.href} className="block overflow-hidden rounded-3xl mb-4 shadow-sm border border-gold-500/20 relative h-[200px] sm:h-[220px] w-full">
+                <Link href={story.href} className="block overflow-hidden rounded-3xl mb-4 shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-stone-200/60 relative h-[200px] sm:h-[220px] w-full">
                   <Image
                     src={story.image}
                     alt={story.title}
@@ -131,20 +187,20 @@ export default function StoriesImpact() {
                     sizes="(max-width: 1024px) 100vw, 40vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   <div className="absolute bottom-3 left-3 right-3 text-white flex items-center justify-between text-[11px]">
-                    <span className="bg-maroon-700/90 text-gold-300 font-semibold px-2.5 py-0.5 rounded-full border border-gold-500/20">
+                    <span className="bg-[#7A1F2B]/90 text-[#FDFBF7] font-semibold px-2.5 py-0.5 rounded-full border border-white/10">
                       {story.location}
                     </span>
-                    <span className="text-cream-200/90">{story.date}</span>
+                    <span className="text-[#FDFBF7]/90">{story.date}</span>
                   </div>
-                </a>
+                </Link>
 
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-gold-600 block mb-1">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#C9A227] block mb-1">
                     {story.category}
                   </span>
-                  <h4 className="font-serif font-bold text-xl text-dark group-hover:text-maroon-700 transition-colors leading-snug">
+                  <h4 className="font-serif font-bold text-xl text-[#1A1A1A] group-hover:text-[#7A1F2B] transition-colors leading-snug">
                     {story.title}
                   </h4>
                 </div>

@@ -37,7 +37,7 @@ export async function PATCH(
 
   try {
     const body = await request.json();
-    const { name, role, photoUrl, order } = body;
+    const { name, role, photoUrl, order, designation, bio, linkedinUrl, email } = body;
 
     const updated = await prisma.teamMember.update({
       where: { id: params.id },
@@ -45,6 +45,10 @@ export async function PATCH(
         ...(name !== undefined && { name }),
         ...(role !== undefined && { role }),
         ...(photoUrl !== undefined && { photoUrl }),
+        ...(designation !== undefined && { designation }),
+        ...(bio !== undefined && { bio }),
+        ...(linkedinUrl !== undefined && { linkedinUrl }),
+        ...(email !== undefined && { email }),
         ...(order !== undefined && { order: Number(order) }),
       },
     });

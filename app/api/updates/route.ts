@@ -3,6 +3,8 @@ import type { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { verifyAdminRequest } from '@/lib/auth-server';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const updates = await prisma.update.findMany({
