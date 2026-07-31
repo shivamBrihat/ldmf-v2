@@ -21,21 +21,35 @@ export default function ActivitiesPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchActivities() {
-      try {
-        const res = await fetch('/api/activities');
-        if (res.ok) {
-          const data = await res.json();
-          setActivities(data);
-        }
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchActivities();
-  }, []);
+    // Bypass database fetch to prevent loading dynamic/seeded location strings
+    setActivities([
+      {
+        id: 'act-1',
+        title: language === 'hi' ? 'ग्राम स्वच्छता एवं पर्यावरण जागरूकता अभियान' : 'Village Sanitation & Cleanliness Drives',
+        description: language === 'hi'
+          ? 'कचरा पृथक्करण, जल निकासी सफाई और सामुदायिक स्वामित्व को बढ़ावा देने के लिए ग्रामीण क्षेत्रों में साप्ताहिक स्वच्छता अभियान आयोजित करना।'
+          : 'Organizing weekly clean-up drives across rural communities, promoting waste segregation, clean drainage, and community ownership.',
+        imageUrl: 'https://images.unsplash.com/photo-1618477388954-7852f32655ec?q=80&w=800&auto=format&fit=crop',
+      },
+      {
+        id: 'act-2',
+        title: language === 'hi' ? 'निःशुल्क सामान्य स्वास्थ्य एवं नेत्र जाँच शिविर' : 'Free General Health & Eye Checkup Camps',
+        description: language === 'hi'
+          ? 'नेत्र विशेषज्ञों और सामान्य चिकित्सकों के सहयोग से निःशुल्क स्वास्थ्य शिविर लगाना और जरूरतमंद ग्रामीणों को दवाइयां उपलब्ध कराना।'
+          : 'Setting up periodic health and ophthalmology camps in coordination with specialist doctors, providing free consultations and basic medicines.',
+        imageUrl: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=800&auto=format&fit=crop',
+      },
+      {
+        id: 'act-3',
+        title: language === 'hi' ? 'राहत सामग्री एवं आवश्यक संसाधन वितरण' : 'Relief Kits & Essential Welfare Distribution',
+        description: language === 'hi'
+          ? 'कठिन मौसम और संकट के समय ग्रामीण परिवारों को स्वच्छता किट, सर्दियों के कपड़े और राशन किट वितरित करना।'
+          : 'Distributing hygiene kits, warm winter blankets, and essential dry ration packets to vulnerable families during winter months and seasonal crisis times.',
+        imageUrl: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=800&auto=format&fit=crop',
+      },
+    ]);
+    setLoading(false);
+  }, [language]);
 
   return (
     <main className="min-h-screen bg-cream-100 font-sans">
@@ -44,7 +58,7 @@ export default function ActivitiesPage() {
       <PageHero
         eyebrow={language === 'hi' ? 'सामुदायिक गतिविधियाँ' : 'COMMUNITY ACTIVITIES'}
         title={language === 'hi' ? 'दिशानिर्देश, गरिमा और देखभाल पर बनी पहल' : 'Community initiatives built on care and solidarity'}
-        subtitle={language === 'hi' ? 'ग्राम स्वच्छता अभियान, निःशुल्क स्वास्थ्य शिविर और आपातकालीन राहत कार्य।' : 'Discover our ground activities across villages in Azamgarh, Mau, Ballia, and Jaunpur districts.'}
+        subtitle={language === 'hi' ? 'ग्राम स्वच्छता अभियान, निःशुल्क स्वास्थ्य शिविर और आपातकालीन राहत कार्य।' : 'Discover our ground activities, cleanliness drives, and welfare projects across rural areas.'}
         imageUrl="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=1000&auto=format&fit=crop"
       />
 

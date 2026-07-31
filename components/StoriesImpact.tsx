@@ -20,20 +20,8 @@ export default function StoriesImpact() {
   const [updates, setUpdates] = useState<UpdateItem[]>([]);
 
   useEffect(() => {
-    async function fetchUpdates() {
-      try {
-        const res = await fetch('/api/updates', { cache: 'no-store' });
-        if (res.ok) {
-          const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) {
-            setUpdates(data.slice(0, 3)); // Only need up to 3 for the homepage grid
-          }
-        }
-      } catch (err) {
-        console.error('Error fetching updates:', err);
-      }
-    }
-    fetchUpdates();
+    // Default fallback - bypass DB to prevent loading old seeded location references
+    setUpdates([]);
   }, []);
 
   // Default fallback items matching static designs
@@ -44,11 +32,11 @@ export default function StoriesImpact() {
       ? 'ग्रामीण शिक्षा और डिजिटल साक्षरता से बदलती जिंदगियाँ'
       : 'Transforming Lives Through Free Education & Digital Literacy',
     excerpt: language === 'hi'
-      ? 'आजमगढ़ और मऊ के 500 से अधिक बच्चों ने कंप्यूटर प्रशिक्षण और बोर्ड परीक्षा कोचिंग से अपना भविष्य संवारा है।'
-      : 'Over 500 children across Azamgarh & Mau have built brighter careers through free computer training and board exam coaching.',
+      ? 'ग्रामीण क्षेत्रों के बच्चों ने कंप्यूटर प्रशिक्षण और बोर्ड परीक्षा कोचिंग से अपना भविष्य संवारा है।'
+      : 'Children across rural communities have built brighter careers through free computer training and board exam coaching.',
     date: 'March 2024',
-    location: 'Azamgarh & Eastern UP',
-    image: 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=1200&auto=format&fit=crop',
+    location: language === 'hi' ? 'ग्रामीण समुदाय' : 'Rural Communities',
+    image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1200&auto=format&fit=crop',
     href: '/updates',
   };
 
@@ -60,7 +48,7 @@ export default function StoriesImpact() {
         ? 'सिलाई व कौशल विकास से आत्म-निर्भर बनतीं ग्रामीण महिलाएँ'
         : 'Empowering Rural Women with Vocational Tailoring Skills',
       date: 'February 2024',
-      location: 'Ballia District Drive',
+      location: language === 'hi' ? 'व्यावसायिक प्रशिक्षण अभियान' : 'Vocational Training Drive',
       image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800&auto=format&fit=crop',
       href: '/updates',
     },
@@ -71,7 +59,7 @@ export default function StoriesImpact() {
         ? 'दूरस्थ गाँवों तक निःशुल्क स्वास्थ्य देखभाल और नेत्र जाँच शिविर'
         : 'Bringing Free Specialist Healthcare & Eye Checkups to Remote Villages',
       date: 'January 2024',
-      location: 'Mau & Ballia Camps',
+      location: language === 'hi' ? 'सामुदायिक स्वास्थ्य शिविर' : 'Community Health Camps',
       image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop',
       href: '/updates',
     },
@@ -85,8 +73,8 @@ export default function StoriesImpact() {
     title: updates[0].title,
     excerpt: updates[0].content,
     date: new Date(updates[0].publishedAt).toLocaleDateString('en-IN', { year: 'numeric', month: 'long' }),
-    location: 'Eastern UP',
-    image: updates[0].imageUrl || 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=1200&auto=format&fit=crop',
+    location: language === 'hi' ? 'ग्रामीण समुदाय' : 'Rural Communities',
+    image: updates[0].imageUrl || 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1200&auto=format&fit=crop',
     href: `/updates/${updates[0].id}`,
   } : defaultFeatured;
 
@@ -96,7 +84,7 @@ export default function StoriesImpact() {
         category: 'FOUNDATION JOURNAL',
         title: u.title,
         date: new Date(u.publishedAt).toLocaleDateString('en-IN', { year: 'numeric', month: 'long' }),
-        location: 'Eastern UP',
+        location: language === 'hi' ? 'ग्रामीण समुदाय' : 'Rural Communities',
         image: u.imageUrl || 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800&auto=format&fit=crop',
         href: `/updates/${u.id}`,
       }))

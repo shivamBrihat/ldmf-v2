@@ -46,31 +46,31 @@ export default function Stats() {
   const statsData = [
     {
       icon: GraduationCap,
-      value: 500,
+      value: 100,
       suffix: '+',
-      label: t('hero.stat1Label'),
+      label: language === 'hi' ? 'छात्रों की सहायता की गई' : 'Students Supported',
       description: language === 'hi' ? 'निःशुल्क कंप्यूटर, अंग्रेजी और कोचिंग' : 'Free computer, English & board exam coaching',
     },
     {
       icon: MapPin,
-      value: 10,
-      suffix: '',
-      label: t('hero.stat2Label'),
-      description: language === 'hi' ? 'पूर्वी उत्तर प्रदेश क्षेत्र में' : 'Across Eastern Uttar Pradesh region',
+      value: 3,
+      suffix: '+',
+      label: language === 'hi' ? 'सक्रिय क्षेत्र' : 'Active Regions',
+      description: language === 'hi' ? 'ग्रामीण समुदायों में' : 'Across rural regions',
     },
     {
       icon: BookOpen,
-      value: 15,
+      value: 4,
       suffix: '',
-      label: t('hero.stat3Label'),
-      description: language === 'hi' ? 'कौशल विकास और स्वास्थ्य शिविर' : 'Skill development & health drives',
+      label: language === 'hi' ? 'मुख्य पाठ्यक्रम' : 'Core Courses',
+      description: language === 'hi' ? 'कंप्यूटर, अंग्रेजी, सिलाई और कोचिंग' : 'Computer, English, tailoring & coaching',
     },
     {
       icon: Calendar,
-      value: 5,
+      value: 3,
       suffix: language === 'hi' ? ' वर्ष' : ' Years',
-      label: t('hero.stat4Label'),
-      description: language === 'hi' ? 'श्रीमती लगनी देवी की विरासत की निरंतरता' : 'Carrying forward Smt. Lagni Devi\'s legacy',
+      label: language === 'hi' ? 'सेवा के वर्ष' : 'Years of Service',
+      description: language === 'hi' ? 'सामुदायिक सेवा और कल्याण' : 'Community service & welfare',
     },
   ];
 

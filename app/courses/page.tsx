@@ -52,7 +52,7 @@ export default function CoursesPage() {
       <PageHero
         eyebrow={language === 'hi' ? 'निःशुल्क शिक्षा एवं कौशल' : 'FREE COURSES & SKILLS'}
         title={language === 'hi' ? 'व्यावहारिक कौशल जो नए अवसर खोलते हैं' : 'Practical skills that open doors'}
-        subtitle={language === 'hi' ? 'कंप्यूटर प्रशिक्षण, अंग्रेजी बोलना, महिला सिलाई एवं बोर्ड परीक्षा कोचिंग शिविर।' : 'Free educational courses designed to empower youth, women, and students across rural UP.'}
+        subtitle={language === 'hi' ? 'कंप्यूटर प्रशिक्षण, अंग्रेजी बोलना, महिला सिलाई एवं बोर्ड परीक्षा कोचिंग शिविर।' : 'Free educational courses designed to empower youth, women, and students across rural communities.'}
         imageUrl="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1000&auto=format&fit=crop"
       />
 

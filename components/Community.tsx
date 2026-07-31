@@ -12,25 +12,25 @@ export default function Community() {
   const initiatives = [
     {
       title: language === 'hi' ? 'ग्राम स्वच्छता अभियान' : 'Village Cleanliness & Hygiene Drives',
-      location: 'Azamgarh & Mau',
+      location: language === 'hi' ? 'स्वच्छता अभियान' : 'Cleanliness Initiative',
       description: t('community.cleanliness'),
-      highlights: language === 'hi' ? ['8 ग्राम पंचायतें', '1,200+ स्वच्छता किट', 'स्वच्छ जल जागरूकता'] : ['8 Gram Panchayats', '1,200+ Hygiene Kits', 'Clean Water Awareness'],
+      highlights: language === 'hi' ? ['ग्राम पंचायत सहयोग', 'स्वच्छता किट वितरण', 'स्वच्छ जल जागरूकता'] : ['Gram Panchayat Support', 'Hygiene Kits Distribution', 'Clean Water Awareness'],
       image: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=800&auto=format&fit=crop',
       icon: Sparkles,
     },
     {
       title: language === 'hi' ? 'निःशुल्क चिकित्सा एवं नेत्र शिविर' : 'Free Health & Eye Checkup Camps',
-      location: 'Azamgarh, Ballia & Jaunpur',
+      location: language === 'hi' ? 'स्वास्थ्य कार्यक्रम' : 'Health Program',
       description: t('community.medical'),
-      highlights: language === 'hi' ? ['500+ मरीज / शिविर', 'निःशुल्क दवाएं एवं चश्मे', 'विशेषज्ञ परामर्श'] : ['500+ Patients / Camp', 'Free Medicine & Spectacles', 'Specialist Consultations'],
+      highlights: language === 'hi' ? ['बुनियादी स्वास्थ्य जाँच', 'निःशुल्क दवाएं एवं चश्मे', 'विशेषज्ञ चिकित्सा सहायता'] : ['Basic Health Checkups', 'Free Medicine & Spectacles', 'General Medical Care'],
       image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop',
       icon: Stethoscope,
     },
     {
-      title: language === 'hi' ? 'सूखा राहत एवं संकट सहायता' : 'Crisis & Drought Relief Operations',
-      location: 'Jaunpur & Neighboring Regions',
+      title: language === 'hi' ? 'संकट राहत एवं सहायता' : 'Crisis & Emergency Relief Operations',
+      location: language === 'hi' ? 'राहत कार्य' : 'Relief Work',
       description: t('community.crisis'),
-      highlights: language === 'hi' ? ['सूखा राशन पैक', 'आपतकालीन जल आपूर्ति', 'तत्काल चिकित्सा सहायता'] : ['Dry Ration Packs', 'Emergency Water Supply', 'Immediate Medical Aid'],
+      highlights: language === 'hi' ? ['राशन सामग्री का वितरण', 'पेयजल आपूर्ति सहायता', 'तत्काल सहायता'] : ['Dry Ration Distribution', 'Drinking Water Support', 'Immediate Emergency Aid'],
       image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800&auto=format&fit=crop',
       icon: HandHeart,
     },
@@ -52,7 +52,7 @@ export default function Community() {
           <p className="text-base sm:text-lg text-muted">
             {language === 'hi'
               ? 'कक्षा की दीवारों से परे, हम स्वास्थ्य, पर्यावरण स्वच्छता की रक्षा करते हैं।'
-              : 'Beyond classroom walls, we actively safeguard health, environmental hygiene, and provide rapid relief during natural distress in rural Eastern UP.'}
+              : 'Beyond classroom walls, we actively safeguard health, environmental hygiene, and provide rapid relief during natural distress in rural communities.'}
           </p>
         </div>
 

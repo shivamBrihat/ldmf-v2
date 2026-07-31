@@ -10,24 +10,24 @@
     "announcement": "Free Computer Skills course — admissions open now. Apply now →"
   },
   "hero": {
-    "eyebrow": "LAGNI DEVI MEMORIAL FOUNDATION · EST. 2020",
+    "eyebrow": "LAGNI DEVI MEMORIAL FOUNDATION · EST. 2023",
     "headline": "In Her Memory. For Her People.",
     "subtext": "Lagni Devi Memorial Foundation — Empowering communities through education, service, and remembrance.",
     "donateNow": "Donate Now ↗",
     "learnMore": "Learn More",
-    "stat1Number": "500+",
+    "stat1Number": "100+",
     "stat1Label": "Students Supported",
-    "stat2Number": "10",
-    "stat2Label": "Districts Reached",
-    "stat3Number": "15",
-    "stat3Label": "Free Programmes",
-    "stat4Number": "5",
+    "stat2Number": "3+",
+    "stat2Label": "Active Regions",
+    "stat3Number": "4",
+    "stat3Label": "Core Courses",
+    "stat4Number": "3",
     "stat4Label": "Years of Service"
   },
   "about": {
-    "eyebrow": "OUR LEGACY",
-    "headline": "Beyond remembrance, towards real change.",
-    "body": "Lagni Devi Memorial Foundation is a grassroots non-profit organisation established in 2020 to honour the life and legacy of Smt. Lagni Devi, who lived from 1945 to 2019. Born in a small village in Uttar Pradesh, Smt. Lagni Devi dedicated her life to community welfare, teaching children at home and empowering rural women towards self-employment despite having very limited resources. Following her passing, her family and community members founded the organisation to keep her legacy of compassion and service alive under the guiding principles of \"Remembering, Honouring, and Serving.\""
+    "eyebrow": "OUR MISSION",
+    "headline": "Empowering communities through education and vocational skills.",
+    "body": "Lagni Devi Memorial Foundation is a grassroots non-profit organisation dedicated to community empowerment. We focus on providing free education, vocational training, and organizing community welfare events. Our core programs include Basic Computer Skills & Digital Literacy, Spoken English & Communication, Women's Vocational Tailoring & Handicrafts, and Board Exam Intensive Coaching Camps to help youth and women build sustainable livelihoods."
   },
   "vision": {
     "eyebrow": "OUR VISION",
@@ -84,29 +84,29 @@
     "desc2": "Initiatives built on dignity, care and solidarity.",
     "headline3": "Legacy",
     "desc3": "Turning remembrance into living inspiration.",
-    "cleanliness": "Village cleanliness drives across 8 villages, in partnership with local panchayats",
+    "cleanliness": "Village cleanliness drives in partnership with local panchayats",
     "medical": "Free medical camps — health checkups, medicines, and specialist consultations",
-    "crisis": "Crisis relief support during droughts, such as in Jaunpur — providing urgent food and medical aid"
+    "crisis": "Crisis relief support during emergencies — providing urgent food and medical aid"
   },
   "media": {
     "eyebrow": "IN THE NEWS",
     "headline": "Covered by the press",
-    "dainikJagran": "Dainik Jagran highlighted the success of a free education camp that supported over 200 students in Azamgarh",
+    "dainikJagran": "Dainik Jagran highlighted the success of a free education camp that supported over 200 students",
     "amarUjala": "Amar Ujala reported on the foundation's expansion to ten districts with free programs",
     "hindustan": "Hindustan featured the women's skill development initiatives that empowered over 300 women",
-    "theHindu": "The Hindu detailed how the grassroots foundation is successfully bridging the educational divide in eastern Uttar Pradesh",
+    "theHindu": "The Hindu detailed how the grassroots foundation is successfully bridging the educational divide in rural communities",
     "navbharatTimes": "Navbharat Times covered the free health camps that provided medical treatment to more than 500 villagers"
   },
   "stories": {
     "eyebrow": "STORIES & IMPACT",
     "headline": "Stories of change, close to the ground.",
     "allUpdates": "All updates →",
-    "priya": "Priya Yadav from Azamgarh secured a job in Lucknow and began supporting her family after completing the free computer course.",
-    "rahul": "Rahul Kumar from Mau was able to pass his Class 10 board exams with distinction instead of dropping out, allowing him to pursue college.",
-    "sunita": "Sunita Devi from Ballia established her own tailoring shop, achieving financial independence.",
+    "priya": "Priya Yadav secured a job and began supporting her family after completing the free computer course.",
+    "rahul": "Rahul Kumar was able to pass his Class 10 board exams with distinction instead of dropping out, allowing him to pursue college.",
+    "sunita": "Sunita Devi established her own tailoring shop, achieving financial independence.",
     "arif": "Mohammed Arif's father received timely medical treatment after doctors identified a heart condition during a free village health camp.",
-    "kavita": "In Gorakhpur, Kavita Singh's daughter secured a stable job following the Spoken English course.",
-    "dinesh": "Dinesh Patel's village in Jaunpur received crucial aid during a drought.",
+    "kavita": "Kavita Singh's daughter secured a stable job following the Spoken English course.",
+    "dinesh": "Dinesh Patel's village received crucial aid during a drought.",
     "newSoon": "A new story soon",
     "journal": "FOUNDATION JOURNAL",
     "comingSoon": "New stories coming soon."

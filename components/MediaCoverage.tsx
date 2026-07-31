@@ -20,64 +20,30 @@ export default function MediaCoverage() {
   const [mediaMentions, setMediaMentions] = useState<MediaItem[]>([]);
 
   useEffect(() => {
-    async function fetchMedia() {
-      try {
-        const res = await fetch('/api/media', { cache: 'no-store' });
-        if (res.ok) {
-          const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) {
-            setMediaMentions(
-              data.map((m: any) => ({
-                id: m.id,
-                outlet: m.outlet,
-                headline: m.headline,
-                articleUrl: m.articleUrl || '#',
-                excerpt: m.excerpt || (language === 'hi' ? 'पूर्वी उत्तर प्रदेश में हमारे सामाजिक प्रभाव की प्रमुख समाचार रिपोर्ट।' : 'Prominent news coverage highlighting our grass-roots social impact in UP.'),
-                badge: m.badge || (language === 'hi' ? 'समाचार कवरेज' : 'NEWS COVERAGE'),
-                date: m.date || '2024 Coverage',
-              }))
-            );
-            return;
-          }
-        }
-      } catch (error) {
-        console.error('Failed to fetch dynamic media:', error);
-      }
-
-      // Default fallback
-      setMediaMentions([
-        {
-          outlet: 'Dainik Jagran',
-          headline: language === 'hi' ? 'निःशुल्क शिक्षा शिविर से 200+ छात्र लाभान्वित' : 'Free Education Camp Empowers 200+ Rural Students',
-          excerpt: t('media.dainikJagran'),
-          badge: language === 'hi' ? 'प्रमुख समाचार' : 'TOP STORY',
-          date: 'March 2024',
-        },
-        {
-          outlet: 'Amar Ujala',
-          headline: language === 'hi' ? '10 जिलों में निःशुल्क कार्यक्रमों का विस्तार' : 'Foundation Expands Free Programs to 10 Districts',
-          excerpt: t('media.amarUjala'),
-          badge: language === 'hi' ? 'क्षेत्रीय कवरेज' : 'REGIONAL COVERAGE',
-          date: 'January 2024',
-        },
-        {
-          outlet: 'Hindustan',
-          headline: language === 'hi' ? '300+ ग्रामीण महिलाओं ने हासिल की आर्थिक स्वतंत्रता' : '300+ Rural Women Achieve Financial Independence',
-          excerpt: t('media.hindustan'),
-          badge: language === 'hi' ? 'विशेष रिपोर्ट' : 'FEATURE STORY',
-          date: 'November 2023',
-        },
-        {
-          outlet: 'The Hindu',
-          headline: language === 'hi' ? 'पूर्वी यूपी में शैक्षणिक विभाजन को पाटना' : 'Bridging the Educational & Digital Divide in Eastern UP',
-          excerpt: t('media.theHindu'),
-          badge: language === 'hi' ? 'राष्ट्रीय कवरेज' : 'NATIONAL MEDIA',
-          date: 'August 2023',
-        },
-      ]);
-    }
-
-    fetchMedia();
+    // Default fallback - bypass DB to prevent loading old seeded location references
+    setMediaMentions([
+      {
+        outlet: 'Dainik Jagran',
+        headline: language === 'hi' ? 'निःशुल्क शिक्षा शिविर से 200+ छात्र लाभान्वित' : 'Free Education Camp Empowers 200+ Rural Students',
+        excerpt: t('media.dainikJagran'),
+        badge: language === 'hi' ? 'प्रमुख समाचार' : 'TOP STORY',
+        date: 'March 2024',
+      },
+      {
+        outlet: 'Amar Ujala',
+        headline: language === 'hi' ? '10 जिलों में निःशुल्क कार्यक्रमों का विस्तार' : 'Foundation Expands Free Programs to 10 Districts',
+        excerpt: t('media.amarUjala'),
+        badge: language === 'hi' ? 'क्षेत्रीय कवरेज' : 'REGIONAL COVERAGE',
+        date: 'January 2024',
+      },
+      {
+        outlet: 'Hindustan',
+        headline: language === 'hi' ? '300+ ग्रामीण महिलाओं ने हासिल की आर्थिक स्वतंत्रता' : '300+ Rural Women Achieve Financial Independence',
+        excerpt: t('media.hindustan'),
+        badge: language === 'hi' ? 'विशेष रिपोर्ट' : 'FEATURE STORY',
+        date: 'November 2023',
+      },
+    ]);
   }, [language, t]);
 
   return (
@@ -136,18 +102,9 @@ export default function MediaCoverage() {
                 </p>
               </div>
 
-              {/* Footer Date & Link */}
+              {/* Footer Date Only */}
               <div className="pt-4 border-t border-gold-500/15 flex items-center justify-between text-xs text-muted font-medium">
                 <span>{item.date || 'Coverage'}</span>
-                <a
-                  href={item.articleUrl || '#'}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-gold-600 font-bold group-hover:text-maroon-700 transition-colors"
-                >
-                  <span>{language === 'hi' ? 'प्रेस विज्ञप्ति पढ़ें' : 'Read Article'}</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
               </div>
             </motion.div>
           ))}

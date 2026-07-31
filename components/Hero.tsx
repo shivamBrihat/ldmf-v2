@@ -78,7 +78,7 @@ export default function Hero({ onDonateClick }: HeroProps) {
               </div>
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-gold-600" />
-                <span>{language === 'hi' ? 'आजमगढ़ और यूपी में प्रत्यक्ष प्रभाव' : '100% Direct Impact in Azamgarh & UP'}</span>
+                <span>{language === 'hi' ? 'ग्रामीण समुदायों में प्रत्यक्ष प्रभाव' : '100% Direct Impact in Rural Communities'}</span>
               </div>
             </div>
           </motion.div>
@@ -94,8 +94,8 @@ export default function Hero({ onDonateClick }: HeroProps) {
               {/* Main Arch-Shaped Image Frame */}
               <div className="relative w-full h-[420px] sm:h-[480px] rounded-t-[160px] rounded-b-3xl overflow-hidden shadow-2xl border-4 border-white bg-cream-200">
                 <Image
-                  src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=1000&auto=format&fit=crop"
-                  alt="Rural Indian students smiling warmly in community learning context"
+                  src="/images/main-image.jpg"
+                  alt="Rural Indian teacher educating students in classroom"
                   fill
                   priority
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -107,8 +107,8 @@ export default function Hero({ onDonateClick }: HeroProps) {
               {/* Overlapping Secondary Image - Children Studying */}
               <div className="absolute -bottom-6 -left-6 sm:-left-10 w-44 sm:w-56 h-44 sm:h-56 rounded-3xl overflow-hidden shadow-2xl border-4 border-white z-20">
                 <Image
-                  src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=800&auto=format&fit=crop"
-                  alt="Rural Indian child reading book happily outdoors"
+                  src="/images/secondary-image.jpg"
+                  alt="Rural Indian children studying together"
                   fill
                   sizes="240px"
                   className="object-cover hover:scale-110 transition-transform duration-500"
@@ -127,10 +127,10 @@ export default function Hero({ onDonateClick }: HeroProps) {
                 </div>
                 <div>
                   <span className="text-[10px] uppercase font-bold tracking-widest text-gold-600 block">
-                    {language === 'hi' ? 'फाउंडेशन कहानी' : 'FOUNDATION STORY'}
+                    {language === 'hi' ? 'फाउंडेशन लक्ष्य' : 'FOUNDATION MISSION'}
                   </span>
                   <span className="text-xs font-semibold text-dark block leading-snug">
-                    {language === 'hi' ? '50+ वर्षों की सेवा की निरंतरता' : 'Continuing 50+ years of service'}
+                    {language === 'hi' ? 'ग्रामीण युवाओं को सशक्त बनाना' : 'Empowering rural communities'}
                   </span>
                 </div>
               </motion.div>

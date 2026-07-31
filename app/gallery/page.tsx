@@ -52,7 +52,7 @@ export default function GalleryPage() {
       <PageHero
         eyebrow={language === 'hi' ? 'फोटो गैलरी' : 'PHOTO GALLERY'}
         title={language === 'hi' ? 'हमारी यात्रा के यादगार पल' : 'Moments from our journey'}
-        subtitle={language === 'hi' ? 'कंप्यूटर लैब, सिलाई वर्कशॉप, स्वास्थ्य शिविरों और ग्रामीण कार्यक्रमों की तस्वीरें।' : 'Visual highlights of our educational workshops, healthcare drives, and community events across rural UP.'}
+        subtitle={language === 'hi' ? 'कंप्यूटर लैब, सिलाई वर्कशॉप, स्वास्थ्य शिविरों और ग्रामीण कार्यक्रमों की तस्वीरें।' : 'Visual highlights of our educational workshops, healthcare drives, and community events across rural communities.'}
         imageUrl="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=1000&auto=format&fit=crop"
       />
 

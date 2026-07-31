@@ -24,11 +24,11 @@ const devanagari = Noto_Sans_Devanagari({
 
 export const metadata: Metadata = {
   title: 'Lagni Devi Memorial Foundation | In Her Memory. For Her People.',
-  description: 'Lagni Devi Memorial Foundation (LDMF) is an NGO empowering rural communities in Uttar Pradesh through free education, women skill development, and accessible healthcare.',
+  description: 'Lagni Devi Memorial Foundation (LDMF) is an NGO empowering rural communities through free education, women skill development, and accessible healthcare.',
   keywords: [
     'Lagni Devi Memorial Foundation',
-    'NGO Uttar Pradesh',
-    'Azamgarh NGO',
+    'NGO',
+    'Rural NGO',
     'Women Skill Development',
     'Free Computer Education',
     'Rural Healthcare Camps India',

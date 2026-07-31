@@ -51,9 +51,6 @@ export default function AboutPage() {
                 <h3 className="font-serif font-bold text-2xl sm:text-3xl text-maroon-700">
                   Smt. Lagni Devi
                 </h3>
-                <span className="text-xs font-mono font-semibold tracking-widest text-gold-600 uppercase block mt-1">
-                  1945 – 2019
-                </span>
               </div>
 
               <div className="w-12 h-0.5 bg-gold-500/40" />
@@ -70,30 +67,30 @@ export default function AboutPage() {
           <div className="lg:col-span-7 space-y-6">
             <div>
               <span className="text-xs font-bold uppercase tracking-widest text-gold-600 block mb-2">
-                {language === 'hi' ? 'उनकी जीवन गाथा' : 'HER LEGACY'}
+                {language === 'hi' ? 'हमारा उद्देश्य' : 'OUR MISSION'}
               </span>
               <h2 className="font-serif font-bold text-3xl sm:text-4xl text-maroon-700">
-                {language === 'hi' ? 'उनकी कहानी' : 'Her Story'}
+                {language === 'hi' ? 'हमारी कहानी' : 'Our Story'}
               </h2>
             </div>
 
             <div className="prose prose-stone max-w-none text-sm sm:text-base text-dark/85 leading-relaxed space-y-4">
               <p>
                 {language === 'hi'
-                  ? 'श्रीमती लगनी देवी एक असाधारण महिला थीं, जिन्होंने अपना पूरा जीवन समाज और अपने समुदाय की सेवा में समर्पित कर दिया। उत्तर प्रदेश के एक छोटे से गाँव में जन्मी, उन्होंने सीमित संसाधनों के बावजूद कभी दूसरों की मदद करना नहीं छोड़ा।'
-                  : 'Smt. Lagni Devi was an extraordinary woman who dedicated her entire life to serving her community. Born in a small village in Uttar Pradesh, she never stopped helping others despite limited resources.'}
+                  ? 'लगनी देवी मेमोरियल फाउंडेशन ग्रामीण समुदायों के सशक्तिकरण के लिए समर्पित एक गैर-लाभकारी संगठन है। हमारा मुख्य ध्यान मुफ्त शिक्षा, व्यावसायिक प्रशिक्षण प्रदान करने और सामुदायिक कल्याण कार्यक्रमों के आयोजन पर है।'
+                  : 'Lagni Devi Memorial Foundation is a grassroots non-profit organisation dedicated to community empowerment. We focus on providing free education, vocational training, and organizing community welfare events.'}
               </p>
 
               <p>
                 {language === 'hi'
-                  ? 'बच्चों की शिक्षा और महिलाओं का सशक्तिकरण उनके दिल के सबसे करीब था। वह अपने घर पर गाँव के बच्चों को पढ़ाती थीं और महिलाओं को स्वावलंबी बनने व सिलाई कौशल सीखने के लिए प्रेरित करती थीं।'
-                  : 'Children’s education and women’s empowerment were close to her heart. She would teach children at her home and motivate women toward self-employment.'}
+                  ? 'हमारे मुख्य कार्यक्रमों में बुनियादी कंप्यूटर कौशल और डिजिटल साक्षरता, अंग्रेजी बोलना और संचार, महिलाओं के लिए सिलाई और हस्तशिल्प प्रशिक्षण, तथा बोर्ड परीक्षा कोचिंग शिविर शामिल हैं ताकि युवाओं और महिलाओं को सशक्त बनाया जा सके।'
+                  : 'Our core programs include Basic Computer Skills & Digital Literacy, Spoken English & Communication, Women\'s Vocational Tailoring & Handicrafts, and Board Exam Intensive Coaching Camps to help youth and women build sustainable livelihoods.'}
               </p>
 
               <p>
                 {language === 'hi'
-                  ? '2019 में उनके निधन के बाद, उनके परिवार और ग्रामीण समुदाय ने उनकी इस पुनीत प्रेरणा को हमेशा जीवित रखने और पूर्वी उत्तर प्रदेश में व्यवस्थित सामाजिक बदलाव लाने के लिए लगनी देवी मेमोरियल फाउंडेशन (LDMF) की स्थापना की।'
-                  : 'After her passing in 2019, her family and community established this foundation to keep her legacy alive and bring systematic positive change across rural Uttar Pradesh.'}
+                  ? 'अपने विभिन्न कार्यक्रमों के माध्यम से, हम वंचित समुदायों में व्यवस्थित सकारात्मक बदलाव और समान विकास के अवसर लाने का प्रयास करते हैं।'
+                  : 'Through our various programs, we strive to bring systematic positive change and equal growth opportunities to underserved communities.'}
               </p>
             </div>
           </div>

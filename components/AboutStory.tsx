@@ -23,7 +23,7 @@ export default function AboutStory() {
     {
       icon: Compass,
       title: language === 'hi' ? 'सेवा' : 'Serving',
-      desc: language === 'hi' ? 'ग्रामीण उत्तर प्रदेश के वंचित परिवारों तक करुणा के साथ पहुँचना।' : 'Reaching the most underserved families across rural Uttar Pradesh with warmth.',
+      desc: language === 'hi' ? 'ग्रामीण क्षेत्रों के वंचित परिवारों तक करुणा के साथ पहुँचना।' : 'Reaching the most underserved families across rural communities with warmth.',
     },
   ];
 
@@ -54,15 +54,9 @@ export default function AboutStory() {
                 <div className="absolute inset-0 bg-gradient-to-t from-maroon-900/80 via-transparent to-transparent" />
                 
                 <div className="absolute bottom-40 left-6 right-6 text-white z-10">
-                  <span className="text-gold-400 text-xs font-semibold uppercase tracking-widest block mb-1">
-                    {language === 'hi' ? 'पावन स्मृति में' : 'IN SACRED MEMORY'}
-                  </span>
                   <h3 className="font-serif text-2xl sm:text-3xl font-bold leading-tight">
                     Smt. Lagni Devi
                   </h3>
-                  <p className="text-cream-200 text-xs sm:text-sm mt-0.5">
-                    1945 – 2019 · Rampur, Azamgarh (UP)
-                  </p>
                 </div>
               </div>
 

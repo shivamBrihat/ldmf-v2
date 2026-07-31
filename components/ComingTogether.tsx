@@ -10,27 +10,27 @@ export default function ComingTogether() {
 
   const events = [
     {
-      month: 'APR',
-      day: '14',
+      month: 'AUG',
+      day: '25',
       badge: 'UPCOMING',
       title: language === 'hi' ? 'निःशुल्क नेत्र एवं स्वास्थ्य जांच शिविर' : 'Free Eye Checkup & Medical Camp',
-      details: language === 'hi' ? 'ग्राम पंचायत रामपुर, आजमगढ़' : 'Rampur Gram Panchayat, Azamgarh',
+      details: language === 'hi' ? 'ग्रामीण स्वास्थ्य केंद्र' : 'Rural Health Center',
       href: '#get-involved',
     },
     {
-      month: 'MAY',
-      day: '02',
+      month: 'SEP',
+      day: '12',
       badge: 'UPCOMING',
       title: language === 'hi' ? 'कंप्यूटर साक्षरता दीक्षांत समारोह' : 'Digital Literacy Graduation Ceremony',
-      details: language === 'hi' ? 'एलडीएमएफ शिक्षा लैब, आजमगढ़' : 'LDMF Learning Center, Azamgarh',
+      details: language === 'hi' ? 'एलडीएमएफ शिक्षा लैब' : 'LDMF Learning Lab',
       href: '#get-involved',
     },
     {
-      month: 'JUN',
-      day: '10',
+      month: 'OCT',
+      day: '05',
       badge: 'UPCOMING',
       title: language === 'hi' ? 'महिला सिलाई किट एवं मशीन वितरण' : 'Women Vocational Sewing Kit Drive',
-      details: language === 'hi' ? 'मऊ एवं बलिया जिला केंद्र' : 'Mau & Ballia District Centers',
+      details: language === 'hi' ? 'सामुदायिक व्यावसायिक केंद्र' : 'Community Vocational Center',
       href: '#get-involved',
     },
   ];
@@ -72,14 +72,9 @@ export default function ComingTogether() {
               transition={{ duration: 0.5, delay: idx * 0.15 }}
               className="bg-white rounded-3xl p-6 sm:p-7 border border-gold-500/20 hover:border-gold-500 hover:shadow-card transition-all duration-300 flex items-center gap-5 group"
             >
-              {/* Date / Soon Pill Box */}
-              <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-2xl bg-maroon-700/10 border border-maroon-700/20 text-maroon-700 flex flex-col items-center justify-center shrink-0 group-hover:bg-maroon-700 group-hover:text-white transition-all duration-300 shadow-sm">
-                <span className="text-[10px] font-extrabold uppercase tracking-widest leading-none mb-0.5 group-hover:text-gold-300">
-                  {evt.month}
-                </span>
-                <span className="font-serif font-bold text-xl sm:text-2xl leading-none">
-                  {evt.day}
-                </span>
+              {/* Date Icon Box */}
+              <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-2xl bg-maroon-700/10 border border-maroon-700/20 text-maroon-700 flex items-center justify-center shrink-0 group-hover:bg-maroon-700 group-hover:text-white transition-all duration-300 shadow-sm">
+                <Calendar className="w-6 h-6 group-hover:text-gold-300" />
               </div>
 
               {/* Event Content */}

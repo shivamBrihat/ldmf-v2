@@ -12,7 +12,7 @@ export default function Vision() {
     {
       icon: GraduationCap,
       title: t('vision.point1'),
-      subtitle: language === 'hi' ? 'ग्रामीण उत्तर प्रदेश में युवाओं का विकास' : 'Nurturing Young Minds in Rural UP',
+      subtitle: language === 'hi' ? 'ग्रामीण क्षेत्रों में युवाओं का विकास' : 'Nurturing Young Minds in Rural Areas',
       description: language === 'hi'
         ? 'वंचित बच्चों को मुफ्त ट्यूशन, कंप्यूटर साक्षरता, अध्ययन सामग्री और बोर्ड परीक्षा की तैयारी प्रदान करना।'
         : 'Providing free tuition, computer literacy, school supplies, and board exam preparation to underprivileged children across rural districts.',

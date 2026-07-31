@@ -39,7 +39,7 @@ export default function Donate({ onDonateModalOpen, onVolunteerModalOpen }: Dona
     {
       icon: UserCheck,
       title: language === 'hi' ? 'मैदानी स्वयंसेवा' : 'Volunteer on Ground',
-      desc: language === 'hi' ? 'आजमगढ़, मऊ और बलिया जिलों में सप्ताहांत शिक्षा या स्वास्थ्य शिविरों में शामिल हों।' : 'Join our weekend education coaching or health camps in Azamgarh, Mau, and Ballia districts.',
+      desc: language === 'hi' ? 'हमारे सप्ताहांत शिक्षा या स्वास्थ्य शिविरों में शामिल हों और योगदान दें।' : 'Join our weekend education coaching or health camps in rural areas.',
       actionText: t('donate.volunteer'),
       onClick: () => onVolunteerModalOpen('Volunteer'),
     },
@@ -72,7 +72,7 @@ export default function Donate({ onDonateModalOpen, onVolunteerModalOpen }: Dona
           <p className="text-base sm:text-lg text-cream-200/90">
             {language === 'hi'
               ? 'योगदान किया गया हर रुपया और स्वयंसेवा का हर घंटा ग्रामीण बच्चे या मां के लिए नई आशा लाता है।'
-              : 'Every rupee contributed and every hour volunteered brings warm hope to a rural child or mother in Uttar Pradesh.'}
+              : 'Every rupee contributed and every hour volunteered brings warm hope to a rural child or mother.'}
           </p>
         </div>
 

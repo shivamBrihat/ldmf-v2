@@ -289,7 +289,7 @@ export default function Modals({
                     <input
                       type="text"
                       required
-                      placeholder="e.g. Azamgarh, Lucknow, or Remote"
+                      placeholder={language === 'hi' ? 'जैसे: ग्रामीण क्षेत्र, शहर या रिमोट' : 'e.g. Rural area, City, or Remote'}
                       className="w-full bg-white border border-gold-500/30 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-maroon-700"
                     />
                   </div>
@@ -376,7 +376,7 @@ export default function Modals({
                     <input
                       type="text"
                       required
-                      placeholder="e.g. Rampur, Azamgarh"
+                      placeholder={language === 'hi' ? 'जैसे: गाँव, जिला' : 'e.g. Village, District'}
                       value={appVillage}
                       onChange={(e) => setAppVillage(e.target.value)}
                       className="w-full bg-white border border-gold-500/30 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-maroon-700"
@@ -423,7 +423,7 @@ export default function Modals({
                 <p className="text-sm text-muted">
                   {language === 'hi'
                     ? `प्रिय ${appStudentName}, ${selectedCourse} के लिए आपकी सीट पंजीकृत कर ली गई है।`
-                    : `Dear ${appStudentName}, your seat for ${selectedCourse} at our Rampur center has been provisionally registered. Our center lead will contact you shortly.`}
+                    : `Dear ${appStudentName}, your seat for ${selectedCourse} has been provisionally registered. Our center lead will contact you shortly.`}
                 </p>
                 <button
                   onClick={() => {

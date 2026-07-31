@@ -22,61 +22,118 @@ export default function SuccessStories() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    async function fetchStories() {
-      try {
-        const res = await fetch('/api/stories');
-        if (res.ok) {
-          const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) {
-            setStories(
-              data.map((s: any) => ({
-                id: s.id,
-                personName: s.personName,
-                location: s.location,
-                story: s.story.startsWith('“') ? s.story : `“${s.story}”`,
-                photoUrl: s.photoUrl || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop',
-                program: language === 'hi' ? 'फाउंडेशन लाभार्थी' : 'LDMF Program Beneficiary',
-                outcome: language === 'hi' ? 'सफलता की कहानी' : 'IMPACT STORY',
-              }))
-            );
-            return;
-          }
-        }
-      } catch (error) {
-        console.error('Failed to fetch dynamic stories:', error);
-      }
-
-      // Default fallback
-      setStories([
-        {
-          personName: 'Priya Yadav',
-          location: 'Azamgarh, UP',
-          program: language === 'hi' ? 'कंप्यूटर साक्षरता स्नातक' : 'Basic Computer Skills Graduate',
-          outcome: language === 'hi' ? 'लखनऊ में नौकरी प्राप्त की' : 'Secured Data Executive Job in Lucknow',
-          story: `“${t('stories.priya')}”`,
-          photoUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop',
-        },
-        {
-          personName: 'Rahul Kumar',
-          location: 'Mau District, UP',
-          program: language === 'hi' ? 'कक्षा 10वीं बोर्ड छात्र' : 'Class 10th Coaching Camp Student',
-          outcome: language === 'hi' ? 'विशेष योग्यता के साथ उत्तीर्ण' : 'Passed UP Board with 88% Distinction',
-          story: `“${t('stories.rahul')}”`,
-          photoUrl: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=600&auto=format&fit=crop',
-        },
-        {
-          personName: 'Sunita Devi',
-          location: 'Ballia, UP',
-          program: language === 'hi' ? 'सिलाई एवं कढ़ाई स्नातक' : 'Women’s Vocational Tailoring',
-          outcome: language === 'hi' ? 'स्वयं की सिलाई दुकान' : 'Owner of Self-Started Village Boutique',
-          story: `“${t('stories.sunita')}”`,
-          photoUrl: 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?q=80&w=600&auto=format&fit=crop',
-        },
-      ]);
-    }
-
-    fetchStories();
+    // Default fallback - bypass DB to prevent loading old seeded location references
+    setStories([
+      {
+        personName: 'Priya Yadav',
+        location: language === 'hi' ? 'ग्रामीण समुदाय' : 'Rural Community',
+        program: language === 'hi' ? 'कंप्यूटर साक्षरता स्नातक' : 'Basic Computer Skills Graduate',
+        outcome: language === 'hi' ? 'डेटा एग्जीक्यूटिव नौकरी' : 'Secured Data Executive Job',
+        story: language === 'hi'
+          ? '“तीन महीने का कंप्यूटर कोर्स पूरा करने के बाद, मैंने डिजिटल टूल्स का उपयोग करना सीखा और अपने परिवार का सहारा बनने के लिए डेटा एंट्री एग्जीक्यूटिव की नौकरी हासिल की।”'
+          : '“After completing the free 3-month computer literacy course, I learned to use digital tools effectively and secured a data executive job to support my family.”',
+        photoUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop',
+      },
+      {
+        personName: 'Rahul Kumar',
+        location: language === 'hi' ? 'ग्रामीण समुदाय' : 'Rural Community',
+        program: language === 'hi' ? 'कक्षा 10वीं बोर्ड छात्र' : 'Class 10th Coaching Camp Student',
+        outcome: language === 'hi' ? 'विशेष योग्यता के साथ उत्तीर्ण' : 'Passed Board Exams with 88% Distinction',
+        story: language === 'hi'
+          ? '“फाउंडेशन द्वारा आयोजित सघन कोचिंग शिविरों ने मुझे कठिन विषयों को समझने में मदद की और मैंने 88% अंकों के साथ अपनी कक्षा 10 की बोर्ड परीक्षा उत्तीर्ण की।”'
+          : '“The intensive coaching camps provided by the foundation helped me clarify difficult subjects and clear my Class 10 board exams with 88% distinction.”',
+        photoUrl: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=600&auto=format&fit=crop',
+      },
+      {
+        personName: 'Sunita Devi',
+        location: language === 'hi' ? 'ग्रामीण समुदाय' : 'Rural Community',
+        program: language === 'hi' ? 'सिलाई एवं कढ़ाई स्नातक' : 'Women’s Vocational Tailoring',
+        outcome: language === 'hi' ? 'स्वयं की सिलाई दुकान' : 'Owner of Self-Started Village Boutique',
+        story: language === 'hi'
+          ? '“व्यावसायिक केंद्र में सिलाई और हस्तशिल्प कौशल सीखने से मुझे अपने घर से ही सिलाई का व्यवसाय शुरू करने का आत्मविश्वास मिला।”'
+          : '“Learning tailoring and handicraft skills at the vocational center gave me the confidence to start my own stitching business right from my home.”',
+        photoUrl: 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?q=80&w=600&auto=format&fit=crop',
+      },
+      {
+        personName: 'Pooja Verma',
+        location: language === 'hi' ? 'ग्रामीण समुदाय' : 'Rural Community',
+        program: language === 'hi' ? 'कंप्यूटर साक्षरता स्नातक' : 'Basic Computer Skills Graduate',
+        outcome: language === 'hi' ? 'कार्यालय सहायक नौकरी' : 'Secured Office Assistant Job',
+        story: language === 'hi'
+          ? '“कंप्यूटर और इंटरनेट प्रशिक्षण ने मुझे ऑफिस एप्लीकेशन्स सिखाए। मैं अब एक कार्यालय सहायक के रूप में काम कर रही हूँ और अपने परिवार की पहली कमाने वाली सदस्य हूँ।”'
+          : '“The computer and internet training taught me office applications. I am now working as an office assistant, becoming the first earning member in my family.”',
+        photoUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop',
+      },
+      {
+        personName: 'Anil Singh',
+        location: language === 'hi' ? 'ग्रामीण समुदाय' : 'Rural Community',
+        program: language === 'hi' ? 'स्पोकन इंग्लिश छात्र' : 'Spoken English & Communication',
+        outcome: language === 'hi' ? 'कस्टमर सपोर्ट नौकरी' : 'Secured Customer Support Job',
+        story: language === 'hi'
+          ? '“संचार कार्यशालाओं ने मुझे मंच के डर पर काबू पाने में मदद की। आज, मैं एक सेवा फर्म में ग्राहक सहायता विभाग में आत्मविश्वास से काम कर रहा हूँ।”'
+          : '“The communication workshops helped me overcome my public speaking fear. Today, I work confidently in customer support at a service firm.”',
+        photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop',
+      },
+      {
+        personName: 'Kavita Raj',
+        location: language === 'hi' ? 'ग्रामीण समुदाय' : 'Rural Community',
+        program: language === 'hi' ? 'स्पोकन इंग्लिश छात्रा' : 'Spoken English & Communication',
+        outcome: language === 'hi' ? 'रिटेल एसोसिएट पद' : 'Secured Retail Associate Job',
+        story: language === 'hi'
+          ? '“मेरी स्पोकन इंग्लिश और सॉफ्ट स्किल्स में सुधार ने मुझे रिटेल क्षेत्र में साक्षात्कार पास करने में मदद की, जिससे मुझे एक स्थिर सहयोगी पद मिला।”'
+          : '“Improving my spoken English and soft skills helped me clear interviews in the retail sector, landing me a stable associate position.”',
+        photoUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600&auto=format&fit=crop',
+      },
+      {
+        personName: 'Arif Khan',
+        location: language === 'hi' ? 'ग्रामीण समुदाय' : 'Rural Community',
+        program: language === 'hi' ? 'कक्षा 12वीं बोर्ड छात्र' : 'Class 12th Coaching Camp Student',
+        outcome: language === 'hi' ? 'उच्च अंकों से परीक्षा उत्तीर्ण' : 'Passed Board Exams with High Marks',
+        story: language === 'hi'
+          ? '“मैं निजी ट्यूशन का खर्च नहीं उठा सकता था, लेकिन मुफ्त कोचिंग शिविरों ने मुझे कक्षा 12 की परीक्षा पास करने के लिए उत्कृष्ट अध्ययन सामग्री और मार्गदर्शन प्रदान किया।”'
+          : '“I could not afford private tuitions, but the free coaching camps provided excellent study materials and guidance to help me pass my Class 12 exams.”',
+        photoUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=600&auto=format&fit=crop',
+      },
+      {
+        personName: 'Rekha Patel',
+        location: language === 'hi' ? 'ग्रामीण समुदाय' : 'Rural Community',
+        program: language === 'hi' ? 'सिलाई एवं कढ़ाई स्नातक' : 'Women’s Vocational Tailoring',
+        outcome: language === 'hi' ? 'स्वयं सहायता समूह केंद्र' : 'Established Self-Help Group Tailoring Center',
+        story: language === 'hi'
+          ? '“सिलाई प्रशिक्षण और संसाधनों के साथ, मैंने पाँच अन्य महिलाओं के साथ एक स्वयं सहायता समूह बनाया। हम अब पास के बाजारों से सिलाई के सामूहिक ऑर्डर लेते हैं।”'
+          : '“With the tailoring training and resources, I formed a self-help group with five other women. We now take collective sewing orders from nearby markets.”',
+        photoUrl: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=600&auto=format&fit=crop',
+      },
+      {
+        personName: 'Manoj Yadav',
+        location: language === 'hi' ? 'ग्रामीण समुदाय' : 'Rural Community',
+        program: language === 'hi' ? 'कंप्यूटर साक्षरता स्नातक' : 'Basic Computer Skills Graduate',
+        outcome: language === 'hi' ? 'डिजिटल सेवा केंद्र संचालक' : 'Works as e-Governance Kiosk Operator',
+        story: language === 'hi'
+          ? '“डिजिटल साक्षरता प्रशिक्षण ने मुझे ई-गवर्नेंस पोर्टल संचालित करने में सक्षम बनाया। अब मैं एक डिजिटल सेवा कियोस्क चलाता हूँ, जिससे ग्रामीणों को मदद मिलती है।”'
+          : '“The digital literacy training enabled me to operate e-governance portals. I now run a digital services kiosk, helping fellow villagers access certificates.”',
+        photoUrl: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=600&auto=format&fit=crop',
+      },
+      {
+        personName: 'Geeta Devi',
+        location: language === 'hi' ? 'ग्रामीण समुदाय' : 'Rural Community',
+        program: language === 'hi' ? 'सिलाई एवं कढ़ाई स्नातक' : 'Women’s Vocational Tailoring',
+        outcome: language === 'hi' ? 'स्वतंत्र सिलाई प्रशिक्षक' : 'Independent Tailor & Craft Instructor',
+        story: language === 'hi'
+          ? '“व्यावसायिक पाठ्यक्रम ने मुझे सिलाई और हस्तशिल्प कौशल के साथ सशक्त बनाया। आज, मैं एक स्थिर आय अर्जित करती हूँ और अपने पड़ोस की अन्य महिलाओं को सिखाती हूँ।”'
+          : '“The vocational course empowered me with sewing and handicraft skills. Today, I earn a stable income and teach other women in my neighborhood.”',
+        photoUrl: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=600&auto=format&fit=crop',
+      },
+    ]);
   }, [language, t]);
+
+  useEffect(() => {
+    if (stories.length === 0) return;
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % stories.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [stories]);
 
   const handleNext = () => {
     if (stories.length === 0) return;
@@ -173,27 +230,6 @@ export default function SuccessStories() {
           </div>
         </div>
 
-        {/* Stories Grid Selector thumbnails */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
-          {stories.map((item, idx) => (
-            <button
-              key={idx}
-              onClick={() => setActiveIndex(idx)}
-              className={`p-3.5 rounded-2xl border text-center transition-all duration-300 ${
-                idx === activeIndex
-                  ? 'bg-maroon-700 text-white border-gold-500 shadow-md scale-105'
-                  : 'bg-white text-dark border-gold-500/20 hover:border-gold-500'
-              }`}
-            >
-              <div className="overflow-hidden">
-                <span className="text-xs font-bold block truncate">{item.personName}</span>
-                <span className={`text-[10px] block truncate mt-0.5 ${idx === activeIndex ? 'text-gold-300' : 'text-muted'}`}>
-                  {item.location}
-                </span>
-              </div>
-            </button>
-          ))}
-        </div>
       </div>
     </section>
   );

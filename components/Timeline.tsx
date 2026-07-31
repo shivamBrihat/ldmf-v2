@@ -18,64 +18,58 @@ export default function Timeline() {
   const [milestones, setMilestones] = useState<TimelineItem[]>([]);
 
   useEffect(() => {
-    async function fetchTimeline() {
-      try {
-        const res = await fetch('/api/timeline');
-        if (res.ok) {
-          const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) {
-            setMilestones(
-              data.map((m: any) => ({
-                id: m.id,
-                year: m.year,
-                title: m.title,
-                badge: m.badge,
-                description: m.description,
-              }))
-            );
-            return;
-          }
-        }
-      } catch (error) {
-        console.error('Failed to fetch dynamic timeline:', error);
+    const currentMilestones = language === 'hi' ? [
+      {
+        year: '2023',
+        title: 'स्थापना एवं पंजीकरण',
+        badge: '2023',
+        description: 'फाउंडेशन का औपचारिक पंजीकरण किया गया और छात्रों की सहायता के लिए बोर्ड परीक्षा कोचिंग शिविरों की शुरुआत की गई।',
+      },
+      {
+        year: '2024',
+        title: 'महिला व्यावसायिक कौशल विकास',
+        badge: 'सिलाई प्रशिक्षण',
+        description: 'महिलाओं के आत्मनिर्भरता के लिए सिलाई और हस्तशिल्प प्रशिक्षण केंद्र की शुरुआत की गई।',
+      },
+      {
+        year: '2025',
+        title: 'कंप्यूटर और संचार प्रशिक्षण',
+        badge: 'डिजिटल साक्षरता',
+        description: 'डिजिटल शिक्षा को बढ़ावा देने के लिए कंप्यूटर लैब, बुनियादी कंप्यूटर कोर्स और स्पोकन इंग्लिश कक्षाएं शुरू की गईं।',
+      },
+      {
+        year: '2026',
+        title: 'सामुदायिक कल्याण और विस्तार',
+        badge: '2026 तक',
+        description: 'नए ग्रामीण क्षेत्रों में कल्याणकारी कार्यक्रमों, स्वास्थ्य शिविरों और कौशल विकास पाठ्यक्रमों का विस्तार किया गया।',
       }
-
-      // Fallback defaults matching screenshot details
-      setMilestones([
-        {
-          year: '2020',
-          title: 'Foundation Registered',
-          badge: '2020',
-          description: 'Foundation registered in memory of Smt. Lagni Devi.',
-        },
-        {
-          year: '2021',
-          title: 'First Free Education Camp',
-          badge: '50 STUDENTS',
-          description: 'First free education camp; 50 students from 3 villages coached for board exams.',
-        },
-        {
-          year: '2022',
-          title: 'Healthcare Expansion',
-          badge: '15 CAMPS',
-          description: 'Expanded to healthcare camps, conducting 15 rural medical drives.',
-        },
-        {
-          year: '2023',
-          title: 'Women’s Vocational Skills Center',
-          badge: '50+ MACHINES',
-          description: 'Initiated Vocational Skill Center, distributing 50+ sewing machines.',
-        },
-        {
-          year: '2024',
-          title: '1,500+ Lives Impacted',
-          badge: 'MILESTONE',
-          description: 'Reached milestone of 1,500+ lives impacted across Eastern UP.',
-        },
-      ]);
-    }
-
-    fetchTimeline();
+    ] : [
+      {
+        year: '2023',
+        title: 'Foundation Registered & Launched',
+        badge: '2023',
+        description: 'Officially registered the foundation and launched Board Exam Intensive Coaching Camps to support rural students.',
+      },
+      {
+        year: '2024',
+        title: 'Women\'s Skill Development',
+        badge: 'Tailoring & Craft',
+        description: 'Initiated the Women’s Vocational Tailoring & Handicrafts Center to foster self-employment.',
+      },
+      {
+        year: '2025',
+        title: 'Computer Skills & Spoken English',
+        badge: 'Digital Literacy',
+        description: 'Opened a dedicated computer lab for Basic Computer Skills and Spoken English classes.',
+      },
+      {
+        year: '2026',
+        title: 'Community Welfare & Expansion',
+        badge: 'Until 2026',
+        description: 'Expanded welfare events, free health camps, and vocational courses across new rural districts.',
+      }
+    ];
+    setMilestones(currentMilestones);
   }, [language, t]);
 
   // Icons array to alternate or use based on index
@@ -96,8 +90,8 @@ export default function Timeline() {
           </h2>
           <p className="text-base sm:text-lg text-stone-600">
             {language === 'hi'
-              ? 'एक अनौपचारिक बरामदा कक्षा से लेकर 10 जिलों तक पहुँचने वाले एक पंजीकृत फाउंडेशन तक - यहाँ बताया गया है कि हम कैसे कदम दर कदम बढ़े।'
-              : 'From an informal verandah classroom to a registered foundation reaching 10 districts—here is how we grew step by step.'}
+              ? 'समुदायों को सशक्त बनाना और स्थायी आजीविका का निर्माण करना—यहाँ हमारी कदम-दर-कदम प्रगति है।'
+              : 'Empowering communities and building sustainable livelihoods—here is our step-by-step progress.'}
           </p>
         </div>
 

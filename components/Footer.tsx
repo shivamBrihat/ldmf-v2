@@ -62,8 +62,8 @@ export default function Footer() {
 
             <p className="text-xs text-cream-200/70 leading-relaxed max-w-sm">
               {language === 'hi'
-                ? 'लगनी देवी मेमोरियल फाउंडेशन (LDMF) पूर्वी उत्तर प्रदेश में मुफ्त शिक्षा, महिला कौशल विकास और ग्रामीण स्वास्थ्य सेवा के लिए समर्पित एक पंजीकृत सार्वजनिक धर्मार्थ ट्रस्ट है।'
-                : 'Lagni Devi Memorial Foundation (LDMF) is a registered non-profit organization dedicated to empowering rural families through free education, women skill development, and village health care across Eastern Uttar Pradesh.'}
+                ? 'लगनी देवी मेमोरियल फाउंडेशन (LDMF) ग्रामीण क्षेत्रों में मुफ्त शिक्षा, महिला कौशल विकास और ग्रामीण स्वास्थ्य सेवा के लिए समर्पित एक पंजीकृत सार्वजनिक धर्मार्थ ट्रस्ट है।'
+                : 'Lagni Devi Memorial Foundation (LDMF) is a registered non-profit organization dedicated to empowering rural families through free education, women skill development, and village health care across rural communities.'}
             </p>
 
             {/* Social links commented out
@@ -129,10 +129,12 @@ export default function Footer() {
                 <Mail className="w-3.5 h-3.5 text-gold-500 shrink-0" />
                 <a href="mailto:bankjankari2021@gmail.com" className="hover:text-gold-400 transition-colors">{t('contact.email')}</a>
               </li>
+              {/*
               <li className="flex items-start gap-2">
                 <Clock className="w-3.5 h-3.5 text-gold-500 shrink-0 mt-0.5" />
                 <span>{t('contact.hours')}</span>
               </li>
+              */}
             </ul>
           </div>
         </div>
