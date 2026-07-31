@@ -3,12 +3,12 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
 model TeamMember {
-  id          String   @id @default(cuid())
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   role        String
   photoUrl    String
@@ -22,7 +22,7 @@ model TeamMember {
 }
 
 model GalleryImage {
-  id        String   @id @default(cuid())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   imageUrl  String
   caption   String?
   category  String?
@@ -31,7 +31,7 @@ model GalleryImage {
 }
 
 model Program {
-  id          String   @id @default(cuid())
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   description String
   imageUrl    String?
@@ -41,7 +41,7 @@ model Program {
 }
 
 model TimelineEvent {
-  id          String   @id @default(cuid())
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   year        String
   title       String?
   badge       String?
@@ -51,7 +51,7 @@ model TimelineEvent {
 }
 
 model SuccessStory {
-  id          String   @id @default(cuid())
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   personName  String
   location    String
   story       String
@@ -62,7 +62,7 @@ model SuccessStory {
 }
 
 model MediaCoverage {
-  id         String   @id @default(cuid())
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
   outlet     String
   headline   String
   articleUrl String?
@@ -73,7 +73,7 @@ model MediaCoverage {
 }
 
 model Update {
-  id          String   @id @default(cuid())
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   content     String
   imageUrl    String?
@@ -83,7 +83,7 @@ model Update {
 }
 
 model Activity {
-  id          String   @id @default(cuid())
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   description String
   imageUrl    String?
@@ -93,7 +93,7 @@ model Activity {
 }
 
 model Event {
-  id          String   @id @default(cuid())
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   description String
   eventDate   DateTime
@@ -105,7 +105,7 @@ model Event {
 }
 
 model SiteContent {
-  id        String   @id @default(cuid())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   key       String   @unique
   title     String
   content   String
@@ -113,7 +113,7 @@ model SiteContent {
 }
 
 model ContactSubmission {
-  id        String   @id @default(cuid())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   name      String
   email     String?
   message   String
@@ -122,11 +122,10 @@ model ContactSubmission {
 }
 
 model User {
-  id        String   @id @default(cuid())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   email     String   @unique
   password  String   // bcrypt hashed password
   name      String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
-

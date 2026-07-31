@@ -52,6 +52,7 @@ export default function Hero({ onDonateClick }: HeroProps) {
 
             {/* Call to Action Buttons */}
             <div className="flex flex-wrap items-center gap-4 w-full sm:w-auto">
+              {/* Commented Out Donate Button
               <button
                 onClick={onDonateClick}
                 className="btn-maroon-glow bg-maroon-700 hover:bg-maroon-800 text-white font-semibold text-base px-8 py-4 rounded-full flex items-center justify-center gap-2 border border-gold-500/30 w-full sm:w-auto"
@@ -59,6 +60,7 @@ export default function Hero({ onDonateClick }: HeroProps) {
                 <Heart className="w-5 h-5 fill-white text-maroon-700" />
                 <span>{t('hero.donateNow')}</span>
               </button>
+              */}
 
               <a
                 href="#about"

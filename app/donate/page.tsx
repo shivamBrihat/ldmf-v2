@@ -16,18 +16,7 @@ export default function DonatePage() {
   const [donateContent, setDonateContent] = useState('');
 
   useEffect(() => {
-    async function fetchDonateInfo() {
-      try {
-        const res = await fetch('/api/site-content/donate_info');
-        if (res.ok) {
-          const data = await res.json();
-          setDonateContent(data.content);
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    }
-    fetchDonateInfo();
+    window.location.href = '/';
   }, []);
 
   const handleCopyUpi = () => {

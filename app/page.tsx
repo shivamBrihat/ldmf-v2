@@ -67,8 +67,9 @@ export default function Home() {
       {/* E. Vision Section */}
       <Vision />
 
-      {/* F. Leadership & Team Section */}
+      {/* F. Leadership & Team Section - Commented Out
       <Team />
+      */}
 
       {/* G. Timeline / Our Journey Section */}
       <Timeline />

@@ -36,9 +36,15 @@ export default function AboutPage() {
           {/* Left Column: Memorial Card */}
           <div className="lg:col-span-5 flex justify-center">
             <div className="w-full max-w-md bg-maroon-700/5 rounded-3xl p-8 sm:p-10 border border-maroon-700/15 shadow-card flex flex-col items-center justify-center text-center space-y-5 relative">
-              {/* LD Avatar / Logo Circle */}
-              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-maroon-700 text-gold-300 flex items-center justify-center font-serif font-bold text-3xl sm:text-4xl shadow-lg border-2 border-gold-500/50">
-                LD
+              {/* LD Avatar / Image Circle */}
+              <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden shadow-lg border-2 border-gold-500/50 relative">
+                <Image
+                  src="/images/lagni-devi-image.png"
+                  alt="Smt. Lagni Devi"
+                  fill
+                  sizes="(max-width: 768px) 128px, 144px"
+                  className="object-cover object-top"
+                />
               </div>
 
               <div>
@@ -97,8 +103,9 @@ export default function AboutPage() {
       {/* 3. Vision & Pillars */}
       <Vision />
 
-      {/* 4. Leadership Team */}
+      {/* 4. Leadership Team - Commented Out
       <Team />
+      */}
 
       {/* 5. Journey Timeline */}
       <Timeline />

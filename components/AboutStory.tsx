@@ -45,22 +45,22 @@ export default function AboutStory() {
             <div className="relative mx-auto max-w-md lg:max-w-none">
               <div className="relative h-[480px] sm:h-[540px] rounded-3xl overflow-hidden shadow-2xl border-4 border-cream-200">
                 <Image
-                  src="https://images.unsplash.com/photo-1567186937675-a5131c8a89ea?q=80&w=1000&auto=format&fit=crop"
-                  alt="Smt. Lagni Devi portrait - elderly Indian woman in sari with graceful smile"
+                  src="/images/lagni-devi-image.png"
+                  alt="Smt. Lagni Devi portrait"
                   fill
                   sizes="(max-width: 768px) 100vw, 40vw"
                   className="object-cover object-top hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-maroon-900/80 via-transparent to-transparent" />
                 
-                <div className="absolute bottom-6 left-6 right-6 text-white">
+                <div className="absolute bottom-40 left-6 right-6 text-white z-10">
                   <span className="text-gold-400 text-xs font-semibold uppercase tracking-widest block mb-1">
                     {language === 'hi' ? 'पावन स्मृति में' : 'IN SACRED MEMORY'}
                   </span>
-                  <h3 className="font-serif text-2xl font-bold">
+                  <h3 className="font-serif text-2xl sm:text-3xl font-bold leading-tight">
                     Smt. Lagni Devi
                   </h3>
-                  <p className="text-cream-200 text-xs mt-0.5">
+                  <p className="text-cream-200 text-xs sm:text-sm mt-0.5">
                     1945 – 2019 · Rampur, Azamgarh (UP)
                   </p>
                 </div>

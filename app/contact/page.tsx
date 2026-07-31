@@ -82,6 +82,7 @@ export default function ContactPage() {
               </h3>
 
               <div className="space-y-5 text-xs sm:text-sm">
+                {/* Address block commented out
                 <div className="flex items-start gap-3.5">
                   <div className="w-10 h-10 rounded-xl bg-gold-500/10 text-gold-600 flex items-center justify-center shrink-0">
                     <MapPin className="w-5 h-5" />
@@ -93,6 +94,7 @@ export default function ContactPage() {
                     </span>
                   </div>
                 </div>
+                */}
 
                 <div className="flex items-center gap-3.5">
                   <div className="w-10 h-10 rounded-xl bg-maroon-700/10 text-maroon-700 flex items-center justify-center shrink-0">
@@ -100,8 +102,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <span className="font-bold text-dark block">Phone / फोन</span>
-                    <a href="tel:+919876543210" className="text-maroon-700 font-semibold hover:underline">
-                      +91 98765 43210
+                    <a href="tel:+919693027085" className="text-maroon-700 font-semibold hover:underline">
+                      +91 96930 27085
                     </a>
                   </div>
                 </div>
@@ -112,8 +114,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <span className="font-bold text-dark block">Email / ईमेल</span>
-                    <a href="mailto:contact@ldmf.org" className="text-maroon-700 font-semibold hover:underline">
-                      contact@ldmf.org
+                    <a href="mailto:bankjankari2021@gmail.com" className="text-maroon-700 font-semibold hover:underline">
+                      bankjankari2021@gmail.com
                     </a>
                   </div>
                 </div>

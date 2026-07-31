@@ -16,7 +16,7 @@ export default function Footer() {
   return (
     <footer className="bg-dark text-white pt-16 pb-8 border-t-4 border-gold-500 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Top Location Banner Card */}
+        {/* Top Location Banner Card - Commented Out
         <div className="bg-maroon-900/90 rounded-3xl p-6 sm:p-8 mb-16 border border-gold-500/30 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-start gap-4">
             <div className="w-12 h-12 rounded-2xl bg-gold-500 text-maroon-900 flex items-center justify-center shrink-0 shadow-md">
@@ -44,6 +44,7 @@ export default function Footer() {
             {language === 'hi' ? 'मानचित्र देखें ↗' : 'Open Location Map ↗'}
           </a>
         </div>
+        */}
 
         {/* Footer Navigation Columns */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10">
@@ -65,6 +66,7 @@ export default function Footer() {
                 : 'Lagni Devi Memorial Foundation (LDMF) is a registered non-profit organization dedicated to empowering rural families through free education, women skill development, and village health care across Eastern Uttar Pradesh.'}
             </p>
 
+            {/* Social links commented out
             <div className="flex items-center gap-3 pt-2">
               <a href="#" className="w-8 h-8 rounded-full bg-white/10 hover:bg-gold-500 hover:text-dark flex items-center justify-center text-cream-200 transition-colors" aria-label="Facebook">
                 <Facebook className="w-4 h-4" />
@@ -82,6 +84,7 @@ export default function Footer() {
                 <Linkedin className="w-4 h-4" />
               </a>
             </div>
+            */}
           </div>
 
           {/* Col 2: Quick Links */}
@@ -108,7 +111,7 @@ export default function Footer() {
               <li><Link href="/courses" className="hover:text-gold-400 transition-colors">{t('programs.english.title')}</Link></li>
               <li><Link href="/courses" className="hover:text-gold-400 transition-colors">{t('programs.women.title')}</Link></li>
               <li><Link href="/courses" className="hover:text-gold-400 transition-colors">{t('programs.coaching.title')}</Link></li>
-              <li><Link href="/donate" className="hover:text-gold-400 transition-colors">{language === 'hi' ? 'सहयोग एवं दान' : 'Support & Donate'}</Link></li>
+              {/* <li><Link href="/donate" className="hover:text-gold-400 transition-colors">{language === 'hi' ? 'सहयोग एवं दान' : 'Support & Donate'}</Link></li> */}
             </ul>
           </div>
 
@@ -120,11 +123,11 @@ export default function Footer() {
             <ul className="space-y-2.5 text-xs text-cream-200/80">
               <li className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-gold-500 shrink-0" />
-                <a href="tel:+919876543210" className="hover:text-gold-400 transition-colors">{t('contact.phone')}</a>
+                <a href="tel:+919693027085" className="hover:text-gold-400 transition-colors">{t('contact.phone')}</a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-gold-500 shrink-0" />
-                <a href="mailto:contact@ldmf.org" className="hover:text-gold-400 transition-colors">{t('contact.email')}</a>
+                <a href="mailto:bankjankari2021@gmail.com" className="hover:text-gold-400 transition-colors">{t('contact.email')}</a>
               </li>
               <li className="flex items-start gap-2">
                 <Clock className="w-3.5 h-3.5 text-gold-500 shrink-0 mt-0.5" />

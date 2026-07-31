@@ -27,6 +27,7 @@ export default function Donate({ onDonateModalOpen, onVolunteerModalOpen }: Dona
   };
 
   const waysToHelp = [
+    /*
     {
       icon: Heart,
       title: language === 'hi' ? '1. वित्तीय योगदान' : '1. Financial Contribution',
@@ -34,16 +35,17 @@ export default function Donate({ onDonateModalOpen, onVolunteerModalOpen }: Dona
       actionText: t('donate.donate'),
       onClick: onDonateModalOpen,
     },
+    */
     {
       icon: UserCheck,
-      title: language === 'hi' ? '2. मैदानी स्वयंसेवा' : '2. Volunteer on Ground',
+      title: language === 'hi' ? 'मैदानी स्वयंसेवा' : 'Volunteer on Ground',
       desc: language === 'hi' ? 'आजमगढ़, मऊ और बलिया जिलों में सप्ताहांत शिक्षा या स्वास्थ्य शिविरों में शामिल हों।' : 'Join our weekend education coaching or health camps in Azamgarh, Mau, and Ballia districts.',
       actionText: t('donate.volunteer'),
       onClick: () => onVolunteerModalOpen('Volunteer'),
     },
     {
       icon: BookOpenCheck,
-      title: language === 'hi' ? '3. वर्चुअल मार्गदर्शन' : '3. Virtual Mentorship',
+      title: language === 'hi' ? 'वर्चुअल मार्गदर्शन' : 'Virtual Mentorship',
       desc: language === 'hi' ? 'ग्रामीण छात्रों को साप्ताहिक ऑनलाइन स्पोकन इंग्लिश या करियर काउंसलिंग सत्र प्रदान करें।' : 'Offer weekly online spoken English, career counseling, or digital skills sessions to rural students.',
       actionText: t('donate.mentor'),
       onClick: () => onVolunteerModalOpen('Mentor'),
@@ -75,7 +77,7 @@ export default function Donate({ onDonateModalOpen, onVolunteerModalOpen }: Dona
         </div>
 
         {/* 3 Ways to Help Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 max-w-4xl mx-auto">
           {waysToHelp.map((item, idx) => {
             const Icon = item.icon;
             return (
@@ -111,10 +113,9 @@ export default function Donate({ onDonateModalOpen, onVolunteerModalOpen }: Dona
           })}
         </div>
 
-        {/* Direct Donation Details Box */}
+        {/* Direct Donation Details Box - Commented Out
         <div className="bg-cream-100 text-dark rounded-3xl p-8 sm:p-12 shadow-2xl border-2 border-gold-500/40">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Left Bank & Tax Info */}
             <div className="lg:col-span-7">
               <div className="flex items-center gap-2 text-maroon-700 font-bold text-xs uppercase tracking-widest mb-2">
                 <ShieldCheck className="w-4 h-4 text-gold-600" />
@@ -127,9 +128,7 @@ export default function Donate({ onDonateModalOpen, onVolunteerModalOpen }: Dona
                 {t('donate.taxNote')}
               </p>
 
-              {/* Account details table / cards */}
               <div className="space-y-4">
-                {/* Bank Account */}
                 <div className="bg-white p-4 sm:p-5 rounded-2xl border border-gold-500/20 flex flex-wrap items-center justify-between gap-4">
                   <div>
                     <span className="text-[11px] font-bold uppercase text-gold-600 block">
@@ -152,7 +151,6 @@ export default function Donate({ onDonateModalOpen, onVolunteerModalOpen }: Dona
                   </button>
                 </div>
 
-                {/* UPI ID */}
                 <div className="bg-white p-4 sm:p-5 rounded-2xl border border-gold-500/20 flex flex-wrap items-center justify-between gap-4">
                   <div>
                     <span className="text-[11px] font-bold uppercase text-gold-600 block">
@@ -177,7 +175,6 @@ export default function Donate({ onDonateModalOpen, onVolunteerModalOpen }: Dona
               </div>
             </div>
 
-            {/* Right QR Code Simulator & Quick Action */}
             <div className="lg:col-span-5 flex flex-col items-center justify-center p-6 bg-white rounded-2xl border border-gold-500/20 text-center">
               <div className="w-12 h-12 rounded-full bg-gold-500/10 text-gold-600 flex items-center justify-center mb-3">
                 <QrCode className="w-6 h-6" />
@@ -189,7 +186,6 @@ export default function Donate({ onDonateModalOpen, onVolunteerModalOpen }: Dona
                 {language === 'hi' ? 'GPay, PhonePe, Paytm या BHIM से स्कैन करें' : 'Scan with GPay, PhonePe, Paytm, or BHIM'}
               </p>
 
-              {/* Simulated QR Code SVG Graphic */}
               <div className="p-3 bg-white border-2 border-dark rounded-xl mb-4 shadow-sm">
                 <div className="w-36 h-36 bg-cream-100 flex items-center justify-center relative border border-dark/10 p-2">
                   <div className="w-full h-full grid grid-cols-6 grid-rows-6 gap-1 p-1">
@@ -243,6 +239,7 @@ export default function Donate({ onDonateModalOpen, onVolunteerModalOpen }: Dona
             </div>
           </div>
         </div>
+        */ }
       </div>
     </section>
   );

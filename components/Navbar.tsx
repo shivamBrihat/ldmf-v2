@@ -38,7 +38,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
     { name: language === 'hi' ? 'गतिविधियाँ' : 'Activities', href: '/activities' },
     { name: language === 'hi' ? 'गैलरी' : 'Gallery', href: '/gallery' },
     { name: language === 'hi' ? 'कार्यक्रम' : 'Events', href: '/events' },
-    { name: language === 'hi' ? 'दान करें' : 'Donate', href: '/donate' },
+    // { name: language === 'hi' ? 'दान करें' : 'Donate', href: '/donate' },
     { name: language === 'hi' ? 'संपर्क करें' : 'Contact', href: '/contact' },
   ];
 
@@ -97,7 +97,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
               <span>{language === 'en' ? 'हिंदी' : 'EN'}</span>
             </button>
 
-            {/* 3. Donate CTA Link (Filled Maroon) */}
+            {/* 3. Donate CTA Link (Filled Maroon) - Commented Out
             {onDonateClick ? (
               <button
                 onClick={onDonateClick}
@@ -115,6 +115,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                 <span>{language === 'hi' ? 'दान करें' : 'Donate'}</span>
               </Link>
             )}
+            */}
           </div>
 
           {/* Mobile header controls */}
@@ -167,6 +168,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
           <div className="mt-8 pt-6 border-t border-gold-500/20 flex flex-col gap-3">
 
 
+            {/* Commented Out Mobile Donate Button
             <Link
               href="/donate"
               onClick={() => setMobileMenuOpen(false)}
@@ -175,6 +177,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
               <Heart className="w-5 h-5 fill-white text-maroon-700" />
               <span>{language === 'hi' ? 'दान करें' : 'Donate'}</span>
             </Link>
+            */}
           </div>
         </div>
       )}
