@@ -8,7 +8,6 @@ import Stats from '@/components/Stats';
 import WhatWeDo from '@/components/WhatWeDo';
 import AboutStory from '@/components/AboutStory';
 import Vision from '@/components/Vision';
-import Team from '@/components/Team';
 import Timeline from '@/components/Timeline';
 import Programs from '@/components/Programs';
 import Community from '@/components/Community';
