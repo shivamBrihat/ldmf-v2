@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import InitialsAvatar from '@/components/InitialsAvatar';
 import {
   LayoutDashboard,
   Users,
@@ -480,7 +481,13 @@ export default function AdminDashboardPage() {
                     {teamList.map((m) => (
                       <tr key={m.id} className="hover:bg-stone-50 transition-colors">
                         <td className="px-6 py-4 flex items-center gap-3">
-                          <Image src={m.photoUrl || '/images/logo.webp'} alt={m.name} width={40} height={40} className="w-10 h-10 rounded-full object-cover border" />
+                          <div className="relative w-10 h-10 rounded-full overflow-hidden border shrink-0">
+                            {m.photoUrl ? (
+                              <Image src={m.photoUrl} alt={m.name} fill sizes="40px" className="object-cover" />
+                            ) : (
+                              <InitialsAvatar name={m.name} className="text-sm" />
+                            )}
+                          </div>
                           <span className="font-bold text-[#1A1A1A]">{m.name}</span>
                         </td>
                         <td className="px-6 py-4 text-stone-600">{m.role}</td>
@@ -507,7 +514,7 @@ export default function AdminDashboardPage() {
               {galleryList.map((img) => (
                 <div key={img.id} className="bg-white rounded-3xl border border-stone-200 overflow-hidden shadow-sm group">
                   <div className="relative h-48 w-full bg-stone-100">
-                    <Image src={img.imageUrl} alt={img.caption || ''} fill className="object-cover" />
+                    <Image src={img.imageUrl} alt={img.caption || ''} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" className="object-cover" />
                   </div>
                   <div className="p-4 flex items-center justify-between">
                     <div>
@@ -703,9 +710,13 @@ export default function AdminDashboardPage() {
                     {storiesList.map((s) => (
                       <tr key={s.id} className="hover:bg-stone-50 transition-colors">
                         <td className="px-6 py-4 flex items-center gap-3">
-                          {s.photoUrl && (
-                            <Image src={s.photoUrl} alt={s.personName} width={40} height={40} className="w-10 h-10 rounded-full object-cover border" />
-                          )}
+                          <div className="relative w-10 h-10 rounded-full overflow-hidden border shrink-0">
+                            {s.photoUrl ? (
+                              <Image src={s.photoUrl} alt={s.personName} fill sizes="40px" className="object-cover" />
+                            ) : (
+                              <InitialsAvatar name={s.personName} className="text-sm" />
+                            )}
+                          </div>
                           <span className="font-bold text-[#1A1A1A]">{s.personName}</span>
                         </td>
                         <td className="px-6 py-4 text-stone-600">{s.location}</td>
@@ -1291,7 +1302,7 @@ export default function AdminDashboardPage() {
                           type="text"
                           value={formData.photoUrl || formData.imageUrl || ''}
                           onChange={(e) => setFormData({ ...formData, photoUrl: e.target.value, imageUrl: e.target.value })}
-                          placeholder="https://images.unsplash.com/..."
+                          placeholder="Upload a photo, or paste /images/... or an images.unsplash.com URL"
                           className="flex-1 border border-stone-300 rounded-xl px-4 py-3"
                         />
                         <label className="bg-[#C9A227] hover:bg-[#b08d20] text-[#7A1F2B] font-bold px-4 py-3 rounded-xl cursor-pointer flex items-center gap-1.5 shrink-0">

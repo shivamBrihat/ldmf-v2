@@ -24,6 +24,9 @@ yarn-error.log*
 *.db-journal
 prisma/dev.db
 
+# Original full-resolution camera photos (web copies live in public/images/events)
+/LD NEW/
+
 # User Uploaded Assets
 public/uploads/*
 !public/uploads/.gitkeep

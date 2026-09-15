@@ -3,7 +3,12 @@ import type { NextRequest } from 'next/server';
 import { writeFile, mkdir } from 'fs/promises';
 import path from 'path';
 import crypto from 'crypto';
+import sharp from 'sharp';
 import { verifyToken, ADMIN_COOKIE_NAME } from '@/lib/auth';
+
+// Uploaded photos are normalised for the web: EXIF-rotated, capped at 1920px, re-encoded as WebP.
+const MAX_DIMENSION = 1920;
+const WEBP_QUALITY = 80;
 
 export async function POST(request: NextRequest) {
   try {
@@ -43,18 +48,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 5. Save File to public/uploads/
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
+    // 5. Optimise and save to public/uploads/
+    const input = Buffer.from(await file.arrayBuffer());
+    const optimised = await sharp(input)
+      .rotate()
+      .resize(MAX_DIMENSION, MAX_DIMENSION, { fit: 'inside', withoutEnlargement: true })
+      .webp({ quality: WEBP_QUALITY })
+      .toBuffer();
 
     const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
     await mkdir(uploadsDir, { recursive: true });
 
-    const fileExt = path.extname(file.name) || '.jpg';
-    const filename = `${crypto.randomUUID()}${fileExt}`;
-    const filePath = path.join(uploadsDir, filename);
-
-    await writeFile(filePath, buffer);
+    const filename = `${crypto.randomUUID()}.webp`;
+    await writeFile(path.join(uploadsDir, filename), optimised);
 
     const publicUrl = `/uploads/${filename}`;
 

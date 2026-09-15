@@ -7,6 +7,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Calendar, ArrowLeft } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { IMAGES } from '@/lib/images';
 
 interface UpdateItem {
   id: string;
@@ -33,7 +34,7 @@ export default function UpdateDetailPage({ params }: { params: { id: string } })
 
 हमारा उद्देश्य है कि हर युवा कंप्यूटर और डिजिटल उपकरणों का उपयोग करने में सक्षम हो, जिससे उन्हें रोजगार के बेहतर अवसर मिल सकें।`,
         publishedAt: '2025-10-15T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.computer,
       },
       {
         id: '2',
@@ -44,7 +45,7 @@ export default function UpdateDetailPage({ params }: { params: { id: string } })
 
 फाउंडेशन का यह प्रयास महिलाओं को आर्थिक रूप से स्वावलंबी बनाने की दिशा में एक महत्वपूर्ण कदम है।`,
         publishedAt: '2025-08-20T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.tailoring,
       },
       {
         id: '3',
@@ -55,7 +56,7 @@ export default function UpdateDetailPage({ params }: { params: { id: string } })
 
 हमारा मुख्य लक्ष्य है कि आर्थिक तंगी के कारण कोई भी मेधावी छात्र पीछे न छूटे और वे बोर्ड परीक्षाओं में उत्कृष्ट अंक प्राप्त कर सकें।`,
         publishedAt: '2025-06-05T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.coaching,
       },
       {
         id: '4',
@@ -66,7 +67,7 @@ export default function UpdateDetailPage({ params }: { params: { id: string } })
 
 फाउंडेशन समय-समय पर ग्रामीण इलाकों में इस प्रकार के शिविरों का आयोजन करता रहेगा ताकि स्वास्थ्य सुविधाएं हर घर तक पहुँच सकें।`,
         publishedAt: '2025-04-12T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.health,
       },
       {
         id: '5',
@@ -77,7 +78,7 @@ export default function UpdateDetailPage({ params }: { params: { id: string } })
 
 यह कार्यक्रम युवाओं को आज के प्रतिस्पर्धी दौर में आगे बढ़ने के लिए आवश्यक जीवन कौशल प्रदान करने के हमारे संकल्प का हिस्सा है।`,
         publishedAt: '2025-02-18T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.english,
       },
       {
         id: '6',
@@ -88,7 +89,7 @@ export default function UpdateDetailPage({ params }: { params: { id: string } })
 
 हम इस पुनीत कार्य में सहयोग देने वाले सभी स्वयंसेवकों का दिल से आभार व्यक्त करते हैं।`,
         publishedAt: '2024-12-05T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.relief,
       }
     ] : [
       {
@@ -100,7 +101,7 @@ The lab offers structured training in basic computer operations, internet safety
 
 By bridging the digital divide, we aim to prepare the village youth for modern job opportunities and academic advancement.`,
         publishedAt: '2025-10-15T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.computer,
       },
       {
         id: '2',
@@ -111,7 +112,7 @@ Throughout the course, these women learned dress designing, embroidery, and basi
 
 This initiative is a major milestone in our commitment to fostering economic self-reliance and financial independence among rural women.`,
         publishedAt: '2025-08-20T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.tailoring,
       },
       {
         id: '3',
@@ -122,7 +123,7 @@ Over three months, experienced instructors will conduct intensive revision class
 
 Our objective is to ensure that financial hardships do not stand in the way of high-achieving students reaching their potential.`,
         publishedAt: '2025-06-05T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.coaching,
       },
       {
         id: '4',
@@ -133,7 +134,7 @@ A visiting team of healthcare specialists provided comprehensive eye testing, bl
 
 The foundation regularly organizes these medical camps to ensure quality healthcare and wellness reaches the most remote areas.`,
         publishedAt: '2025-04-12T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.health,
       },
       {
         id: '5',
@@ -144,7 +145,7 @@ The curriculum focused on everyday English conversation, public speaking, person
 
 Equipping youth with strong language skills is part of our mission to prepare them for modern professional careers.`,
         publishedAt: '2025-02-18T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.english,
       },
       {
         id: '6',
@@ -155,7 +156,7 @@ Over 150 families received warm blankets and clothing, while children were provi
 
 We extend our deep gratitude to all volunteers and well-wishers whose hard work made this support drive possible.`,
         publishedAt: '2024-12-05T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.relief,
       }
     ];
 
@@ -216,6 +217,7 @@ We extend our deep gratitude to all volunteers and well-wishers whose hard work 
                   src={update.imageUrl}
                   alt={update.title}
                   fill
+                  sizes="(max-width: 896px) 100vw, 896px"
                   className="object-cover"
                 />
               </div>

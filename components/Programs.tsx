@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { BookOpen, Laptop, HeartHandshake, Award, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { IMAGES } from '@/lib/images';
 
 interface ProgramsProps {
   onApply: (courseTitle: string) => void;
@@ -34,7 +35,7 @@ export default function Programs({ onApply }: ProgramsProps) {
                 id: p.id,
                 title: p.title,
                 description: p.description,
-                imageUrl: p.imageUrl || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop',
+                imageUrl: p.imageUrl || IMAGES.stock.computer,
                 badge: language === 'hi' ? '100% मुफ्त' : '100% FREE',
               }))
             );
@@ -45,30 +46,30 @@ export default function Programs({ onApply }: ProgramsProps) {
         console.error('Failed to fetch dynamic programs:', error);
       }
 
-      // Default fallback
+      // Default fallback using real Foundation event moments
       setProgramsList([
         {
           title: t('programs.computer.title'),
           description: t('programs.computer.desc'),
-          imageUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop',
+          imageUrl: IMAGES.stock.computer,
           badge: language === 'hi' ? '100% मुफ्त' : '100% FREE',
         },
         {
           title: t('programs.english.title'),
           description: t('programs.english.desc'),
-          imageUrl: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop',
+          imageUrl: IMAGES.stock.english,
           badge: language === 'hi' ? 'निःशुल्क प्रमाणपत्र' : 'FREE CERTIFICATE',
         },
         {
           title: t('programs.women.title'),
           description: t('programs.women.desc'),
-          imageUrl: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800&auto=format&fit=crop',
+          imageUrl: IMAGES.stock.tailoring,
           badge: language === 'hi' ? 'सशक्तिकरण' : 'SELF-RELIANT',
         },
         {
           title: t('programs.coaching.title'),
           description: t('programs.coaching.desc'),
-          imageUrl: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=800&auto=format&fit=crop',
+          imageUrl: IMAGES.stock.coaching,
           badge: language === 'hi' ? 'बोर्ड परीक्षा' : 'UP BOARD',
         },
       ]);
@@ -111,7 +112,7 @@ export default function Programs({ onApply }: ProgramsProps) {
               {/* Left Image Cover */}
               <div className="relative h-52 sm:h-auto sm:w-5/12 overflow-hidden shrink-0">
                 <Image
-                  src={item.imageUrl || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop'}
+                  src={item.imageUrl || IMAGES.stock.computer}
                   alt={item.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 40vw"

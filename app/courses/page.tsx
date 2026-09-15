@@ -8,6 +8,7 @@ import PageHero from '@/components/PageHero';
 import Modals from '@/components/Modals';
 import { BookOpen, Clock, Users, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { IMAGES } from '@/lib/images';
 
 interface CourseItem {
   id: string;
@@ -29,16 +30,47 @@ export default function CoursesPage() {
         const res = await fetch('/api/programs');
         if (res.ok) {
           const data = await res.json();
-          setCourses(data);
+          if (Array.isArray(data) && data.length > 0) {
+            setCourses(data);
+            return;
+          }
         }
       } catch (err) {
         console.error(err);
       } finally {
         setLoading(false);
       }
+
+      // Default fallback courses with real event imagery
+      setCourses([
+        {
+          id: 'c-1',
+          title: language === 'hi' ? 'कंप्यूटर कौशल एवं डिजिटल साक्षरता' : 'Basic Computer Skills & Digital Literacy',
+          description: language === 'hi' ? 'विंडोज, एमएस ऑफिस, इंटरनेट और ऑनलाइन सेवाओं का 3 महीने का व्यावहारिक प्रशिक्षण।' : 'Comprehensive 3-month course covering Windows, MS Office, internet browsing, and practical typing.',
+          imageUrl: IMAGES.stock.computer,
+        },
+        {
+          id: 'c-2',
+          title: language === 'hi' ? 'स्पोकन इंग्लिश एवं संचार कौशल' : 'Spoken English & Communication',
+          description: language === 'hi' ? 'धाराप्रवाह बोलने, साक्षात्कार की तैयारी और आत्मविश्वास बढ़ाने की कार्यशालाएँ।' : 'Fluency, vocabulary, public speaking, and confidence-building workshops for students.',
+          imageUrl: IMAGES.stock.english,
+        },
+        {
+          id: 'c-3',
+          title: language === 'hi' ? 'महिला सिलाई एवं हस्तशिल्प प्रशिक्षण' : 'Women’s Vocational Tailoring & Handicrafts',
+          description: language === 'hi' ? 'ग्रामीण महिलाओं को आर्थिक रूप से स्वावलंबी बनाने हेतु सिलाई और कटाई का प्रशिक्षण।' : 'Hands-on tailoring, embroidery, and handicrafts training equipped to help women earn sustainable livelihoods.',
+          imageUrl: IMAGES.stock.tailoring,
+        },
+        {
+          id: 'c-4',
+          title: language === 'hi' ? 'बोर्ड परीक्षा सघन कोचिंग शिविर' : 'Board Exam Intensive Coaching Camps',
+          description: language === 'hi' ? 'कक्षा 10वीं एवं 12वीं के छात्रों के लिए गणित, विज्ञान एवं अंग्रेजी में निःशुल्क ट्यूशन।' : 'Free intensive mentoring in core subjects for Class 10 & 12 state board students.',
+          imageUrl: IMAGES.stock.coaching,
+        },
+      ]);
     }
     fetchCourses();
-  }, []);
+  }, [language]);
 
   const handleApplyClick = (title: string) => {
     setSelectedCourse(title);
@@ -53,7 +85,7 @@ export default function CoursesPage() {
         eyebrow={language === 'hi' ? 'निःशुल्क शिक्षा एवं कौशल' : 'FREE COURSES & SKILLS'}
         title={language === 'hi' ? 'व्यावहारिक कौशल जो नए अवसर खोलते हैं' : 'Practical skills that open doors'}
         subtitle={language === 'hi' ? 'कंप्यूटर प्रशिक्षण, अंग्रेजी बोलना, महिला सिलाई एवं बोर्ड परीक्षा कोचिंग शिविर।' : 'Free educational courses designed to empower youth, women, and students across rural communities.'}
-        imageUrl="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1000&auto=format&fit=crop"
+        imageUrl={IMAGES.pageHero.courses}
       />
 
       <section className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -72,6 +104,7 @@ export default function CoursesPage() {
                       src={course.imageUrl}
                       alt={course.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>

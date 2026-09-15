@@ -7,6 +7,7 @@ import Footer from '@/components/Footer';
 import PageHero from '@/components/PageHero';
 import { HeartHandshake, Sparkles, MapPin } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { IMAGES } from '@/lib/images';
 
 interface ActivityItem {
   id: string;
@@ -29,7 +30,7 @@ export default function ActivitiesPage() {
         description: language === 'hi'
           ? 'कचरा पृथक्करण, जल निकासी सफाई और सामुदायिक स्वामित्व को बढ़ावा देने के लिए ग्रामीण क्षेत्रों में साप्ताहिक स्वच्छता अभियान आयोजित करना।'
           : 'Organizing weekly clean-up drives across rural communities, promoting waste segregation, clean drainage, and community ownership.',
-        imageUrl: 'https://images.unsplash.com/photo-1618477388954-7852f32655ec?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.sanitation,
       },
       {
         id: 'act-2',
@@ -37,7 +38,7 @@ export default function ActivitiesPage() {
         description: language === 'hi'
           ? 'नेत्र विशेषज्ञों और सामान्य चिकित्सकों के सहयोग से निःशुल्क स्वास्थ्य शिविर लगाना और जरूरतमंद ग्रामीणों को दवाइयां उपलब्ध कराना।'
           : 'Setting up periodic health and ophthalmology camps in coordination with specialist doctors, providing free consultations and basic medicines.',
-        imageUrl: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.health,
       },
       {
         id: 'act-3',
@@ -45,7 +46,7 @@ export default function ActivitiesPage() {
         description: language === 'hi'
           ? 'कठिन मौसम और संकट के समय ग्रामीण परिवारों को स्वच्छता किट, सर्दियों के कपड़े और राशन किट वितरित करना।'
           : 'Distributing hygiene kits, warm winter blankets, and essential dry ration packets to vulnerable families during winter months and seasonal crisis times.',
-        imageUrl: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.relief,
       },
     ]);
     setLoading(false);
@@ -59,7 +60,7 @@ export default function ActivitiesPage() {
         eyebrow={language === 'hi' ? 'सामुदायिक गतिविधियाँ' : 'COMMUNITY ACTIVITIES'}
         title={language === 'hi' ? 'दिशानिर्देश, गरिमा और देखभाल पर बनी पहल' : 'Community initiatives built on care and solidarity'}
         subtitle={language === 'hi' ? 'ग्राम स्वच्छता अभियान, निःशुल्क स्वास्थ्य शिविर और आपातकालीन राहत कार्य।' : 'Discover our ground activities, cleanliness drives, and welfare projects across rural areas.'}
-        imageUrl="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=1000&auto=format&fit=crop"
+        imageUrl={IMAGES.pageHero.activities}
       />
 
       <section className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,6 +81,7 @@ export default function ActivitiesPage() {
                       src={act.imageUrl}
                       alt={act.title}
                       fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
                       className="object-cover"
                     />
                   </div>

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { IMAGES } from '@/lib/images';
 
 interface UpdateItem {
   id: string;
@@ -36,7 +37,7 @@ export default function StoriesImpact() {
       : 'Children across rural communities have built brighter careers through free computer training and board exam coaching.',
     date: 'March 2024',
     location: language === 'hi' ? 'ग्रामीण समुदाय' : 'Rural Communities',
-    image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1200&auto=format&fit=crop',
+    image: IMAGES.stock.computer,
     href: '/updates',
   };
 
@@ -49,7 +50,7 @@ export default function StoriesImpact() {
         : 'Empowering Rural Women with Vocational Tailoring Skills',
       date: 'February 2024',
       location: language === 'hi' ? 'व्यावसायिक प्रशिक्षण अभियान' : 'Vocational Training Drive',
-      image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800&auto=format&fit=crop',
+      image: IMAGES.stock.tailoring,
       href: '/updates',
     },
     {
@@ -60,7 +61,7 @@ export default function StoriesImpact() {
         : 'Bringing Free Specialist Healthcare & Eye Checkups to Remote Villages',
       date: 'January 2024',
       location: language === 'hi' ? 'सामुदायिक स्वास्थ्य शिविर' : 'Community Health Camps',
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop',
+      image: IMAGES.stock.health,
       href: '/updates',
     },
   ];
@@ -74,7 +75,7 @@ export default function StoriesImpact() {
     excerpt: updates[0].content,
     date: new Date(updates[0].publishedAt).toLocaleDateString('en-IN', { year: 'numeric', month: 'long' }),
     location: language === 'hi' ? 'ग्रामीण समुदाय' : 'Rural Communities',
-    image: updates[0].imageUrl || 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1200&auto=format&fit=crop',
+    image: updates[0].imageUrl || IMAGES.stock.computer,
     href: `/updates/${updates[0].id}`,
   } : defaultFeatured;
 
@@ -85,7 +86,7 @@ export default function StoriesImpact() {
         title: u.title,
         date: new Date(u.publishedAt).toLocaleDateString('en-IN', { year: 'numeric', month: 'long' }),
         location: language === 'hi' ? 'ग्रामीण समुदाय' : 'Rural Communities',
-        image: u.imageUrl || 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800&auto=format&fit=crop',
+        image: u.imageUrl || IMAGES.stock.health,
         href: `/updates/${u.id}`,
       }))
     : defaultSideStories;

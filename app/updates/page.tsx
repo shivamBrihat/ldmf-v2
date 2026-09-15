@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import PageHero from '@/components/PageHero';
 import { Calendar, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { IMAGES } from '@/lib/images';
 
 interface UpdateItem {
   id: string;
@@ -29,42 +30,42 @@ export default function UpdatesPage() {
         title: 'निःशुल्क डिजिटल साक्षरता लैब की शुरुआत',
         content: 'ग्रामीण युवाओं को आधुनिक तकनीक से जोड़ने के लिए हमारी नई कंप्यूटर लैब का उद्घाटन किया गया है, जहाँ निःशुल्क कंप्यूटर पाठ्यक्रम प्रदान किए जा रहे हैं।',
         publishedAt: '2025-10-15T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.computer,
       },
       {
         id: '2',
         title: 'महिला सिलाई बैच का दीक्षांत समारोह',
         content: 'हमारे व्यावसायिक सिलाई केंद्र से प्रशिक्षण पूरा करने वाली महिलाओं को अपना रोजगार शुरू करने के लिए निःशुल्क सिलाई मशीनें और किट प्रदान किए गए।',
         publishedAt: '2025-08-20T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.tailoring,
       },
       {
         id: '3',
         title: 'बोर्ड परीक्षा सघन कोचिंग शिविर शुरू',
         content: '10वीं और 12वीं कक्षा के छात्रों के लिए निःशुल्क तीन-दिवसीय बोर्ड परीक्षा सघन कोचिंग शिविर शुरू किए गए हैं ताकि वे आगामी परीक्षाओं में उत्कृष्ट प्रदर्शन कर सकें।',
         publishedAt: '2025-06-05T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.coaching,
       },
       {
         id: '4',
         title: 'सामुदायिक नेत्र एवं स्वास्थ्य शिविर आयोजित',
         content: 'ग्रामीण बुजुर्गों और परिवारों के लिए एक विशाल निःशुल्क सामान्य स्वास्थ्य एवं नेत्र जाँच शिविर का आयोजन किया गया, जिसमें मुफ़्त दवाइयाँ वितरित की गईं।',
         publishedAt: '2025-04-12T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.health,
       },
       {
         id: '5',
         title: 'अंग्रेजी और संचार कौशल कार्यशाला',
         content: 'ग्रामीण क्षेत्र के मेधावी छात्रों के लिए उनके आत्मविश्वास को बढ़ाने और साक्षात्कार की तैयारी के लिए स्पोकन इंग्लिश एवं संचार कार्यशाला का आयोजन हुआ।',
         publishedAt: '2025-02-18T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.english,
       },
       {
         id: '6',
         title: 'शीतकालीन राहत एवं सामग्री वितरण',
         content: 'स्थानीय ग्रामीण क्षेत्रों में जरूरतमंद स्कूली बच्चों और परिवारों को गर्म वस्त्र, कंबल और पाठ्य सामग्री वितरित की गई।',
         publishedAt: '2024-12-05T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.relief,
       }
     ] : [
       {
@@ -72,42 +73,42 @@ export default function UpdatesPage() {
         title: 'Free Digital Literacy Lab Launched',
         content: 'Inaugurated our new computer lab equipped with modern systems to offer free basic computer and digital literacy courses to local village youths.',
         publishedAt: '2025-10-15T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.computer,
       },
       {
         id: '2',
         title: 'Women’s Tailoring Graduation Ceremony',
         content: 'Celebrated the graduation of our latest vocational tailoring batch. Trained women were provided with free sewing tools to launch their micro-businesses.',
         publishedAt: '2025-08-20T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.tailoring,
       },
       {
         id: '3',
         title: 'Board Exam Intensive Coaching Camps Start',
         content: 'Launched our three-month intensive coaching camp series for Class 10 and 12 students to prepare them thoroughly for the board examinations.',
         publishedAt: '2025-06-05T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.coaching,
       },
       {
         id: '4',
         title: 'Free Community Eye & Health Camp Organized',
         content: 'Successfully conducted a general health checkup and eye consultation camp for rural seniors and families, offering free basic medicines.',
         publishedAt: '2025-04-12T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.health,
       },
       {
         id: '5',
         title: 'Spoken English & Communication Workshop',
         content: 'Organized interactive Spoken English workshops to empower local youth with communication skills, building confidence for job interviews.',
         publishedAt: '2025-02-18T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.english,
       },
       {
         id: '6',
         title: 'Winter Support and Material Distribution',
         content: 'Distributed blankets, warm clothing, and school stationeries to children and families in rural communities for the winter season.',
         publishedAt: '2024-12-05T00:00:00.000Z',
-        imageUrl: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.relief,
       }
     ];
 
@@ -142,7 +143,7 @@ export default function UpdatesPage() {
         eyebrow={language === 'hi' ? 'समाचार एवं अपडेट्स' : 'UPDATES & NEWS'}
         title={language === 'hi' ? 'ज़मीन से जुड़े नवीनतम अपडेट्स' : 'Latest news and stories from the ground'}
         subtitle={language === 'hi' ? 'हमारे कंप्यूटर क्लास, महिला प्रशिक्षण शिविर और ग्रामीण पहलों के नए समाचार।' : 'Discover our latest field updates, village projects, and community developments.'}
-        imageUrl="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1000&auto=format&fit=crop"
+        imageUrl={IMAGES.pageHero.updates}
       />
 
       <section className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

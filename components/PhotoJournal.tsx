@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Image as ImageIcon } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { eventPhoto } from '@/lib/images';
 
 interface PhotoItem {
   id?: string;
@@ -42,30 +43,30 @@ export default function PhotoJournal() {
         console.error('Failed to fetch gallery for PhotoJournal:', error);
       }
 
-      // Default fallback photos
+      // Default fallback photos using real Foundation event moments
       setPhotos([
         {
-          imageUrl: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop',
-          caption: language === 'hi' ? 'कक्षा में अध्ययन करते ग्रामीण बच्चे' : 'A shared moment · Digital Literacy',
-          category: 'PHOTO COLLECTION',
+          imageUrl: eventPhoto(1947),
+          caption: language === 'hi' ? 'संतों एवं अतिथियों द्वारा दीप प्रज्ज्वलन' : 'Saints and guests light the ceremonial lamp',
+          category: language === 'hi' ? 'दीप प्रज्ज्वलन' : 'INAUGURATION',
           offsetClass: '',
         },
         {
-          imageUrl: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop',
-          caption: language === 'hi' ? 'निःशुल्क गाँव स्वास्थ्य जाँच शिविर' : 'A shared moment · Medical Camp',
-          category: 'PHOTO COLLECTION',
+          imageUrl: eventPhoto(1890),
+          caption: language === 'hi' ? 'छत्र के साथ पूज्य संतों का आगमन' : 'Saints arrive under the ceremonial chhatra',
+          category: language === 'hi' ? 'संत समागम' : 'BLESSINGS',
           offsetClass: 'lg:mt-10',
         },
         {
-          imageUrl: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800&auto=format&fit=crop',
-          caption: language === 'hi' ? 'महिला सिलाई एवं कौशल प्रशिक्षण' : 'A shared moment · Skill Training',
-          category: 'PHOTO COLLECTION',
+          imageUrl: eventPhoto(2045),
+          caption: language === 'hi' ? 'सुश्री सोनम मिश्रा का लगनीरत्न सम्मान' : 'Lagni Ratna Samman to Ms. Sonam Mishra',
+          category: language === 'hi' ? 'लगनीरत्न' : 'LAGNI RATNA',
           offsetClass: '',
         },
         {
-          imageUrl: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=800&auto=format&fit=crop',
-          caption: language === 'hi' ? 'ग्राम स्वच्छता एवं स्वच्छता किट वितरण' : 'A shared moment · Hygiene Drive',
-          category: 'PHOTO COLLECTION',
+          imageUrl: eventPhoto(2164),
+          caption: language === 'hi' ? 'राष्ट्रीय साहित्य गौरव सम्मान 2026' : 'Rashtriya Sahitya Gaurav Samman 2026',
+          category: language === 'hi' ? 'साहित्य सम्मान' : 'RECOGNITION',
           offsetClass: 'lg:mt-10',
         },
       ]);

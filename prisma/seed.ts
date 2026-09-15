@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
+import { IMAGES, eventPhoto } from '../lib/images';
 
 const prisma = new PrismaClient();
 
@@ -25,7 +26,7 @@ async function main() {
         name: 'Vipul Chauhan',
         role: 'Founder & Managing Trustee',
         designation: 'Founder & Managing Trustee',
-        photoUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop',
+        photoUrl: '',
         bio: 'Retired educationist & social advocate with 35+ years of community leadership in UP.',
         linkedinUrl: 'https://linkedin.com/in/vipul-chauhan',
         email: 'vipul@ldmf.org',
@@ -35,7 +36,7 @@ async function main() {
         name: 'Anjali Chauhan',
         role: 'Co-Trustee & Director of Education',
         designation: 'Co-Trustee & Director of Education',
-        photoUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop',
+        photoUrl: '',
         bio: 'Dedicated rural development strategist specializing in women economic empowerment.',
         linkedinUrl: 'https://linkedin.com/in/anjali-chauhan',
         email: 'anjali@ldmf.org',
@@ -45,7 +46,7 @@ async function main() {
         name: 'Dr. Ramesh Chandra',
         role: 'Chief Medical Coordinator',
         designation: 'Chief Medical Coordinator',
-        photoUrl: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=600&auto=format&fit=crop',
+        photoUrl: '',
         bio: 'Financial consultant overseeing transparent 80G governance and donor accountability.',
         linkedinUrl: 'https://linkedin.com/in/ramesh-chandra',
         email: 'ramesh@ldmf.org',
@@ -55,7 +56,7 @@ async function main() {
         name: 'Sunita Sharma',
         role: 'Women Empowerment Lead',
         designation: 'Women Empowerment Lead',
-        photoUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600&auto=format&fit=crop',
+        photoUrl: '',
         bio: 'Former university lecturer driving free computer literacy & coaching programs.',
         linkedinUrl: 'https://linkedin.com/in/sunita-sharma',
         email: 'sunita@ldmf.org',
@@ -71,25 +72,25 @@ async function main() {
       {
         title: 'Basic Computer Skills & Digital Literacy',
         description: 'Comprehensive 3-month course covering Windows, MS Office, Internet browsing, online banking, and basic typing for rural youth.',
-        imageUrl: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.computer,
         order: 1,
       },
       {
         title: 'Spoken English & Communication',
         description: 'Fluency, vocabulary, public speaking, and confidence-building workshops designed for students preparing for higher education and interviews.',
-        imageUrl: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.english,
         order: 2,
       },
       {
         title: 'Women’s Vocational Tailoring & Handicrafts',
         description: 'Hands-on tailoring, embroidery, and handicrafts training equipped with sewing machines to help women earn a sustainable livelihood.',
-        imageUrl: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.tailoring,
         order: 3,
       },
       {
         title: 'Board Exam Intensive Coaching Camps',
         description: 'Free tuition and mentoring in Mathematics, Science, and English for Class 10 & 12 state board students from underprivileged backgrounds.',
-        imageUrl: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.coaching,
         order: 4,
       },
     ],
@@ -137,34 +138,18 @@ async function main() {
     ],
   });
 
-  // 4. Gallery Images
+  // 4. Gallery Images (featured subset for the home page; the full archive is data/gallery-manifest.json)
   await prisma.galleryImage.deleteMany();
   await prisma.galleryImage.createMany({
     data: [
-      {
-        imageUrl: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop',
-        caption: 'Students at the Azamgarh Computer Learning Center',
-        category: 'Education',
-        order: 1,
-      },
-      {
-        imageUrl: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop',
-        caption: 'Free Eye & Health Checkup Camp in Mau District',
-        category: 'Health Camps',
-        order: 2,
-      },
-      {
-        imageUrl: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800&auto=format&fit=crop',
-        caption: 'Women Tailoring & Vocational Skill Workshop',
-        category: 'Women Empowerment',
-        order: 3,
-      },
-      {
-        imageUrl: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=800&auto=format&fit=crop',
-        caption: 'Village Hygiene Kit Distribution Drive',
-        category: 'Events',
-        order: 4,
-      },
+      { imageUrl: eventPhoto(2106), caption: 'Lagni Ratna awardees at Kavi Sammelan 1.0', category: 'Lagni Ratna Samman', order: 1 },
+      { imageUrl: eventPhoto(1947), caption: 'Saints and guests light the ceremonial lamp', category: 'Deep Prajjwalan', order: 2 },
+      { imageUrl: eventPhoto(1890), caption: 'Saints arrive under the ceremonial chhatra', category: 'Saints & Blessings', order: 3 },
+      { imageUrl: eventPhoto(2045), caption: 'Lagni Ratna Samman to Ms. Sonam Mishra', category: 'Lagni Ratna Samman', order: 4 },
+      { imageUrl: eventPhoto(2164), caption: 'Rashtriya Sahitya Gaurav Samman 2026', category: 'Lagni Ratna Samman', order: 5 },
+      { imageUrl: eventPhoto(2048), caption: 'Book launch on stage', category: 'Group Photos & Book Launch', order: 6 },
+      { imageUrl: eventPhoto(2063), caption: 'A packed auditorium at Hansraj College', category: 'Audience', order: 7 },
+      { imageUrl: eventPhoto(2029), caption: 'Honoured saints and trustees on stage', category: 'Saints & Blessings', order: 8 },
     ],
   });
 
@@ -176,14 +161,14 @@ async function main() {
         personName: 'Pooja Verma',
         location: 'Rampur Village, Azamgarh',
         story: 'After completing the 3-month Computer Course at LDMF, Pooja secured a job as a data entry operator in Azamgarh town, becoming the first earning member in her family.',
-        photoUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop',
+        photoUrl: '',
         order: 1,
       },
       {
         personName: 'Rohan Kumar',
         location: 'Mau District',
         story: 'Rohan scored 88% in his Class 10 Board Exams after attending LDMF’s 4-month intensive coaching camp, paving his way for higher secondary science education.',
-        photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop',
+        photoUrl: '',
         order: 2,
       },
     ],
@@ -219,19 +204,19 @@ async function main() {
       {
         title: 'New Computer Lab Inauguration in Village Rampur',
         content: 'We are thrilled to announce the opening of our upgraded 15-system digital lab equipped with high-speed internet and solar power backup. This facility will allow over 120 rural students every quarter to learn essential IT skills for free.',
-        imageUrl: 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=1000&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.computer,
         publishedAt: new Date('2024-03-15'),
       },
       {
         title: 'Spring Health & Hygiene Kit Distribution Completed',
         content: 'Our team successfully conducted a comprehensive health and sanitation kit distribution across 5 surrounding villages in Mau district, providing hygiene supplies and clean drinking water purification tablets to 300+ families.',
-        imageUrl: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1000&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.health,
         publishedAt: new Date('2024-02-28'),
       },
       {
         title: 'Vocational Sewing Machine Handover to 25 Rural Artisans',
         content: 'Under our women empowerment initiative, 25 women who completed our 4-month tailoring certification were gifted brand new sewing machines to help them start home-based stitching businesses.',
-        imageUrl: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1000&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.tailoring,
         publishedAt: new Date('2024-01-20'),
       },
     ],
@@ -244,19 +229,19 @@ async function main() {
       {
         title: 'Village Sanitation & Cleanliness Drives',
         description: 'Organizing weekly clean-up drives across 8 Gram Panchayats in Azamgarh, promoting waste segregation, clean drainage, and community ownership.',
-        imageUrl: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.sanitation,
         order: 1,
       },
       {
         title: 'Free Specialist Medical & Eye Camps',
         description: 'Bringing visiting doctors, ophthalmologists, and free medicines directly to remote rural areas without nearby hospitals.',
-        imageUrl: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.health,
         order: 2,
       },
       {
         title: 'Emergency Drought & Seasonal Relief',
         description: 'Distributing clean water tankers, food rations, and winter blankets to vulnerable agrarian families during climate hardships in Jaunpur & Ballia.',
-        imageUrl: 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.relief,
         order: 3,
       },
     ],
@@ -267,28 +252,28 @@ async function main() {
   await prisma.event.createMany({
     data: [
       {
-        title: 'Annual Rural Health & Dental Camp 2024',
+        title: 'Lagni Dhara Kavi Sammelan 1.0 & Lagni Ratna Samman Samaroh',
+        description: 'Grand cultural poetry convention and felicitation ceremony held at Hansraj College Auditorium, Delhi University.',
+        eventDate: new Date('2026-08-01T15:00:00Z'),
+        location: 'Hansraj College Auditorium, Delhi University',
+        imageUrl: IMAGES.events.kaviSammelan,
+        isUpcoming: false,
+      },
+      {
+        title: 'Annual Rural Health & Dental Camp',
         description: 'Comprehensive health screening, dental checkups, and free vision glasses distribution by visiting specialists.',
-        eventDate: new Date('2024-04-14T10:00:00Z'),
-        location: 'Rampur Gram Panchayat Bhavan, Azamgarh',
-        imageUrl: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop',
+        eventDate: new Date('2026-08-25T10:00:00Z'),
+        location: 'Rural Health Center',
+        imageUrl: IMAGES.stock.health,
         isUpcoming: true,
       },
       {
         title: 'Women Entrepreneurship & Micro-Skills Workshop',
         description: 'Interactive session on financial literacy, micro-savings, and establishing small cottage industry units.',
-        eventDate: new Date('2024-05-02T11:00:00Z'),
-        location: 'LDMF Vocational Center, Azamgarh',
-        imageUrl: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800&auto=format&fit=crop',
+        eventDate: new Date('2026-09-12T11:00:00Z'),
+        location: 'Student Learning Centre',
+        imageUrl: IMAGES.stock.tailoring,
         isUpcoming: true,
-      },
-      {
-        title: 'Winter Warmth Blanket & Ration Drive 2023',
-        description: 'Distributed 500+ wool blankets and monthly grocery kits to elderly and widow households across 6 villages.',
-        eventDate: new Date('2023-12-20T09:30:00Z'),
-        location: 'Mau District Field Centers',
-        imageUrl: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=800&auto=format&fit=crop',
-        isUpcoming: false,
       },
     ],
   });

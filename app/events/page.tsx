@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import PageHero from '@/components/PageHero';
 import { Calendar, MapPin, ArrowRight, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { IMAGES } from '@/lib/images';
 
 interface EventItem {
   id: string;
@@ -29,36 +30,47 @@ export default function EventsPage() {
     // Bypass database fetch to prevent loading dynamic/seeded location strings and old 2024 dates
     setEvents([
       {
+        id: 'evt-0',
+        title: language === 'hi' ? 'लगनीधारा कवि सम्मेलन 1.0 सह लगनीरत्न सम्मान समारोह' : 'Lagni Dhara Kavi Sammelan 1.0 & Lagni Ratna Samman Samaroh',
+        description: language === 'hi'
+          ? 'हंसराज महाविद्यालय सभागार, दिल्ली विश्वविद्यालय में आयोजित भव्य सांस्कृतिक एवं सामाजिक सम्मान समारोह, जहाँ प्रख्यात साहित्यकारों और समाजसेवियों को सम्मानित किया गया।'
+          : 'Grand cultural and social awards ceremony at Hansraj College Auditorium, Delhi University, honoring eminent literary icons and grassroots changemakers.',
+        eventDate: '2026-08-01T15:00:00.000Z',
+        location: language === 'hi' ? 'हंसराज महाविद्यालय, दिल्ली विश्वविद्यालय' : 'Hansraj College Auditorium, Delhi University',
+        imageUrl: IMAGES.events.kaviSammelan,
+        isUpcoming: false,
+      },
+      {
         id: 'evt-1',
-        title: language === 'hi' ? 'निःशुल्क नेत्र एवं स्वास्थ्य जांच शिविर' : 'Free Eye Checkup & Medical Camp',
+        title: language === 'hi' ? 'दीप प्रज्ज्वलन एवं ग्रामीण स्वास्थ्य कल्याण अभियान' : 'Ceremonial Deep Prajjwalan & Rural Welfare Drive',
         description: language === 'hi'
           ? 'नेत्र विशेषज्ञों और सामान्य चिकित्सकों के सहयोग से निःशुल्क स्वास्थ्य शिविर लगाना और जरूरतमंद ग्रामीणों को दवाइयां उपलब्ध कराना।'
           : 'Comprehensive health screening, dental checkups, and free vision glasses distribution by visiting specialists.',
         eventDate: '2026-08-25T10:00:00.000Z',
         location: language === 'hi' ? 'ग्रामीण स्वास्थ्य केंद्र' : 'Rural Health Center',
-        imageUrl: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.events.deepPrajjwalan,
         isUpcoming: true,
       },
       {
         id: 'evt-2',
-        title: language === 'hi' ? 'कंप्यूटर साक्षरता दीक्षांत समारोह' : 'Digital Literacy Graduation Ceremony',
+        title: language === 'hi' ? 'कंप्यूटर साक्षरता एवं राष्ट्रीय साहित्य सम्मान समारोह' : 'Digital Literacy & National Citation Ceremony',
         description: language === 'hi'
           ? 'मूल कंप्यूटर साक्षरता पाठ्यक्रम और व्यावसायिक प्रशिक्षण पूरा करने वाले ग्रामीण युवाओं और महिलाओं को सम्मानित करना।'
           : 'Celebrating rural youth and women who completed their basic computer literacy and vocational training courses.',
         eventDate: '2026-09-12T11:00:00.000Z',
-        location: language === 'hi' ? 'एलडीएमएफ शिक्षा लैब' : 'LDMF Learning Lab',
-        imageUrl: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop',
+        location: language === 'hi' ? 'छात्र शिक्षण केंद्र' : 'Student Learning Centre',
+        imageUrl: IMAGES.events.nationalCitation,
         isUpcoming: true,
       },
       {
         id: 'evt-3',
-        title: language === 'hi' ? 'ग्राम स्वच्छता अभियान' : 'Village Cleanliness Drive',
+        title: language === 'hi' ? 'ग्राम स्वच्छता एवं युवा स्वयंसेवक अभियान' : 'Village Cleanliness & Youth Volunteer Drive',
         description: language === 'hi'
           ? 'सामुदायिक स्तर पर स्वच्छता अभियान का आयोजन और स्थानीय गांवों में पर्यावरण अनुकूल कचरा पात्रों का वितरण।'
           : 'Organizing community-wide sanitation drive and distributing eco-friendly dustbins across local villages.',
         eventDate: '2026-06-15T09:00:00.000Z',
         location: language === 'hi' ? 'ग्रामीण गाँव समुदाय' : 'Rural Village Communities',
-        imageUrl: 'https://images.unsplash.com/photo-1618477388954-7852f32655ec?q=80&w=800&auto=format&fit=crop',
+        imageUrl: IMAGES.stock.sanitation,
         isUpcoming: false,
       },
     ]);
@@ -78,7 +90,7 @@ export default function EventsPage() {
         eyebrow={language === 'hi' ? 'ग्रामीण कार्यक्रम' : 'FOUNDATION EVENTS'}
         title={language === 'hi' ? 'बदलाव लाने में हमारे साथ जुड़ें' : 'Join us in making a difference'}
         subtitle={language === 'hi' ? 'स्वास्थ्य शिविर, दीक्षांत समारोह, कौशल वितरण और स्वच्छता अभियानों में भाग लें।' : 'Explore our upcoming health camps, graduation ceremonies, and past community drives.'}
-        imageUrl="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1000&auto=format&fit=crop"
+        imageUrl={IMAGES.pageHero.events}
       />
 
       <section className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -126,6 +138,7 @@ export default function EventsPage() {
                         src={evt.imageUrl}
                         alt={evt.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>

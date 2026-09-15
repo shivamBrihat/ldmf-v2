@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Sparkles, Stethoscope, HandHeart, CheckCircle } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { IMAGES } from '@/lib/images';
 
 export default function Community() {
   const { t, language } = useLanguage();
@@ -15,7 +16,7 @@ export default function Community() {
       location: language === 'hi' ? 'स्वच्छता अभियान' : 'Cleanliness Initiative',
       description: t('community.cleanliness'),
       highlights: language === 'hi' ? ['ग्राम पंचायत सहयोग', 'स्वच्छता किट वितरण', 'स्वच्छ जल जागरूकता'] : ['Gram Panchayat Support', 'Hygiene Kits Distribution', 'Clean Water Awareness'],
-      image: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=800&auto=format&fit=crop',
+      image: IMAGES.stock.sanitation,
       icon: Sparkles,
     },
     {
@@ -23,7 +24,7 @@ export default function Community() {
       location: language === 'hi' ? 'स्वास्थ्य कार्यक्रम' : 'Health Program',
       description: t('community.medical'),
       highlights: language === 'hi' ? ['बुनियादी स्वास्थ्य जाँच', 'निःशुल्क दवाएं एवं चश्मे', 'विशेषज्ञ चिकित्सा सहायता'] : ['Basic Health Checkups', 'Free Medicine & Spectacles', 'General Medical Care'],
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop',
+      image: IMAGES.stock.health,
       icon: Stethoscope,
     },
     {
@@ -31,7 +32,7 @@ export default function Community() {
       location: language === 'hi' ? 'राहत कार्य' : 'Relief Work',
       description: t('community.crisis'),
       highlights: language === 'hi' ? ['राशन सामग्री का वितरण', 'पेयजल आपूर्ति सहायता', 'तत्काल सहायता'] : ['Dry Ration Distribution', 'Drinking Water Support', 'Immediate Emergency Aid'],
-      image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800&auto=format&fit=crop',
+      image: IMAGES.stock.relief,
       icon: HandHeart,
     },
   ];

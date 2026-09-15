@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Heart, ArrowUpRight, Sparkles, BookOpen, ShieldCheck } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { IMAGES } from '@/lib/images';
 
 interface HeroProps {
   onDonateClick: () => void;
@@ -94,21 +95,21 @@ export default function Hero({ onDonateClick }: HeroProps) {
               {/* Main Arch-Shaped Image Frame */}
               <div className="relative w-full h-[420px] sm:h-[480px] rounded-t-[160px] rounded-b-3xl overflow-hidden shadow-2xl border-4 border-white bg-cream-200">
                 <Image
-                  src="/images/main-image.jpg"
-                  alt="Rural Indian teacher educating students in classroom"
+                  src={IMAGES.hero.main}
+                  alt={language === 'hi' ? 'कवि सम्मेलन 1.0 के लगनीरत्न सम्मानित रचनाकार' : 'Lagni Ratna awardees at Kavi Sammelan 1.0'}
                   fill
                   priority
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-top hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 1024px) 448px, 40vw"
+                  className="object-cover object-[50%_60%] hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark/50 via-transparent to-transparent" />
               </div>
 
-              {/* Overlapping Secondary Image - Children Studying */}
+              {/* Overlapping Secondary Image - Deep Prajjwalan */}
               <div className="absolute -bottom-6 -left-6 sm:-left-10 w-44 sm:w-56 h-44 sm:h-56 rounded-3xl overflow-hidden shadow-2xl border-4 border-white z-20">
                 <Image
-                  src="/images/secondary-image.jpg"
-                  alt="Rural Indian children studying together"
+                  src={IMAGES.hero.inset}
+                  alt={language === 'hi' ? 'सम्मानित अतिथियों द्वारा दीप प्रज्ज्वलन' : 'Deep Prajjwalan by honoured guests'}
                   fill
                   sizes="240px"
                   className="object-cover hover:scale-110 transition-transform duration-500"

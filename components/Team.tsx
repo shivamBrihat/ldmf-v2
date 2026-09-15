@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Linkedin, Mail } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import InitialsAvatar from '@/components/InitialsAvatar';
 
 interface TeamMemberItem {
   id?: string;
@@ -53,25 +54,25 @@ export default function Team() {
           name: 'Shri Rajeev Chauhan',
           role: t('team.role.founder'),
           bio: language === 'hi' ? 'सेवानिवृत्त शिक्षाविद एवं सामाजिक अधिवक्ता, यूपी में 35 से अधिक वर्षों का सामुदायिक नेतृत्व।' : 'Retired educationist & social advocate with 35+ years of community leadership in UP.',
-          photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop',
+          photoUrl: '',
         },
         {
           name: 'Smt. Sunita Chauhan',
           role: t('team.role.secretary'),
           bio: language === 'hi' ? 'महिला आर्थिक सशक्तिकरण में विशेषज्ञता प्राप्त ग्रामीण विकास रणनीतिकार।' : 'Dedicated rural development strategist specializing in women economic empowerment.',
-          photoUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop',
+          photoUrl: '',
         },
         {
           name: 'Shri Amit Kumar Singh',
           role: t('team.role.treasurer'),
           bio: language === 'hi' ? 'पारदर्शी 80G शासन और दाता जवाबदेही की देखरेख करने वाले वित्तीय सलाहकार।' : 'Financial consultant overseeing transparent 80G governance and donor accountability.',
-          photoUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=600&auto=format&fit=crop',
+          photoUrl: '',
         },
         {
           name: 'Dr. Preeti Sharma',
           role: t('team.role.eduDirector'),
           bio: language === 'hi' ? 'पूर्व विश्वविद्यालय व्याख्याता, मुफ्त कंप्यूटर साक्षरता और कोचिंग कार्यक्रमों का संचालन।' : 'Former university lecturer driving free computer literacy & coaching programs.',
-          photoUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600&auto=format&fit=crop',
+          photoUrl: '',
         },
       ]);
     }
@@ -112,13 +113,17 @@ export default function Team() {
             >
               {/* Photo Frame */}
               <div className="relative w-32 h-32 rounded-full overflow-hidden mb-5 border-4 border-white shadow-md group-hover:scale-105 transition-transform duration-500">
-                <Image
-                  src={member.photoUrl}
-                  alt={member.name}
-                  fill
-                  sizes="128px"
-                  className="object-cover"
-                />
+                {member.photoUrl ? (
+                  <Image
+                    src={member.photoUrl}
+                    alt={member.name}
+                    fill
+                    sizes="128px"
+                    className="object-cover"
+                  />
+                ) : (
+                  <InitialsAvatar name={member.name} className="text-4xl" />
+                )}
               </div>
 
               {/* Name & Role */}

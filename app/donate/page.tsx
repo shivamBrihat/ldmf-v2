@@ -8,6 +8,7 @@ import PageHero from '@/components/PageHero';
 import Modals from '@/components/Modals';
 import { Heart, CreditCard, QrCode, ShieldCheck, UserCheck, Award, Copy, Check } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { IMAGES } from '@/lib/images';
 
 export default function DonatePage() {
   const { language } = useLanguage();
@@ -33,7 +34,7 @@ export default function DonatePage() {
         eyebrow={language === 'hi' ? 'सहयोग एवं दान' : 'DONATE & SUPPORT'}
         title={language === 'hi' ? 'उनके मिशन में हमारे साथ जुड़ें' : 'Join us in her mission'}
         subtitle={language === 'hi' ? 'आपका हर योगदान ग्रामीण बच्चों की शिक्षा और महिलाओं के सिलाई कौशल को सशक्त बनाता है।' : 'Every contribution directly empowers rural education, women skill building, and health camps in Eastern UP.'}
-        imageUrl="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=1000&auto=format&fit=crop"
+        imageUrl={IMAGES.pageHero.donate}
       />
 
       <section className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

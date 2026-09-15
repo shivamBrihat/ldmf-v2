@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import PageHero from '@/components/PageHero';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, AlertCircle } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { IMAGES } from '@/lib/images';
 
 export default function ContactPage() {
   const { language } = useLanguage();
@@ -68,8 +69,8 @@ export default function ContactPage() {
       <PageHero
         eyebrow={language === 'hi' ? 'संपर्क करें' : 'CONTACT US'}
         title={language === 'hi' ? 'हम आपसे सुनना पसंद करेंगे' : "We'd love to hear from you"}
-        subtitle={language === 'hi' ? 'हमारे आजमगढ़ कार्यालय पर पधारें या नीचे दिए गए फ़ॉर्म से संदेश भेजें।' : 'Reach out to our team for volunteering, course inquiries, health camps, or general support.'}
-        imageUrl="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1000&auto=format&fit=crop"
+        subtitle={language === 'hi' ? 'हमारे फाउंडेशन केंद्र पर पधारें या नीचे दिए गए फ़ॉर्म से संदेश भेजें।' : 'Reach out to our team for volunteering, course inquiries, health camps, or general support.'}
+        imageUrl={IMAGES.pageHero.contact}
       />
 
       <section className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
